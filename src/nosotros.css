@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+body{
+    background: #c4c4c4;
+}
+.h1_main{
+    font-weight: 400;
+    font-family: "Rubik", sans-serif;
+    font-size: 50px;
+    padding-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.p_align{
+    line-height: 50px;
+    font-weight: 300;
+    font-family: "Anek Kannada", sans-serif;
+    font-size: 45px;
+    justify-content: center;
+    text-align: center;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+#main-container{
+    font-family: "Rubik", sans-serif;
+    width: 325px;
+    margin: 87px auto 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+article{
+    width: 100%;
+    height: 440px;
+    padding: 40px;
+}
+#sedans{
+    background-color: #383838;
+}
+#suvs{
+    background-color: #FFFFFF;
+}
+
+.iconosmall {
+    font-size: 7rem;
+    color: #FF9000;
+}
+
+h2{
+    color: #FF9000;
+    font-family: "Rubik", sans-serif;
+    font-size: 2.4em;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+p{
+    font-family: "Anek Kannada", sans-serif;
+    color: #111111;
+    line-height: 25px;
+    margin-bottom: 25px;
+    font-size: 1.2rem;
+}
+
+.p-sedans{
+    color: #FFFFFF;
+}
+
+
+@media only screen and (max-width: 943px) {
+    .iconosmall {
+        font-size: 2rem;
+    }
+    p {
+        font-size: 0.7rem;
+    }
+
+}
+@media (min-width: 944px){
+    #main-container{
+        margin-top: 170px;
+        display: flex;
+        width: 924px;
+    }
+    article{
+        height: 500px;
+    }
+    p{
+        margin-bottom: 80px;
+    }
+  
+}
+
+@media only screen and (max-width: 768px) {
+    section .contactForm .info {
+        height: 300px;
+        padding: 20px;
+    }
+
+    section .contactForm .info .imgBox {
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    section .contactForm .form {
+        margin-left: 0px;
+        width: 100%;
+    }
+
+    section .contactForm .info {
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width: 991px) {
+    .sidebar{
+        background-color: rgba(196, 186, 186, 0.15);
+        backdrop-filter: blur(10px);
+    }
+}

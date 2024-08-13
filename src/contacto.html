@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="output.css" rel="stylesheet">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="contact.css">
+    <title>Contacto</title>
+</head>
+<body>
+    <header>
+        <div class="flex flex-wrap place-items-center ">
+          <section class="relative mx-auto">
+              <!-- navbar -->
+            <nav class="flex justify-between bg-white w-screen">
+              <div class="px-5 xl:px-12 py-6 flex w-full items-center">
+                <a class="text-3xl font-bold font-heading" href="#">
+                  <img class="h-9 logo" src="imgs/02_Logo/PNG/Recurso 12.png" alt="logo">
+                </a>
+                <!-- Nav Links -->
+                <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
+                  <li><a class="linknav" href="inicio.html">Inicio</a></li>
+                  <li><a class="linknav" href="nosotros.html">Nosotros</a></li>
+                  <li><a class="linknav" href="#">Cursos</a></li>
+                  <li><a class="linknav" href="tienda.html">Tienda</a></li>
+                  <li><a class="linknav" href="contacto.html">Contacto</a></li>
+                </ul>
+                <div class="pl-5 max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-2xl hidden xl:flex items-center categoriesnav">
+                  <select class="bg-transparent uppercase  text-sm p-4 mr-4" name="" id="">
+                    <option>Categorías</option>
+                    <option>Categorías</option>
+                    <option>Categorías</option>
+                    <option>Categorías</option>
+                    <option>Categorías</option>
+                  </select>
+                  <input class=" border-l border-gray-300 bg-transparent font-semibold text-sm pl-4 catinput" type="text" placeholder="Busque un curso...">
+                  <svg class="bg-orange ml-auto h-5 px-4 text-gray-500" aria-hidden="true" focusable="true" data-prefix="far" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-search fa-w-16 fa-9x"><path fill="currentColor" d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z"></path></svg>
+                </div>
+                <!-- Header Icons -->
+                <div class="hidden xl:flex space-x-5" style="padding-left: 70px;">
+                  <a class="flex items-center hover:text-black-500" href="#">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                      <span class="flex absolute -mt-5 ml-4">
+                        <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg"></span>
+                      </span>
+                  </a>
+                  <!-- Sign In / Register      -->
+                  <a class="flex hover:text-orange-600" href="login.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                  </a>
+                  
+                </div>
+              </div>
+              <!-- Responsive navbar -->
+              <a class="xl:hidden flex mr-6 items-center" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span class="flex absolute -mt-5 ml-4">
+                  <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg">
+                  </span>
+                </span>
+              </a>
+              <a class="navbar-burger self-center mr-12 xl:hidden" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+              </a>
+            </nav>
+          </section>
+        </div>
+      </header>
+    <section class="contact">
+        <div class="container">
+            <div class="left">
+                <div class="form-wrapper">
+                    <div class="contact-heading">
+                        <h1>¡Contactate con nosotros! <span>.</span></h1>
+                        <p class="text">Dejanos tu mensaje</p>
+                    </div>
+                    <form action="contacto.html" method="post" class="contact-form">
+                        <div class="input-wrap inp-wrap-1" style="padding-right: 30px;">
+                            <input class="contact-input" autocomplete="off" name="first name" type="text" required>
+                            <label>First name</label>
+                            <i class="icon inp-1 fa-solid fa-address-card"></i>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input class="contact-input" autocomplete="off" name="Last name" type="text" required>
+                            <label for="">Last name</label>
+                            <i class="icon fa-solid fa-address-card"></i>
+                        </div>
+
+                        <div class="input-wrap w-100">
+                            <input class="contact-input" autocomplete="off" name="Email" type="email" required>
+                            <label for="">Email</label>
+                            <i class="icon icon-resp fa-solid fa-envelope"></i>
+                        </div>
+
+                        <div class="input-wrap textarea w-100">
+                            <textarea name="Message" autocomplete="off" class="contact-input" required></textarea>
+                            <label for="">Message</label>
+                            <i class="icon icon-resp fa-solid fa-inbox"></i>
+                        </div>
+                        <div class="contact-buttons w-100">
+                            <button class="btn upload">
+                                <span>
+                                    <i class="fa-solid fa-paperclip"></i>Añadir archivo
+                                </span>
+                                <input type="file" name="attachment">
+                            </button>
+                            <input type="submit" value="Enviar mensaje" class="btn">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="right">
+                <div class="image-wrapper">
+                    <div class="wave-wrap">
+                    </div>
+                    <svg class="dashed-wave" viewBox="0 0 345 877" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="dashed-wave" d="M0.5 876C25.6667 836.167 73.2 739.8 62 673C48 589.5 35.5 499.5 125.5 462C215.5 424.5 150 365 87 333.5C24 302 44 237.5 125.5 213.5C207 189.5 307 138.5 246 87C185 35.5 297 1 344.5 1"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
+    <footer class="footer">
+         <div class="container_footer">
+             <div class="row">
+                 <div class="footer-col">
+                     <img src="/src/imgs/02_Logo/PNG/Recurso 19.png" style="width: 40%; height: 40%;" alt="">
+                 </div>
+                 <div class="footer-col">
+                     <ul>
+                         <li><a href="#">Inicio</a></li>
+                         <li><a href="#">Nosotros</a></li>
+                         <li><a href="#">Cursos</a></li>
+                      <li><a href="#">Herramientas</a></li>
+                         <li><a href="#">Tienda</a></li>
+                      <li><a href="#">Contacto</a></li>
+                     </ul>
+                 </div>
+                 <div class="footer-col">
+                     <h4>Nuestras redes sociales</h4>
+                     <div class="social-links">
+                         <a href="#"><i class="fab fa-facebook-f"></i></a>
+                         <a href="#"><i class="fab fa-twitter"></i></a>
+                         <a href="#"><i class="fab fa-instagram"></i></a>
+                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                     </div>
+                 </div>
+             </div>
+         </div>
+    </footer>
+    <script src="scripts/form.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.js" integrity="sha512-5FvlLK9/1zFkolsL3agoJESBOWEd1gEzY1/Ul5Qw9cTMiPf/tiZoFD10DB9rQLK/rBBUfXECkG6ZaV7RXkcWNw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

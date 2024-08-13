@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="output.css" rel="stylesheet">
+    <link rel="stylesheet" href="tienda.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <title>Tienda</title>
+</head>
+<body>
+    <header>
+        <div class="flex flex-wrap place-items-center ">
+            <section class="relative mx-auto">
+                <!-- navbar -->
+              <nav class="flex justify-between bg-white w-screen">
+                <div class="px-5 xl:px-10 py-6 flex w-full items-center">
+                  <a class="text-3xl font-bold font-heading" href="#">
+                    <img class="h-9" src="imgs/02_Logo/PNG/Recurso 12.png" alt="logo">
+                  </a>
+                  <!-- Nav Links -->
+                  <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
+                    <li><a class="linknav" href="inicio.html">Inicio</a></li>
+                    <li><a class="linknav" href="nosotros.html">Nosotros</a></li>
+                    <li><a class="linknav" href="#">Cursos</a></li>
+                    <li><a class="linknav" href="tienda.html">Tienda</a></li>
+                    <li><a class="linknav" href="contacto.html">Contacto</a></li>
+                  </ul>
+                  <div class="pl-5 max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-2xl hidden xl:flex items-center categoriesnav">
+                    <select class="bg-transparent uppercase  text-sm p-4 mr-4" name="" id="">
+                      <option>Categorías</option>
+                      <option>Categorías</option>
+                      <option>Categorías</option>
+                      <option>Categorías</option>
+                      <option>Categorías</option>
+                    </select>
+                    <input class=" border-l border-gray-300 bg-transparent font-semibold text-sm pl-4 catinput" type="text" placeholder="Busque un curso...">
+                    <svg class="bg-orange ml-auto h-5 px-4 text-gray-500" aria-hidden="true" focusable="true" data-prefix="far" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-search fa-w-16 fa-9x"><path fill="currentColor" d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z"></path></svg>
+                  </div>
+                  <div class="px-5 hidden xl:flex space-x-5" >
+                    <ul class="flex items-center">
+                        <li class="submenu ">
+                            <a class="flex items-center hover:text-black-500" href="#" id="img-carrito" alt="carrito" >
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                <span class="flex absolute -mt-5 ml-4">
+                                  <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-3 w-3 bg"></span>
+                                </span>
+                            </a>
+                            <!--<img src="imgs/utilidades/car.svg" id="img-carrito" alt="carrito">-->
+                            <div  id="carrito">
+                                <table id="lista-carrito">
+                                    <thead>
+                                        <tr>
+                                            <th>imagen</th>
+                                            <th>nombre</th>
+                                            <th>precio</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                <a href="#" id="vaciar-carrito" class="btn-2">Vaciar carrito</a>
+                            </div> 
+                        </li>
+                    </ul>
+                </div>                  
+                </div>
+                <!-- Header Icons -->
+                <!-- Responsive navbar -->
+                <a class="xl:hidden flex mr-6 items-center" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span class="flex absolute -mt-5 ml-4">
+                    <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg">
+                    </span>
+                  </span>
+                </a>
+                <a class="navbar-burger self-center mr-12 xl:hidden" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </a>
+              </nav>
+            </section>
+        </div>
+        
+    </header>
+    <main>
+        <section class="productos-main container" id="lista-1">
+            <h2>Productos</h2>
+
+            <div class="product-content" >
+
+                <div class="product">
+                    <img src="imgs/04_Aplicaciones/164.png" alt="">
+                    <div class="product-txt">
+                        <h3>producto</h3>
+                        <p>calidad</p>
+                        <p class="precio">$30</p>
+                        <a href="#" class="agregar-carrito btn-2" data-id="1">Agregar al carrito</a>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="imgs/04_Aplicaciones/411.png" alt="">
+                    <div class="product-txt">
+                        <h3>producto</h3>
+                        <p></p>
+                        <p class="precio">$30</p>
+                        <a href="" class="agregar-carrito btn-2" data-id="2">Agregar al carrito</a>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="imgs/04_Aplicaciones/7693127.png" alt="">
+                    <div class="product-txt">
+                        <h3>producto</h3>
+                        <p></p>
+                        <p class="precio">$30</p>
+                        <a href="" class="agregar-carrito btn-2" data-id="3">Agregar al carrito</a>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="imgs/04_Aplicaciones/blacktshirtmockup4fp.png" alt="">
+                    <div class="product-txt">
+                        <h3>producto</h3>
+                        <p></p>
+                        <p class="precio">$30</p>
+                        <a href="" class="agregar-carrito btn-2" data-id="4">Agregar al carrito</a>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="imgs/04_Aplicaciones/ddsa.png" alt="">
+                    <div class="product-txt">
+                        <h3>producto</h3>
+                        <p></p>
+                        <p class="precio">$30</p>
+                        <a href="" class="agregar-carrito btn-2" data-id="5">Agregar al carrito</a>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="imgs/04_Aplicaciones/Mug_Mockup_1174.png" alt="">
+                    <div class="product-txt">
+                        <h3>producto</h3>
+                        <p></p>
+                        <p class="precio">$30</p>
+                        <a href="" class="agregar-carrito btn-2" data-id="6">Agregar al carrito</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
+    <footer class="footer">
+  	    <div class="container">
+  	 	    <div class="row">
+  	 		    <div class="footer-col">
+  	 			    <img src="/src/imgs/02_Logo/PNG/Recurso 19.png" style="width: 40%; height: 40%;" alt="">
+  	 		    </div>
+  	 		    <div class="footer-col">
+  	 			    <ul>
+  	 				    <li><a href="#">Inicio</a></li>
+  	 				    <li><a href="#">Nosotros</a></li>
+  	 				    <li><a href="#">Cursos</a></li>
+					    <li><a href="#">Herramientas</a></li>
+  	 				    <li><a href="#">Tienda</a></li>
+					    <li><a href="#">Contacto</a></li>
+  	 			    </ul>
+  	 		    </div>
+  	 		    <div class="footer-col">
+  	 			    <h4>Nuestras redes sociales</h4>
+  	 			    <div class="social-links">
+  	 				    <a href="#"><i class="fab fa-facebook-f"></i></a>
+  	 				    <a href="#"><i class="fab fa-twitter"></i></a>
+  	 				    <a href="#"><i class="fab fa-instagram"></i></a>
+  	 				    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+  	 			    </div>
+  	 		    </div>
+  	 	    </div>
+  	    </div>
+    </footer>
+    <script src="scripts/tiendascript.js"></script>
+</body>
+</html>
