@@ -76,6 +76,10 @@ p{
     p {
         font-size: 0.7rem;
     }
+    .p_align{
+        font-size: 20px;
+        font-weight: 300;
+    }
 
 }
 @media (min-width: 944px){
@@ -120,5 +124,11 @@ p{
     .sidebar{
         background-color: rgba(196, 186, 186, 0.15);
         backdrop-filter: blur(10px);
+    }
+}
+
+@media(max-width: 489px){
+    .p_align{
+        font-size: 14px;
     }
 }

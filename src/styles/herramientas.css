@@ -1,0 +1,73 @@
+.main-h1{
+    display: flex;
+    align-items: center;
+}
+
+.icon-main{
+    display: flex;
+    padding-right: 20px;
+    font-size: 120px;
+    font-weight: 100;
+    color: #FF9000;
+}
+
+.main-h1 h1{
+    font-size: 150px;
+}
+
+.img-banner{
+    height: 70%;
+    width: 70%;
+    margin-left: 100px;
+}
+
+.banner-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+}
+
+.border{
+    border-color: #000000;
+    border-bottom: 0.2px;
+    border-style:solid;
+    margin: 50px;
+}
+
+.grid-component{
+    grid-row: 1/2;
+    display: flex;
+    align-items: center;
+}
+
+.main-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+.card-btn{
+    background-color: #FF9000;
+    border-radius: 15px;
+    width: 25%;
+    font-size: 20px;
+    font-weight: 450;
+    box-shadow: 2px 2px 2px 2px;
+}
+
+.tools-grid{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+    margin: 10px;
+}
+
+.tools-video{
+    display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.video-grid{
+    width: 90%;
+    height: 300px;
+}

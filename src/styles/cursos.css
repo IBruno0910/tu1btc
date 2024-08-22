@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+body{
+    font-family: "Rubik", sans-serif;
+}
+
+.h1-cursos{
+    font-weight: 350;
+    position: absolute;
+    font-size: 150px;
+    color: white;
+    top: 120px;
+    left: 40%;
+}
+
+.img-main  {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+.img-child{
+    position: absolute;
+    top: 120px;
+    left: -5%;
+    height: 40%;
+    width: 30%;
+}
+
+.grid-container{
+    margin: 40px auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr) ;
+}
+
+.element{
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    margin: 10px;
+    border: 0.1px solid;
+    border-color: rgb(128, 128, 128);
+    box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);
+}
+
+.element:hover{
+    transform: scale(0.99);
+}
+
+.img-card{
+    display: flex;
+    justify-content: center;
+    width: 97%;
+    margin: 4px auto;
+    border-radius: 10px;
+}
+
+.element-cat{
+    display: flex;
+    width: 100%;
+    margin: 10px;
+    margin-left: 80px;
+    grid-row: 1/2;
+    align-items: baseline;
+}
+
+.img-categorias{
+    margin-left: 20px;
+    width: 90%;
+    height: 90%;
+    grid-row: 2/6;
+}
+
+.categorias{
+    margin-left: 45px;
+    width: 63%;
+    padding: 10px;
+    border-color: #111;
+    outline: 1px solid;
+    border-radius: 10px;
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.categorias div{
+    font-size: 20px;
+    font-weight: 300;
+    padding-left: 20px;
+}
+
+.categorias h2{
+    font-size: 25px;
+    padding-left: 12px;
+}
+
+.cat-input{
+    margin: 5px;
+    color: #FF9000;
+}
+
+.element h3 {
+    font-weight: 450;
+    display: flex;
+    margin-left: 12px;
+    font-size: 20px;
+}
+
+.element p{
+ display: flex;
+ margin-left: 12px;
+ margin-top: 10px;
+ margin-bottom: 20px;
+ margin-right: 10px;
+ color: #444444;
+}
+
+.card-div{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 5px;
+    margin-bottom: 10px;
+}
+
+.card-div h4{
+    font-weight: 700;
+    margin-left: 100px;
+    color: #FF9000;
+}
+
+.card-btn{
+    display: flex;
+    background-color: #FF9000;
+    border-radius: 15px;
+    width: 70%;
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: 450;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 2px 2px;
+}
+
+.card-btn:hover{
+    transform: scale(1.1);
+}
+
+.categories-card {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.categories-card div{
+    margin: 3px;
+    margin-left: 10px;
+    background-color: #c6c6c6;
+    width: 25%;
+    border-radius: 6px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkbox-margin{
+    margin-right: 10px;
+}

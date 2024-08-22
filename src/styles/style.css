@@ -40,14 +40,23 @@ body{
 
 .img_son{
     position: absolute;
-    width: 50%;
+    width: 40%;
     height: 50%;
     top: 180px;
-    left: 25%;
+    left: 30%;
 }
 /*-------------------------------*/
 
 .h1_main{
+    font-family: "Rubik", sans-serif;
+    font-size: 50px;
+    padding-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.h1_mainprod{
     font-family: "Rubik", sans-serif;
     font-size: 50px;
     padding-top: 3rem;
@@ -154,3 +163,75 @@ body{
     font-size: 15px;
 }
 /*-------------------------------*/
+
+@media (max-width: 767px){
+    .img_son{
+        height: 30%;
+    }
+
+    .h1_main{
+        font-size: 30px;
+    }
+
+    .h1_mainprod{
+        font-size: 30px;
+    }
+
+    .prod-img img{
+        height: 100%;
+        width: 100%;
+    }
+    
+    .prod-txt h3{
+        font-size: 10px;
+    }
+
+    .prod-txt a{
+        font-size: 10px;
+    }
+    
+    .footer-col img{
+        display: flex;
+        margin-left: 100px;
+    }
+}
+
+@media (max-width: 600px){
+    .img_son{
+        height: 20%;
+    }
+
+    .h1_main{
+        font-size: 20px;
+    }
+
+    .h1_mainprod{
+        font-size: 20px;
+    }
+
+    .bot_reg{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 493px){
+    .img_son{
+        height: 15%;
+        top: 130px;
+    }
+
+    .img_cont{
+        height: 250px;
+    }
+
+    .bot_reg{
+        font-size: 15px;
+    }
+
+    .productos{
+        display: none;
+    }
+    .h1_mainprod{
+        display: none;
+    }
+}
