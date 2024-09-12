@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/login.css">
     <title>Login-Register</title>
 </head>
-<body>
+<body style="background-image: url(imgs/03_Elementos_gráficos/PNG/Recurso\ 2.png);">
     <div class="container">
         <div class="signin-signup">
             <form action="" class="sign-in-form">
@@ -41,17 +41,21 @@
                 <h2 class="title">Registrarse</h2>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
+                    <input type="text" id="user-id-input" placeholder="id">
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
                     <input type="text" placeholder="Nombre">
                 </div>
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
-                    <input type="text" placeholder="Email">
+                    <input type="text" id="email-input" placeholder="Email">
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
                     <input type="password" placeholder="Contraseña">
                 </div>
-                <input type="submit" value="Registrarse" class="btn">
+                <input type="submit" id="submit-btn" value="Registrarse" class="btn">
                 <p class="social-text">O Registrate con tus redes sociales</p>
                 <div class="social-media">
                     <a href="" class="social-icon">
@@ -88,6 +92,8 @@
             </div>
         </div>
     </div>
+    <script src="fetch/user/getuser.js"></script>
+    <!-- <script src="fetch/detail.js"></script> -->
     <script src="scripts/login.js"></script>
 </body>
 </html>

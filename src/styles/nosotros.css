@@ -18,11 +18,10 @@ body{
     line-height: 50px;
     font-weight: 300;
     font-family: "Anek Kannada", sans-serif;
-    font-size: 45px;
+    font-size: 25px;
     justify-content: center;
     text-align: center;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-right: 25%;
 }
 
 #main-container{
@@ -68,6 +67,17 @@ p{
     color: #FFFFFF;
 }
 
+.imgnosotros{
+    margin-left: 250px;
+    height: 400px;
+    width: 400px;
+}
+
+.nosotrosGrid{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+}
 
 @media only screen and (max-width: 943px) {
     .iconosmall {
