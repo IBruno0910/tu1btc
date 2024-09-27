@@ -129,6 +129,59 @@ body{
     color: #FF9000;
 }
 
+/*card*/
+.card-main{
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    margin: 10px;
+    border-color: rgb(128, 128, 128);
+    box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);
+}
+
+/*precio card*/
+.card-price{
+    font-weight: 700;
+    margin-left: 100px;
+    color: #FF9000;
+}
+
+/*nombre card*/
+.card-name{
+    font-weight: 450;
+    display: flex;
+    margin-left: 12px;
+    font-size: 20px;
+}
+
+/*desc card*/
+.card-desc {
+    display: flex;
+    margin-left: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    color: #444444;
+   }
+
+/*boton card*/
+.card-insc{
+    display: flex;
+    background-color: #FF9000;
+    border-radius: 15px;
+    width: 70%;
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: 450;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 2px 2px;
+    margin-bottom: 10px;
+}
+
+.card-insc:hover{
+    transform: scale(1.1);
+}
+
 .card-btn{
     display: flex;
     background-color: #FF9000;

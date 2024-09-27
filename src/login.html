@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imgs/02_Logo/PNG/favicon-32x32.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="styles/login.css">
     <title>Login-Register</title>
@@ -14,13 +15,13 @@
                 <h2 class="title">Iniciar sesión</h2>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Nombre">
+                    <input type="email" id="login-email" placeholder="email">
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Contraseña">
+                    <input type="password" id="login-password" placeholder="Contraseña">
                 </div>
-                <input type="submit" value="Iniciar sesión" class="btn">
+                <input type="submit" id="login-btn" value="Iniciar sesión" class="btn">
                 <p class="social-text">O inicia sesión con tus redes sociales</p>
                 <div class="social-media">
                     <a href="" class="social-icon">
@@ -40,12 +41,16 @@
             <form action="" class="sign-up-form">
                 <h2 class="title">Registrarse</h2>
                 <div class="input-field">
-                    <i class="fas fa-user"></i>
-                    <input type="text" id="user-id-input" placeholder="id">
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <input type="text" id="phone-input" placeholder="Telefono">
                 </div>
                 <div class="input-field">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="Nombre">
+                    <input type="text" id="name-input" placeholder="Nombre">
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="surname-input" placeholder="Apellido">
                 </div>
                 <div class="input-field">
                     <i class="fas fa-envelope"></i>
@@ -53,9 +58,9 @@
                 </div>
                 <div class="input-field">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="Contraseña">
+                    <input type="password" id="password-input" placeholder="Contraseña">
                 </div>
-                <input type="submit" id="submit-btn" value="Registrarse" class="btn">
+                <input type="button" id="register-btn" value="Registrarse" class="btn">
                 <p class="social-text">O Registrate con tus redes sociales</p>
                 <div class="social-media">
                     <a href="" class="social-icon">
@@ -92,7 +97,8 @@
             </div>
         </div>
     </div>
-    <script src="fetch/user/getuser.js"></script>
+    <script src="fetch/user/register.js"></script>
+    <script src="fetch/auth/login.js"></script>
     <!-- <script src="fetch/detail.js"></script> -->
     <script src="scripts/login.js"></script>
 </body>
