@@ -105,10 +105,26 @@
         <img class="img-child" src="imgs/03_Elementos_gráficos/PNG/Recurso 9.png" alt="">
       </div>
     </div>
-    <h2 style="color: #FF9000; display: flex; font-size: 20px; justify-content: center; align-items: center;" class="text-2xl font-bold mb-4">Cursos con Membresía</h2>
-    <div id="membershipCoursesContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-        <!-- Aquí se añadirán las tarjetas de los cursos de membresía -->
-    </div>
+        <div id="membershipCoursesContainer" class="grid-container">
+          <div class="elemento element-cat">
+            <div class="categorias">
+              <h2>Categorías</h2>
+              <div><input id="nopremium-checkbox" class="checkbox-margin" type="checkbox">No premium</div>
+              <div><input id="member-checkbox"  class="checkbox-margin" type="checkbox" checked>membership</div>
+              <div><input id="premium-checkbox" class="checkbox-margin" type="checkbox">Premium</div>
+              <div><input class="checkbox-margin" type="checkbox">Categoria</div>
+              <div><input class="checkbox-margin" type="checkbox">Categoria</div>
+              <div><input class="checkbox-margin" type="checkbox">Categoria</div>
+              <div><input class="checkbox-margin" type="checkbox">Categoria</div>
+              <div class="cat-input"><a href="">Mostras mas...</a></div>
+            </div>
+          </div>
+          <div class=" img-categorias">
+            <img src="imgs/02_Logo/PNG/Recurso 24.png" alt="">
+          </div>
+          <!-- Aquí se mostrarán los cursos no premium -->
+        </div>    
+    <div id="" class="grid-container"></div>
     
 </main>
 <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
@@ -140,6 +156,40 @@
       </div>
     </div>
 </footer>
+<script>
+  const userIcon = document.getElementById('user-icon');
+  const userDropdown = document.getElementById('user-dropdown');
+
+  userIcon.addEventListener('click', () => {
+      const isOpen = userDropdown.classList.toggle('hidden');
+      userIcon.setAttribute('aria-expanded', !isOpen);
+  });
+
+  // Cierra el dropdown si se hace clic fuera de él
+  window.addEventListener('click', (event) => {
+      if (!userIcon.contains(event.target) && !userDropdown.contains(event.target)) {
+          userDropdown.classList.add('hidden');
+          userIcon.setAttribute('aria-expanded', 'false');
+      }
+  });
+</script>
+<script>
+    document.getElementById('member-checkbox').addEventListener('change', function() {
+      if (this.checked) {
+          window.location.href = 'membercursos.html'; // Redirigir a la página deseada
+      }
+  });
+  document.getElementById('nopremium-checkbox').addEventListener('change', function() {
+      if (this.checked) {
+          window.location.href = 'cursos.html'; // Redirigir a la página deseada
+      }
+  });
+  document.getElementById('premium-checkbox').addEventListener('change', function() {
+      if (this.checked) {
+          window.location.href = 'premiumcursos.html'; // Redirigir a la página deseada
+      }
+  });
+</script>
 <script src="fetch/course/getallformembershipid.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>

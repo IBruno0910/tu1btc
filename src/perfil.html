@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="imgs/02_Logo/PNG/favicon-32x32.png" type="image/x-icon">
     <link href="styles/output.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles/nosotros.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/faq.css">
+    <link rel="stylesheet" href="styles/perfil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <title>Perfil</title>
@@ -96,19 +95,44 @@
         </div>
     </header>
     <main>
-      <div id="user-info">
+        <div id="user-info" class="user-info-container">
             <h2>Información del Usuario</h2>
-            <p><strong>ID:</strong> <span id="user-id"></span></p>
-            <p><strong>Nombre:</strong> <span id="user-name"></span></p>
-            <p><strong>Apellido:</strong> <span id="user-surname"></span></p>
-            <p><strong>Email:</strong> <span id="user-email"></span></p>
-            <p><strong>Teléfono:</strong> <span id="user-phone"></span></p>
-            <p><strong>Activo:</strong> <span id="user-active"></span></p>
-            <p><strong>Roles:</strong> <span id="user-roles"></span></p>
-      </div>
-      <button id="get-info-btn">Obtener Información del Usuario</button>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><strong>ID:</strong></td>
+                        <td id="user-id"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nombre:</strong></td>
+                        <td id="user-name"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Apellido:</strong></td>
+                        <td id="user-surname"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email:</strong></td>
+                        <td id="user-email"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Teléfono:</strong></td>
+                        <td id="user-phone"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Activo:</strong></td>
+                        <td id="user-active"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Roles:</strong></td>
+                        <td id="user-roles"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="get-info-btn">Obtener Información del Usuario</button>
+        </div>
 
-      <form id="updateUserForm">
+      <!--<form id="updateUserForm">
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" required>
         
@@ -126,9 +150,10 @@
         
         <button type="submit">Actualizar Usuario</button>
       </form>    
-      <div id="responseMessage"></div>
+      <div id="responseMessage"></div>-->
         
     </main>
+    <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
     <footer class="footer">
   	 <div class="container">
   	 	<div class="row">

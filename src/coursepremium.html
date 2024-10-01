@@ -94,13 +94,13 @@
     </div>
   </header>
   <main>
-    <div id="course-details">
+    <div id="course-description"></div>
         <h1 id="course-title"></h1>
         <video id="course-video" controls>
             <source src="" type="video/mp4"> <!-- Aquí se pondrá el enlace del video -->
             Tu navegador no soporta la etiqueta de video.
         </video>
-        <button id="inscribe-btn" onclick="inscribirCurso(courseId)">Inscribirse</button>
+        <button id="inscribe-btn" onclick="inscribirCursoPremium(courseId)">Inscribirse</button>
     </div>
   </main>
   <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
@@ -133,9 +133,13 @@
     </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="fetch/course/inscriptionforadmin.js"></script>
+<script src="fetch/course/premiumid.js"></script>
 <script>
-        const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(window.location.search);
         const courseId = urlParams.get('id'); // Obtiene el ID del curso de la URL
+
+        // Lógica para obtener los detalles del curso (puedes adaptar esto según tu API)
         fetch(`https://tu1btc.com/api/course/${courseId}`, {
             method: 'GET',
             headers: {
@@ -158,8 +162,6 @@
             console.error('Error al obtener los detalles del curso:', error);
         });
 </script>
-<script src="fetch/course/inscription.js"></script>
-<script src="fetch/course/id.js"></script>
 <script>
   const userIcon = document.getElementById('user-icon');
   const userDropdown = document.getElementById('user-dropdown');

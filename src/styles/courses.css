@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
-body{
+body {
     font-family: "Rubik", sans-serif;
 }
 
-.h1-cursos{
+.h1-cursos {
     font-weight: 350;
     position: absolute;
     font-size: 150px;
@@ -14,13 +14,13 @@ body{
     left: 40%;
 }
 
-.img-main  {
+.img-main {
     position: relative;
     height: 300px;
     width: 100%;
 }
 
-.img-child{
+.img-child {
     position: absolute;
     top: 120px;
     left: -5%;
@@ -28,15 +28,16 @@ body{
     width: 30%;
 }
 
-.grid-container{
+.grid-container {
     margin: 40px auto;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr) ;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas para los cursos */
+    grid-template-rows: auto; /* Las filas se ajustarán automáticamente */
+    gap: 20px;
 }
 
-.element{
+.element {
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     margin: 10px;
@@ -44,37 +45,31 @@ body{
     box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);
 }
 
-.element:hover{
+.element:hover {
     transform: scale(0.99);
 }
 
-.img-card{
+.img-card {
     display: flex;
     justify-content: center;
-    width: 100%;
-    height: 300px;
+    width: 97%;
     margin: 4px auto;
-    padding: 5px;
     border-radius: 10px;
 }
 
-.element-cat{
+.element-cat {
     display: flex;
-    width: 100%;
+    flex-direction: column;
     margin: 10px;
-    margin-left: 80px;
-    grid-row: 1/2;
-    align-items: baseline;
 }
 
-.img-categorias{
-    margin-left: 20px;
-    width: 90%;
-    height: 90%;
-    grid-row: 2/6;
+.img-categorias {
+    margin-top: 10px; /* Espacio entre la sección de categorías y la imagen */
+    width: 100%; /* Asegúrate de que la imagen tenga el ancho completo */
+    border-radius: 10px;
 }
 
-.categorias{
+.categorias {
     margin-left: 45px;
     width: 63%;
     padding: 10px;
@@ -86,18 +81,18 @@ body{
     grid-template-columns: repeat(1, 1fr);
 }
 
-.categorias div{
+.categorias div {
     font-size: 20px;
     font-weight: 300;
     padding-left: 20px;
 }
 
-.categorias h2{
+.categorias h2 {
     font-size: 25px;
     padding-left: 12px;
 }
 
-.cat-input{
+.cat-input {
     margin: 5px;
     color: #FF9000;
 }
@@ -109,30 +104,30 @@ body{
     font-size: 20px;
 }
 
-.element p{
- display: flex;
- margin-left: 12px;
- margin-top: 10px;
- margin-bottom: 20px;
- margin-right: 10px;
- color: #444444;
+.element p {
+    display: flex;
+    margin-left: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    color: #444444;
 }
 
-.card-div{
+.card-div {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin: 5px;
     margin-bottom: 10px;
 }
 
-.card-div h4{
+.card-div h4 {
     font-weight: 700;
     margin-left: 100px;
     color: #FF9000;
 }
 
-/*card*/
-.card-main{
+/* Card Styles */
+.card-main {
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     margin: 10px;
@@ -140,22 +135,22 @@ body{
     box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);
 }
 
-/*precio card*/
-.card-price{
+/* Price Styles */
+.card-price {
     font-weight: 700;
     margin-left: 100px;
     color: #FF9000;
 }
 
-/*nombre card*/
-.card-name{
+/* Name Styles */
+.card-name {
     font-weight: 450;
     display: flex;
     margin-left: 12px;
     font-size: 20px;
 }
 
-/*desc card*/
+/* Description Styles */
 .card-desc {
     display: flex;
     margin-left: 12px;
@@ -163,10 +158,10 @@ body{
     margin-bottom: 20px;
     margin-right: 10px;
     color: #444444;
-   }
+}
 
-/*boton card*/
-.card-insc{
+/* Button Styles */
+.card-insc {
     display: flex;
     background-color: #FF9000;
     border-radius: 15px;
@@ -180,11 +175,11 @@ body{
     margin-bottom: 10px;
 }
 
-.card-insc:hover{
+.card-insc:hover {
     transform: scale(1.1);
 }
 
-.card-btn{
+.card-btn {
     display: flex;
     background-color: #FF9000;
     border-radius: 15px;
@@ -197,29 +192,35 @@ body{
     box-shadow: 2px 2px 2px 2px;
 }
 
-.card-btn:hover{
+.card-btn:hover {
     transform: scale(1.1);
 }
 
 .categories-card {
     display: flex;
     justify-content: flex-start;
-    margin-bottom: 5px;
-    margin-left: 5px;
+    margin-bottom: 2px;
+    margin-left: 2px;
 }
 
-.categories-card div{
+.categories-card div {
     margin: 3px;
     margin-left: 10px;
-    background-color: #c6c6c6;
-    width: 25%;
+    width: 50%;
     border-radius: 6px;
     font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.checkbox-margin{
+.checkbox-margin {
     margin-right: 10px;
+}
+
+/* New Styles */
+.course-section {
+    grid-column: span 2; /* Esto hará que la sección de cursos ocupe dos columnas */
+    margin-top: 20px; /* Espaciado superior para separar las secciones */
+}
+
+.elemento {
+    grid-column: span 2; /* Espaciado para las categorías y la imagen */
 }

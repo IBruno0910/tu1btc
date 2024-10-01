@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="imgs/02_Logo/PNG/favicon-32x32.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/output.css">
-    <link rel="stylesheet" href="styles/courses.css">
+    <link rel="stylesheet" href="styles/cursos.css">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -94,14 +94,162 @@
     </div>
   </header>
   <main>
-    <div id="course-details">
-        <h1 id="course-title"></h1>
-        <video id="course-video" controls>
-            <source src="" type="video/mp4"> <!-- Aquí se pondrá el enlace del video -->
-            Tu navegador no soporta la etiqueta de video.
-        </video>
-        <button id="inscribe-btn" onclick="inscribirCurso(courseId)">Inscribirse</button>
+    <div class="container-cursos">
+      <div>
+        <img class="img-main"  src="imgs/03_Elementos_gráficos/PNG/recurso 6 edit.png" alt="">
+      </div>
+      <div>
+        <h1 class="h1-cursos">Cursos</h1>
+      </div>
+      <div>
+        <img class="img-child" src="imgs/03_Elementos_gráficos/PNG/Recurso 9.png" alt="">
+      </div>
     </div>
+      <div id="coursesContainer" class="grid-container">
+        <div class="elemento element-cat">
+          <div class="categorias">
+            <h2>Categorías</h2>
+            <div><input id="nopremium-checkbox" class="checkbox-margin" type="checkbox">No premium</div>
+            <div><input id="member-checkbox" class="checkbox-margin" type="checkbox">membership</div>
+            <div><input id="premium-checkbox" class="checkbox-margin" type="checkbox" checked>Premium</div>
+            <div><input class="checkbox-margin" type="checkbox">Categoria</div>
+            <div><input class="checkbox-margin" type="checkbox">Categoria</div>
+            <div><input class="checkbox-margin" type="checkbox">Categoria</div>
+            <div><input class="checkbox-margin" type="checkbox">Categoria</div>
+            <div class="cat-input"><a href="">Mostras mas...</a></div>
+          </div>
+        </div>
+        <div class=" img-categorias">
+          <img src="imgs/02_Logo/PNG/Recurso 24.png" alt="">
+        </div>
+        <!-- Aquí se mostrarán los cursos premium -->
+      </div>
+      <!--<div class="element element-1">
+        <img class="img-card" src="imgs/ejemplos/cursos.png" alt="">
+        <div class="categories-card">
+          <div>Categoria</div>
+          <div>Categoria</div>
+          <div>Categoria</div>
+        </div>
+        <h3>Aprende a utilizar Photoshop desde cero</h3>
+        <p>Por Daniel Caseres</p>
+        <div class="card-div">
+          <button class="card-btn">Inscribirse</button>
+          <h4>$57</h4>
+        </div>
+      </div>
+      <div class="element element-1">
+        <img class="img-card" src="imgs/ejemplos/cursos.png" alt="">
+        <div class="categories-card">
+          <div>Categoria</div>
+          <div>Categoria</div>
+          <div>Categoria</div>
+        </div>
+        <h3>Aprende a utilizar Photoshop desde cero</h3>
+        <p>Por Daniel Caseres</p>
+        <div class="card-div">
+          <button class="card-btn">Inscribirse</button>
+          <h4>$57</h4>
+        </div>
+      </div>
+      <div class="element element-1">
+        <img class="img-card" src="imgs/ejemplos/cursos.png" alt="">
+        <div class="categories-card">
+          <div>Categoria</div>
+          <div>Categoria</div>
+          <div>Categoria</div>
+        </div>
+        <h3>Aprende a utilizar Photoshop desde cero</h3>
+        <p>Por Daniel Caseres</p>
+        <div class="card-div">
+          <button class="card-btn">Inscribirse</button>
+          <h4>$57</h4>
+        </div>
+      </div>
+      <div class="element element-1">
+        <img class="img-card" src="imgs/ejemplos/cursos.png" alt="">
+        <div class="categories-card">
+          <div>Categoria</div>
+          <div>Categoria</div>
+          <div>Categoria</div>
+        </div>
+        <h3>Aprende a utilizar Photoshop desde cero</h3>
+        <p>Por Daniel Caseres</p>
+        <div class="card-div">
+          <button class="card-btn">Inscribirse</button>
+          <h4>$57</h4>
+        </div>
+      </div>
+      <div class="element element-1">
+        <img class="img-card" src="imgs/ejemplos/cursos.png" alt="">
+        <div class="categories-card">
+          <div>Categoria</div>
+          <div>Categoria</div>
+          <div>Categoria</div>
+        </div>
+        <h3>Aprende a utilizar Photoshop desde cero</h3>
+        <p>Por Daniel Caseres</p>
+        <div class="card-div">
+          <button class="card-btn">Inscribirse</button>
+          <h4>$57</h4>
+        </div>
+      </div>
+      <div class="element element-1">
+        <img class="img-card" src="imgs/ejemplos/cursos.png" alt="">
+        <div class="categories-card">
+          <div>Categoria</div>
+          <div>Categoria</div>
+          <div>Categoria</div>
+        </div>
+        <h3>Aprende a utilizar Photoshop desde cero</h3>
+        <p>Por Daniel Caseres</p>
+        <div class="card-div">
+          <button class="card-btn">Inscribirse</button>
+          <h4>$57</h4>
+        </div>
+      </div>
+      <div class="element element-1">
+        <img class="img-card" src="imgs/ejemplos/cursos.png" alt="">
+        <div class="categories-card">
+          <div>Categoria</div>
+          <div>Categoria</div>
+          <div>Categoria</div>
+        </div>
+        <h3>Aprende a utilizar Photoshop desde cero</h3>
+        <p>Por Daniel Caseres</p>
+        <div class="card-div">
+          <button class="card-btn">Inscribirse</button>
+          <h4>$57</h4>
+        </div>
+      </div>
+      <div class="element element-1">
+        <img class="img-card" src="imgs/ejemplos/cursos.png" alt="">
+        <div class="categories-card">
+          <div>Categoria</div>
+          <div>Categoria</div>
+          <div>Categoria</div>
+        </div>
+        <h3>Aprende a utilizar Photoshop desde cero</h3>
+        <p>Por Daniel Caseres</p>
+        <div class="card-div">
+          <button class="card-btn">Inscribirse</button>
+          <h4>$57</h4>
+        </div>
+      </div>
+      <div class="element element-1">
+        <img class="img-card" src="imgs/ejemplos/cursos.png" alt="">
+        <div class="categories-card">
+          <div>Categoria</div>
+          <div>Categoria</div>
+          <div>Categoria</div>
+        </div>
+        <h3>Aprende a utilizar Photoshop desde cero</h3>
+        <p>Por Daniel Caseres</p>
+        <div class="card-div">
+          <button class="card-btn">Inscribirse</button>
+          <h4>$57</h4>
+        </div>
+      </div>-->
   </main>
   <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
 <footer class="footer">
@@ -132,34 +280,6 @@
       </div>
     </div>
 </footer>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const courseId = urlParams.get('id'); // Obtiene el ID del curso de la URL
-        fetch(`https://tu1btc.com/api/course/${courseId}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-            }
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Error: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Aquí puedes poner los datos en el HTML
-            document.getElementById('course-title').innerText = data.name;
-            document.getElementById('course-video').src = data.video; // Suponiendo que `data.video` contiene la URL del video
-        })
-        .catch(error => {
-            console.error('Error al obtener los detalles del curso:', error);
-        });
-</script>
-<script src="fetch/course/inscription.js"></script>
-<script src="fetch/course/id.js"></script>
 <script>
   const userIcon = document.getElementById('user-icon');
   const userDropdown = document.getElementById('user-dropdown');
@@ -177,6 +297,25 @@
       }
   });
 </script>
+<script>
+  // Escuchar el cambio del checkbox
+  document.getElementById('member-checkbox').addEventListener('change', function() {
+      if (this.checked) {
+          window.location.href = 'membercursos.html'; // Redirigir a la página deseada
+      }
+  });
+  document.getElementById('nopremium-checkbox').addEventListener('change', function() {
+      if (this.checked) {
+          window.location.href = 'cursos.html'; // Redirigir a la página deseada
+      }
+  });
+  document.getElementById('premium-checkbox').addEventListener('change', function() {
+      if (this.checked) {
+          window.location.href = 'premiumcursos.html'; // Redirigir a la página deseada
+      }
+  });
+</script>
+ <script src="fetch/course/getallpremiumcourses.js"></script>
  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

@@ -1,0 +1,46 @@
+.user-info-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+    text-align: center; /* Cambiado para centrar el contenido dentro del contenedor */
+    margin: 0 auto; /* Asegura que el contenedor esté centrado en la pantalla */
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.user-info-container h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+td strong {
+    color: #555;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #FF9000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #d87f0b;
+}

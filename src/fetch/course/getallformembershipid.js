@@ -28,22 +28,22 @@ fetch(`https://tu1btc.com/api/course/getAllForMembershipId?membershipId=${member
 // Función para mostrar los cursos en el HTML
 function displayMembershipCourses(courses) {
     const membershipCoursesContainer = document.getElementById('membershipCoursesContainer'); // Asegúrate de que este contenedor existe en tu HTML
-    membershipCoursesContainer.innerHTML = ''; // Limpiar el contenedor antes de mostrar nuevos cursos
 
     // Iterar sobre los cursos y crear los elementos HTML
     courses.forEach(course => {
         const courseCard = document.createElement('div');
-        courseCard.className = 'course-card bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300';
 
-        courseCard.innerHTML = `
-            <img src="${course.image}" alt="${course.name}" class="w-full h-40 object-cover">
-            <div class="p-4">
-                <h3 class="text-lg font-semibold mt-2">${course.name}</h3>
-                <p class="text-gray-600">${course.description}</p>
-                <p class="text-gray-800 font-bold mt-2">$${course.price}</p>
+        courseCard.innerHTML =`
+        <div class=" element element-1">
+            <img class="img-card" src="${course.image}" alt="${course.name}">
+            <h3 class="card-name">${course.name}</h3>
+            <p class="card-desc">${course.description}</p>
+            <div class="card-div">
+                <button href="course.html" class="card-insc">Inscribirse</button>
+                <p style="color:#FF9000" class="card-price">$${course.price}</p>
             </div>
-        `;
-
+        </div>
+      `;
         membershipCoursesContainer.appendChild(courseCard); // Agregar la tarjeta del curso al contenedor
     });
 }

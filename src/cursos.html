@@ -105,24 +105,26 @@
         <img class="img-child" src="imgs/03_Elementos_gráficos/PNG/Recurso 9.png" alt="">
       </div>
     </div>
-    <section class="grid-container">
-      <div class="elemento element-cat">
-        <div class="categorias">
-          <h2>Categorías</h2>
-          <div><input id="member-checkbox"  class="checkbox-margin" type="checkbox">membership</div>
-          <div><input class="checkbox-margin" type="checkbox">Categoria</div>
-          <div><input class="checkbox-margin" type="checkbox">Categoria</div>
-          <div><input class="checkbox-margin" type="checkbox">Categoria</div>
-          <div><input class="checkbox-margin" type="checkbox">Categoria</div>
-          <div><input class="checkbox-margin" type="checkbox">Categoria</div>
-          <div><input class="checkbox-margin" type="checkbox">Categoria</div>
-          <div class="cat-input"><a href="">Mostras mas...</a></div>
+      <div id="no-premium-courses-container" class="grid-container">
+        <div class="elemento element-cat">
+          <div class="categorias">
+            <h2>Categorías</h2>
+            <div><input id="nopremium-checkbox" class="checkbox-margin" type="checkbox" checked>No premium</div>
+            <div><input id="member-checkbox" class="checkbox-margin" type="checkbox">membership</div>
+            <div><input id="premium-checkbox" class="checkbox-margin" type="checkbox">Premium</div>
+            <div><input class="checkbox-margin" type="checkbox">Categoria</div>
+            <div><input class="checkbox-margin" type="checkbox">Categoria</div>
+            <div><input class="checkbox-margin" type="checkbox">Categoria</div>
+            <div><input class="checkbox-margin" type="checkbox">Categoria</div>
+            <div class="cat-input"><a href="">Mostras mas...</a></div>
+          </div>
         </div>
+        <div class=" img-categorias">
+          <img src="imgs/02_Logo/PNG/Recurso 24.png" alt="">
+        </div>
+        <!-- Aquí se mostrarán los cursos no premium -->
       </div>
-      <div class=" img-categorias">
-        <img src="imgs/02_Logo/PNG/Recurso 24.png" alt="">
-      </div>
-      <div class="element element-1">
+      <!--<div class="element element-1">
         <img class="img-card" src="imgs/ejemplos/cursos.png" alt="">
         <div class="categories-card">
           <div>Categoria</div>
@@ -247,16 +249,7 @@
           <button class="card-btn">Inscribirse</button>
           <h4>$57</h4>
         </div>
-      </div>
-    </section>
-    <h2 style=" display: flex; font-size: 20px; justify-content: center; align-items: center;">Cursos no premium</h2>
-    <div id="no-premium-courses-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-      <!-- Aquí se mostrarán los cursos no premium -->
-    </div>
-    <h2 style=" display: flex; font-size: 20px; justify-content: center; align-items: center;">Cursos premium</h2>
-    <div id="coursesContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-      <!-- Aquí se mostrarán los cursos premium -->
-    </div>
+      </div>-->
   </main>
   <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
 <footer class="footer">
@@ -309,6 +302,16 @@
   document.getElementById('member-checkbox').addEventListener('change', function() {
       if (this.checked) {
           window.location.href = 'membercursos.html'; // Redirigir a la página deseada
+      }
+  });
+  document.getElementById('nopremium-checkbox').addEventListener('change', function() {
+      if (this.checked) {
+          window.location.href = 'cursos.html'; // Redirigir a la página deseada
+      }
+  });
+  document.getElementById('premium-checkbox').addEventListener('change', function() {
+      if (this.checked) {
+          window.location.href = 'premiumcursos.html'; // Redirigir a la página deseada
       }
   });
 </script>
