@@ -1,12 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
-
 body{
     font-family: "Rubik", sans-serif;
     background: #edf2f7;
     overflow-x: hidden;
 }
 /*nav*/
+header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+}
+.content {
+    margin-top: 60px; /* Ajusta el margen según la altura del header para que el contenido no lo tape */
+    position: relative;
+    z-index: 1
+}
 
 .btn-insc-nav{
     padding: 10px;
@@ -17,7 +28,7 @@ body{
 }
 
 .btn-insc-nav:hover{
-    background-color: white;
+    background-color: #edf2f7;
     border-color: #FF9000;
     color: #FF9000;
 }
@@ -29,14 +40,47 @@ body{
     align-items: center;
 }
 
+/**/
+
 .btn-member{
-    font-size: 40px;
-    padding: 10px;
-    background-color: #f0bf2b;
-    border-radius: 25px;
-    box-sizing: border-box;
-    border: 2px solid transparent;
-}
+    background:#FF9000;
+    color:#fff;
+    border:none;
+    position:relative;
+    height:60px;
+    font-size:1.6em;
+    padding:0 2em;
+    cursor:pointer;
+    transition:800ms ease all;
+    outline:none;
+  }
+  
+.btn-member:hover{
+    background:#edf2f7;
+    color:#FF9000;
+  }
+.btn-member:before,button:after{
+    content:'';
+    position:absolute;
+    top:0;
+    right:0;
+    height:2px;
+    width:0;
+    background: #FF9000;
+    transition:400ms ease all;
+  }
+.btn-member:after{
+    right:inherit;
+    top:inherit;
+    left:0;
+    bottom:0;
+  }
+.btn-member:hover:before,button:hover:after{
+    width:100%;
+    transition:800ms ease all;
+  }
+
+/**/
 
 .logo:hover{
     transform:scale(0.95);

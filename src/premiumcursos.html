@@ -28,24 +28,21 @@
                       <li><a class="linknav" href="cursos.html">Capacitación</a></li>
                       <li><a class="linknav" href="herramientas.html">Herramientas</a></li>
                       <li><a class="linknav" href="tienda.html">Tienda</a></li>
+                      <li><a class="linknav" href="membresias.html">Membresías</a></li>
                       <li><a class="linknav" href="contacto.html">Contacto</a></li>
                   </ul>
                   <div class="pl-5 max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-2xl hidden xl:flex items-center categoriesnav">
-                    <button class="btn-insc-nav"><a href="inscripciones.html">Mis inscripciones</a></button>
+                    <button class="btn-insc-nav" id="inscription-button">
+                        <a href="inscripciones.html" id="inscription-link">
+                            <span id="inscription-text">Mis inscripciones</span>
+                        </a>
+                    </button>
                   </div>
                   <!-- Header Icons -->
-                  <div class="hidden xl:flex space-x-5" style="padding-left: 70px;">
-                      <a class="flex items-center hover:text-black-500" href="#">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                          </svg>
-                          <span class="flex absolute -mt-5 ml-4">
-                              <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg opacity-75"></span>
-                              <span class="relative inline-flex rounded-full h-3 w-3 bg"></span>
-                          </span>
-                      </a>
+                     <div class="hidden xl:flex space-x-5" style="padding-left: 70px;">
+        
                       <!-- Dropdown for Profile -->
-                      <div class="relative inline-block text-left">
+                     <div class="relative inline-block text-left">
                         <div>
                             <a class="flex hover:text-orange-600" id="user-icon" aria-haspopup="true" aria-expanded="false">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -57,12 +54,10 @@
                         <div id="user-dropdown" class="hidden absolute right-0 z-10 mt-2 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-icon" tabindex="-1">
                             <div class="py-1" role="none">
                                 <a href="perfil.html" class="block px-4 py-2 text-sm text-gray-700 whitespace-nowrap" role="menuitem" tabindex="-1">Perfil</a>
-                                <form method="POST" action="#" role="none">
-                                    <button type="button" style="display: flex; font-size: 10px;" class="block w-64 px-4 py-2 text-left text-sm text-gray-700 whitespace-nowrap" role="menuitem" tabindex="-1"><a href="login.html">Iniciar sesión</a></button>
-                                </form>
+                                <button id="auth-action-btn" type="button" style="display: flex; font-size: 10px;" class="block w-64 px-4 py-2 text-left text-sm text-gray-700 whitespace-nowrap" role="menuitem" tabindex="-1"></button>
                             </div>
                         </div>
-                    </div>
+                     </div>
                       
               <!-- Responsive navbar -->
               <a class="xl:hidden flex mr-6 items-center" href="#">
@@ -83,7 +78,7 @@
       </section>
     </div>
   </header>
-  <main>
+  <main class="content">
     <div class="container-cursos">
       <div>
         <img class="img-main"  src="imgs/03_Elementos_gráficos/PNG/recurso 6 edit.png" alt="">
@@ -95,7 +90,7 @@
         <img class="img-child" src="imgs/03_Elementos_gráficos/PNG/Recurso 9.png" alt="">
       </div>
     </div>
-      <div id="coursesContainer" class="grid-container">
+      <div id="coursesContainer" class="grid-container content">
         <div class="elemento element-cat">
           <div class="categorias">
             <h2>Categorías</h2>
@@ -272,19 +267,58 @@
 </footer>
 <script>
   const userIcon = document.getElementById('user-icon');
-  const userDropdown = document.getElementById('user-dropdown');
+const userDropdown = document.getElementById('user-dropdown');
+const authActionBtn = document.getElementById('auth-action-btn');
 
-  userIcon.addEventListener('click', () => {
-      const isOpen = userDropdown.classList.toggle('hidden');
-      userIcon.setAttribute('aria-expanded', !isOpen);
-  });
+// Función para verificar el estado de inicio de sesión
+function updateDropdown() {
+    const token = localStorage.getItem('authToken');
 
-  // Cierra el dropdown si se hace clic fuera de él
-  window.addEventListener('click', (event) => {
-      if (!userIcon.contains(event.target) && !userDropdown.contains(event.target)) {
-          userDropdown.classList.add('hidden');
-          userIcon.setAttribute('aria-expanded', 'false');
-      }
+    if (token) {
+        // El usuario está logueado
+        authActionBtn.textContent = 'Cerrar sesión';
+        authActionBtn.onclick = () => {
+            localStorage.removeItem('authToken'); // Eliminar el token
+            window.location.href = '../src/login.html'; // Redirigir al login
+        };
+    } else {
+        // El usuario no está logueado
+        authActionBtn.innerHTML = '<a href="src/login.html" class="w-full text-left">Iniciar sesión</a>';
+        authActionBtn.onclick = null; // Eliminar el onclick para el botón
+    }
+}
+
+// Actualizar el dropdown al cargar la página
+updateDropdown();
+
+userIcon.addEventListener('click', () => {
+    const isOpen = userDropdown.classList.toggle('hidden');
+    userIcon.setAttribute('aria-expanded', !isOpen);
+});
+
+// Cierra el dropdown si se hace clic fuera de él
+window.addEventListener('click', (event) => {
+    if (!userIcon.contains(event.target) && !userDropdown.contains(event.target)) {
+        userDropdown.classList.add('hidden');
+        userIcon.setAttribute('aria-expanded', 'false');
+    }
+});
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('authToken');
+    const inscriptionLink = document.getElementById('inscription-link');
+    const inscriptionText = document.getElementById('inscription-text');
+
+    if (token) {
+        // Si el usuario está logueado, se mantienen las inscripciones
+        inscriptionLink.href = 'inscripciones.html';
+        inscriptionText.textContent = 'Mis inscripciones';
+    } else {
+        // Si el usuario no está logueado, cambiar a "Registrarse"
+        inscriptionLink.href = 'login.html'; // Redirige al login
+        inscriptionText.textContent = 'Registrarse';
+    }
   });
 </script>
 <script>

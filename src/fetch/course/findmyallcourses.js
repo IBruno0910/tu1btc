@@ -13,17 +13,27 @@ fetch('https://tu1btc.com/api/course/findMyAllCourses', {
     return response.json();
 })
 .then(data => {
-    const container = document.querySelector('#my-courses-container tbody');
+    const container = document.querySelector('#my-courses-container');
+    
     data.forEach(course => {
-        const courseRow = document.createElement('tr');
-        courseRow.innerHTML = `
-            <td>${course.name}</td>
-            <td>${course.description}</td>
-            <td><button class="button" onclick="window.location.href='course.html?id=${course.id}'">Ingresar</button></td>
+        const imageUrl = `https://tu1btc.com/api/course/image/${course.image}`; // Asegúrate de que esta URL es correcta
+        const courseCard = document.createElement('div');
+        courseCard.classList.add('course-card');
+        courseCard.innerHTML = `
+            <img src="${imageUrl}" alt="${course.name}">
+            <div class="card-content">
+                <h3>${course.name}</h3>
+            </div>
         `;
-        container.appendChild(courseRow);
+        
+        // Hacer que toda la tarjeta redirija al curso
+        courseCard.onclick = () => {
+            window.location.href = `course.html?id=${course.id}`;
+        };
+        
+        container.appendChild(courseCard);
     });
 })
 .catch(error => {
-    console.error('Error al obtener las inscripciones:', error);
+    console.error('Error al obtener los cursos:', error);
 });

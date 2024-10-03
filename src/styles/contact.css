@@ -164,17 +164,15 @@ textarea.contact-input ~ .icon {
 }
 
 .contact-buttons{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 1rem;
-    width: 100%;
-    grid-column: span 2;
+    width: 200%;
 }
 
 .btn{
     font-family: "Rubik", sans-serif;
-    display: inline-block;
     padding: 1.1rem 2rem;
     background-color: #FF9000;
     color: #ffffff;
