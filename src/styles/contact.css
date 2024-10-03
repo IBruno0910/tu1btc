@@ -5,7 +5,13 @@ body{
     font-family: "Rubik", sans-serif;
     overflow-x: hidden;
 }
-
+.btn-insc-nav{
+    padding: 10px;
+    background-color: #FF9000;
+    border-radius: 25px;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+}
 .contact{
     width: 100%;
     overflow: hidden;
@@ -168,7 +174,6 @@ textarea.contact-input ~ .icon {
 
 .btn{
     font-family: "Rubik", sans-serif;
-
     display: inline-block;
     padding: 1.1rem 2rem;
     background-color: #FF9000;

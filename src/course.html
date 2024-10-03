@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/courses.css">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/feedback.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <title>Cursos</title>
 </head>
@@ -102,6 +103,21 @@
         </video>
         <button id="inscribe-btn" onclick="inscribirCurso(courseId)">Inscribirse</button>
     </div>
+    <form id="feedback-form">
+        <label for="description">Tu reseña:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
+
+        <label for="rate">Calificación:</label><br>
+        <select id="rate" name="rate">
+            <option value="1">1 - Muy malo</option>
+            <option value="2">2 - Malo</option>
+            <option value="3">3 - Regular</option>
+            <option value="4">4 - Bueno</option>
+            <option value="5">5 - Excelente</option>
+        </select><br><br>
+
+        <button type="submit">Enviar Reseña</button>
+    </form>   
   </main>
   <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
 <footer class="footer">
@@ -132,6 +148,7 @@
       </div>
     </div>
 </footer>
+<script src="fetch/course/feedbackcreate.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
         const urlParams = new URLSearchParams(window.location.search);

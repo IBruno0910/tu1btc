@@ -1,0 +1,16 @@
+#star-rating {
+    font-size: 24px; /* Tamaño de las estrellas */
+    cursor: pointer; /* Cursor de puntero al pasar sobre las estrellas */
+}
+.star {
+    color: grey; /* Color de las estrellas por defecto */
+}
+.star.selected {
+    color: gold; /* Color de las estrellas seleccionadas */
+}
+.comment {
+    margin: 10px 0; /* Espaciado entre los comentarios */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde de los comentarios */
+    border-radius: 5px; /* Bordes redondeados */
+}

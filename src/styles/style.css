@@ -6,7 +6,37 @@ body{
     background: #edf2f7;
     overflow-x: hidden;
 }
-/*nav*/ 
+/*nav*/
+
+.btn-insc-nav{
+    padding: 10px;
+    background-color: #FF9000;
+    border-radius: 25px;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+}
+
+.btn-insc-nav:hover{
+    background-color: white;
+    border-color: #FF9000;
+    color: #FF9000;
+}
+
+.btn-father{
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-member{
+    font-size: 40px;
+    padding: 10px;
+    background-color: #f0bf2b;
+    border-radius: 25px;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+}
 
 .logo:hover{
     transform:scale(0.95);
