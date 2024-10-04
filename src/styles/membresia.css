@@ -1,0 +1,33 @@
+.container-member {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Espacio entre las tarjetas */
+    flex-wrap: wrap; /* Para que las tarjetas se ajusten en dispositivos más pequeños */
+    padding: 20px;
+}
+
+.card-member {
+    width: 300px; /* Ancho de las tarjetas */
+    height: 400px; /* Alto de las tarjetas */
+    background-color: #ffffff57; /* Color de fondo de las tarjetas */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle un efecto de elevación */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease; /* Animación suave */
+}
+
+/* Efecto hover para dar un poco de interacción */
+.card-member:hover {
+    transform: translateY(-10px); /* Eleva la tarjeta al pasar el ratón */
+    background-color: #ff910035; 
+}
+
+/* Responsividad para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .card {
+        width: 80%; /* Reduce el tamaño de las tarjetas en pantallas pequeñas */
+    }
+}

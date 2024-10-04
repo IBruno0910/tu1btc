@@ -1,5 +1,6 @@
 const token = localStorage.getItem('authToken');
-  // Fetch para obtener los cursos premium
+
+// Fetch para obtener los cursos premium
 fetch('https://tu1btc.com/api/course/getAllNoPremiumCourses', {
     method: 'GET',
     headers: {
@@ -17,28 +18,30 @@ fetch('https://tu1btc.com/api/course/getAllNoPremiumCourses', {
     displayCourses(data); // Llama a la función para mostrar los datos
 })
 .catch(error => {
-    console.error('Error fetching non-premium courses:', error);
+    console.error('Error fetching premium courses:', error);
 });
 
 // Función para mostrar los cursos en el HTML
 function displayCourses(courses) {
     const coursesContainer = document.getElementById('coursesContainer'); // Asegúrate de que este contenedor existe en tu HTML
-    // Iterar sobre los cursos y crear los elementos HTML
+    
     courses.forEach(course => {
+        const imageUrl = `https://tu1btc.com/api/course/image/${course.image}`; // Asegúrate de que esta URL es correcta
         const courseCard = document.createElement('div');
+        courseCard.classList.add('element', 'element-1'); // Agrega las clases necesarias
 
+        // Contenido de la tarjeta (solo imagen y título)
         courseCard.innerHTML = `
-        <div class=" element element-1">
             <img class="img-card" src="${course.image}" alt="${course.name}">
             <h3 class="card-name">${course.name}</h3>
-            <p class="card-desc">${course.description}</p>
-            <div class="card-div">
-                <button class="card-insc" onclick="window.location.href='/src/coursepremium.html?id=${course.id}'">Inscribirse</button>
-                <p style="color:#FF9000" class="card-price">$${course.price}</p>
-            </div>
-        </div>
-      `;
+        `;
 
-        coursesContainer.appendChild(courseCard); // Agregar la tarjeta del curso al contenedor
+        // Agregar evento de clic en toda la tarjeta
+        courseCard.addEventListener('click', () => {
+            window.location.href = `/src/coursepremium.html?id=${course.id}`;
+        });
+
+        // Agregar la tarjeta al contenedor de cursos
+        coursesContainer.appendChild(courseCard);
     });
 }

@@ -19,17 +19,20 @@ fetch('https://tu1btc.com/api/course/getAllNoPremiumCourses', {
         const courseId = course.id; // Suponiendo que el ID del curso está disponible en 'course.id'
         
         const courseElement = document.createElement('div');
+        courseElement.classList.add('element', 'element-1'); // Agrega las clases necesarias
+        
+        // Contenido de la tarjeta (solo imagen y título)
         courseElement.innerHTML = `
-            <div class="element element-1">
-                <img class="img-card" src="${imageUrl}" alt="${course.name}">
-                <h3 class="card-name">${course.name}</h3>
-                <p class="card-desc">${course.description}</p>
-                <div class="card-div">
-                    <button class="card-insc" onclick="window.location.href='/src/course.html?id=${course.id}'">Inscribirse</button>
-                    <p style="color:#FF9000" class="card-price">$${course.price}</p>
-                </div>
-            </div>
+            <img class="img-card" src="${imageUrl}" alt="${course.name}">
+            <h3 class="card-name">${course.name}</h3>
         `;
+        
+        // Agregar evento de clic en toda la tarjeta
+        courseElement.addEventListener('click', () => {
+            window.location.href = `/src/course.html?id=${courseId}`;
+        });
+        
+        // Añadir la tarjeta al contenedor
         container.appendChild(courseElement);
     });
 })

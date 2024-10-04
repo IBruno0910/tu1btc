@@ -31,19 +31,22 @@ function displayMembershipCourses(courses) {
 
     // Iterar sobre los cursos y crear los elementos HTML
     courses.forEach(course => {
+        const imageUrl = `https://tu1btc.com/api/course/image/${course.image}`; // Asegúrate de que esta URL es correcta
         const courseCard = document.createElement('div');
+        courseCard.classList.add('element', 'element-1'); // Agrega las clases necesarias
 
-        courseCard.innerHTML =`
-        <div class=" element element-1">
+        // Contenido de la tarjeta (solo imagen y título)
+        courseCard.innerHTML = `
             <img class="img-card" src="${course.image}" alt="${course.name}">
             <h3 class="card-name">${course.name}</h3>
-            <p class="card-desc">${course.description}</p>
-            <div class="card-div">
-                <button href="course.html" class="card-insc">Inscribirse</button>
-                <p style="color:#FF9000" class="card-price">$${course.price}</p>
-            </div>
-        </div>
-      `;
-        membershipCoursesContainer.appendChild(courseCard); // Agregar la tarjeta del curso al contenedor
+        `;
+
+        // Agregar evento de clic en toda la tarjeta
+        courseCard.addEventListener('click', () => {
+            window.location.href = `/src/course.html?id=${course.id}`;
+        });
+
+        // Agregar la tarjeta al contenedor de cursos
+        membershipCoursesContainer.appendChild(courseCard);
     });
 }
