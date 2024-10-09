@@ -238,8 +238,32 @@ header{
     font-size: 15px;
 }
 /*-------------------------------*/
+/* Ocultar el nav en mobile */
+/* Alinear el ícono del dropdown a la derecha */
+#mobile-dropdown {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+/* Ocultar nav links en móvil cuando aparece el dropdown */
+@media (max-width: 767px) {
+    nav ul {
+        display: none;
+    }
+    
+    #mobile-dropdown {
+        display: flex;
+    }
+
+    /* Siempre mostrar el ícono de perfil */
+    #user-icon {
+        display: flex !important;
+    }
+}
 
 @media (max-width: 767px){
+    
     .img_son{
         height: 30%;
     }

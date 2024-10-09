@@ -67,17 +67,60 @@ p{
     color: #FFFFFF;
 }
 
-.imgnosotros{
-    margin-left: 250px;
-    height: 400px;
-    width: 400px;
+/* Estilos base para pantallas grandes */
+.imgnosotros {
+    margin-left: 450px;
+    margin-top: 40px;
+    height: 200px;
+    width: 200px;
+    transition: transform 0.3s ease-in-out;
 }
 
-.nosotrosGrid{
+.imgnosotros:hover {
+    transform: scale(1.1);
+}
+
+.nosotrosGrid {
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
 }
+
+/* Estilos responsive para tablets y móviles */
+@media (max-width: 768px) {
+  .nosotrosGrid {
+    grid-template-columns: 1fr; /* Coloca la imagen encima del texto */
+    text-align: center;
+  }
+
+  .imgnosotros {
+    margin: 0 auto; /* Centra la imagen */
+    margin-top: 20px;
+    width: 150px;
+    height: 150px; /* Reduce el tamaño de la imagen en pantallas pequeñas */
+  }
+
+  .p_align {
+    margin: 20px 10px;
+    padding: 0 10px; /* Añade algo de padding para mejor legibilidad */
+  }
+}
+
+/* Estilos para pantallas muy pequeñas (móviles) */
+@media (max-width: 480px) {
+  .imgnosotros {
+    width: 120px;
+    height: 120px; /* Imagen más pequeña en móviles */
+  }
+
+  .p_align {
+    font-size: 14px; /* Ajusta el tamaño del texto */
+  }
+}
+
 
 @media only screen and (max-width: 943px) {
     .iconosmall {

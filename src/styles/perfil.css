@@ -30,7 +30,7 @@ td strong {
     color: #555;
 }
 
-button {
+.btn-profile {
     width: 100%;
     padding: 10px;
     background-color: #FF9000;
@@ -41,6 +41,6 @@ button {
     font-size: 16px;
 }
 
-button:hover {
+.btn-profile:hover {
     background-color: #d87f0b;
 }

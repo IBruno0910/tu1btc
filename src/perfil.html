@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="imgs/02_Logo/PNG/favicon-32x32.png" type="image/x-icon">
     <link href="styles/output.css" rel="stylesheet">
     <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/mainstyle.css">
     <link rel="stylesheet" href="styles/perfil.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -15,68 +15,72 @@
 <body>
     <header>
         <div class="flex flex-wrap place-items-center">
-          <section class="relative mx-auto">
-              <!-- navbar -->
-              <nav class="flex justify-between bg-white w-screen">
-                  <div class="px-5 xl:px-12 py-6 flex w-full items-center">
-                      <a class="text-3xl font-bold font-heading" href="#">
-                          <img class="h-9 logo" src="imgs/02_Logo/PNG/Recurso 12.png" alt="logo">
-                      </a>
-                      <!-- Nav Links -->
-                      <ul class="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12">
-                          <li><a class="linknav" href="../index.html">Inicio</a></li>
-                          <li><a class="linknav" href="nosotros.html">Nosotros</a></li>
-                          <li><a class="linknav" href="cursos.html">Capacitación</a></li>
-                          <li><a class="linknav" href="herramientas.html">Herramientas</a></li>
-                          <li><a class="linknav" href="tienda.html">Tienda</a></li>
-                          <li><a class="linknav" href="membresias.html">Membresías</a></li>
-                          <li><a class="linknav" href="contacto.html">Contacto</a></li>
-                      </ul>
-                      <div class="pl-5 max-w-xs xl:max-w-lg 2xl:max-w-2xl bg-gray-100 rounded-2xl hidden xl:flex items-center categoriesnav">
-                        <button class="btn-insc-nav" id="inscription-button">
-                            <a href="inscripciones.html" id="inscription-link">
-                                <span id="inscription-text">Mis inscripciones</span>
-                            </a>
-                        </button>
-                      </div>
-                      <!-- Header Icons -->
-                         <div class="hidden xl:flex space-x-5" style="padding-left: 70px;">
-            
-                          <!-- Dropdown for Profile -->
-                         <div class="relative inline-block text-left">
+            <section class="relative mx-auto">
+                <!-- navbar -->
+                <nav class="flex justify-between bg-white w-screen">
+                    <div class="px-5 xl:px-12 py-6 flex w-full items-center">
+                        <a class="text-3xl font-bold font-heading" href="#">
+                            <img class="h-9 logo" src="imgs/02_Logo/PNG/Recurso 12.png" alt="logo">
+                        </a>
+                        <!-- Nav Links -->
+                        <ul class="navlinks-resp flex px-4 mx-auto font-semibold font-heading space-x-12">
+                            <li><a class="linknav" href="../index.html">Inicio</a></li>
+                            <li><a class="linknav" href="membresias.html">Membresías</a></li>
+                            <li><a class="linknav" href="cursos.html">Capacitación</a></li>
+                            <li><a class="linknav" href="herramientas.html">Herramientas</a></li>
+                            <li><a class="linknav" href="tienda.html">Tienda</a></li>
+                            <li><a class="linknav" href="nosotros.html">Nosotros</a></li>
+                            <li><a class="linknav" href="contacto.html">Contacto</a></li>
+                        </ul>
+                        <div class="div-insc" >
+                            <button class="btn-insc-nav" id="inscription-button">
+                                <a href="inscripciones.html" id="inscription-link">
+                                    <span id="inscription-text">Mis inscripciones</span>
+                                </a>
+                            </button>
+                        </div>
+                        <div class="divisor-nav"></div>
+                        <!-- Header Icons -->
+                        <div class="relative inline-block text-left ">
                             <div>
-                                <a class="flex hover:text-orange-600" id="user-icon" aria-haspopup="true" aria-expanded="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                <a class=" flex hover:text-orange-600" id="user-icon" aria-haspopup="true" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8 lg:h-8 lg:w-8 xl:w-8 xl:h-8 2xl:w-8 2xl:h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 </a>
                             </div>
-                        
+    
                             <div id="user-dropdown" class="hidden absolute right-0 z-10 mt-2 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-icon" tabindex="-1">
                                 <div class="py-1" role="none">
                                     <a href="perfil.html" class="block px-4 py-2 text-sm text-gray-700 whitespace-nowrap" role="menuitem" tabindex="-1">Perfil</a>
                                     <button id="auth-action-btn" type="button" style="display: flex; font-size: 10px;" class="block w-64 px-4 py-2 text-left text-sm text-gray-700 whitespace-nowrap" role="menuitem" tabindex="-1"></button>
                                 </div>
                             </div>
-                         </div>
-                          
-                  <!-- Responsive navbar -->
-                  <a class="xl:hidden flex mr-6 items-center" href="#">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
-                      <span class="flex absolute -mt-5 ml-4">
-                          <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg"></span>
-                          <span class="relative inline-flex rounded-full h-3 w-3 bg"></span>
-                      </span>
-                  </a>
-                  <a class="navbar-burger self-center mr-12 xl:hidden" href="#">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                      </svg>
-                  </a>
-              </nav>
-          </section>
+                        </div>
+    
+                        <!-- Hamburger Menu Icon -->
+                        <div class="md:hidden flex items-center ml-auto menu-ham"> <!-- Aseguramos que esté a la derecha -->
+                            <button id="hamburger" class="flex items-center p-2 text-gray-500 hover:text-orange-600 focus:outline-none">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Mobile Menu -->
+                <div id="mobile-menu" class="hidden md:hidden">
+                    <ul class="flex flex-col dropdownstyle w-full p-4 text-center place-items-center">
+                        <li><a class="linknav py-2" href="../index.html">Inicio</a></li>
+                        <li><a class="linknav py-2" href="membresias.html">Membresías</a></li>
+                        <li><a class="linknav py-2" href="cursos.html">Capacitación</a></li>
+                        <li><a class="linknav py-2" href="herramientas.html">Herramientas</a></li>
+                        <li><a class="linknav py-2" href="tienda.html">Tienda</a></li>
+                        <li><a class="linknav py-2" href="nosotros.html">Nosotros</a></li>
+                        <li><a class="linknav py-2" href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+            </section>
         </div>
     </header>
     <main style="margin-top: 120px;">
@@ -114,7 +118,7 @@
                     </tr>
                 </tbody>
             </table>
-            <button id="get-info-btn">Obtener Información del Usuario</button>
+            <button class="btn-profile" id="get-info-btn">Obtener Información del Usuario</button>
         </div>
 
       <!--<form id="updateUserForm">
@@ -140,89 +144,106 @@
     </main>
     <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
     <footer class="footer">
-  	 <div class="container">
-  	 	<div class="row">
-  	 		<div class="footer-col">
-  	 			<img src="/src/imgs/02_Logo/PNG/Recurso 19.png" style="width: 40%; height: 40%;" alt="">
-  	 		</div>
-  	 		<div class="footer-col">
-  	 			<ul>
-  	 				<li><a href="#">Inicio</a></li>
-  	 				<li><a href="#">Nosotros</a></li>
-  	 				<li><a href="#">Cursos</a></li>
-					<li><a href="#">Herramientas</a></li>
-  	 				<li><a href="#">Tienda</a></li>
-					<li><a href="#">Contacto</a></li>
-  	 			</ul>
-  	 		</div>
-  	 		<div class="footer-col">
-  	 			<h4>Nuestras redes sociales</h4>
-  	 			<div class="social-links">
-  	 				<a href="#"><i class="fab fa-facebook-f"></i></a>
-  	 				<a href="#"><i class="fab fa-twitter"></i></a>
-  	 				<a href="#"><i class="fab fa-instagram"></i></a>
-  	 				<a href="#"><i class="fab fa-linkedin-in"></i></a>
-  	 			</div>
-  	 		</div>
-  	 	</div>
-  	 </div>
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <img src="/src/imgs/02_Logo/PNG/Recurso 19.png" style="width: 40%; height: 40%;" alt="">
+                </div>
+                <div class="footer-col">
+                    <ul>
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="membresias.html">Membresías</a></li>
+                        <li><a href="cursos.html">Capacitación</a></li>
+                        <li><a href="herramientas.html">Herramientas</a></li>
+                        <li><a href="tienda.html">Tienda</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Nuestras redes sociales</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
-  <script>
-    const userIcon = document.getElementById('user-icon');
-  const userDropdown = document.getElementById('user-dropdown');
-  const authActionBtn = document.getElementById('auth-action-btn');
-  
-  // Función para verificar el estado de inicio de sesión
-  function updateDropdown() {
-      const token = localStorage.getItem('authToken');
-  
-      if (token) {
-          // El usuario está logueado
-          authActionBtn.textContent = 'Cerrar sesión';
-          authActionBtn.onclick = () => {
-              localStorage.removeItem('authToken'); // Eliminar el token
-              window.location.href = '../src/login.html'; // Redirigir al login
-          };
-      } else {
-          // El usuario no está logueado
-          authActionBtn.innerHTML = '<a href="src/login.html" class="w-full text-left">Iniciar sesión</a>';
-          authActionBtn.onclick = null; // Eliminar el onclick para el botón
-      }
-  }
-  
-  // Actualizar el dropdown al cargar la página
-  updateDropdown();
-  
-  userIcon.addEventListener('click', () => {
-      const isOpen = userDropdown.classList.toggle('hidden');
-      userIcon.setAttribute('aria-expanded', !isOpen);
-  });
-  
-  // Cierra el dropdown si se hace clic fuera de él
-  window.addEventListener('click', (event) => {
-      if (!userIcon.contains(event.target) && !userDropdown.contains(event.target)) {
-          userDropdown.classList.add('hidden');
-          userIcon.setAttribute('aria-expanded', 'false');
-      }
-  });
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const token = localStorage.getItem('authToken');
-      const inscriptionLink = document.getElementById('inscription-link');
-      const inscriptionText = document.getElementById('inscription-text');
-  
-      if (token) {
-          // Si el usuario está logueado, se mantienen las inscripciones
-          inscriptionLink.href = 'inscripciones.html';
-          inscriptionText.textContent = 'Mis inscripciones';
-      } else {
-          // Si el usuario no está logueado, cambiar a "Registrarse"
-          inscriptionLink.href = 'login.html'; // Redirige al login
-          inscriptionText.textContent = 'Registrarse';
-      }
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const token = localStorage.getItem('authToken');
+          const inscriptionLink = document.getElementById('inscription-link');
+          const inscriptionText = document.getElementById('inscription-text');
+      
+          if (token) {
+              // Si el usuario está logueado, se mantienen las inscripciones
+              inscriptionLink.href = '/src/inscripciones.html';
+              inscriptionText.textContent = 'Mis inscripciones';
+          } else {
+              // Si el usuario no está logueado, cambiar a "Registrarse"
+              inscriptionLink.href = '/src/login.html'; // Redirige al login
+              inscriptionText.textContent = 'Registrarse';
+          }
+        });
+    </script>
+    <script>
+        const userIcon = document.getElementById('user-icon');
+    const userDropdown = document.getElementById('user-dropdown');
+    const authActionBtn = document.getElementById('auth-action-btn');
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    // Función para verificar el estado de inicio de sesión
+    function updateDropdown() {
+        const token = localStorage.getItem('authToken');
+    
+        if (token) {
+            // El usuario está logueado
+            authActionBtn.textContent = 'Cerrar sesión';
+            authActionBtn.onclick = () => {
+                localStorage.removeItem('authToken'); // Eliminar el token
+                window.location.href = '../src/login.html'; // Redirigir al login
+            };
+        } else {
+            // El usuario no está logueado
+            authActionBtn.innerHTML = '<a href="src/login.html" class="w-full text-left">Iniciar sesión</a>';
+            authActionBtn.onclick = null; // Eliminar el onclick para el botón
+        }
+    }
+    
+    // Actualizar el dropdown al cargar la página
+    updateDropdown();
+    
+    // Manejo del ícono de usuario
+    userIcon.addEventListener('click', () => {
+        const isOpen = userDropdown.classList.toggle('hidden');
+        userIcon.setAttribute('aria-expanded', !isOpen);
     });
-  </script>
+    
+    // Cierra el dropdown si se hace clic fuera de él
+    window.addEventListener('click', (event) => {
+        if (!userIcon.contains(event.target) && !userDropdown.contains(event.target)) {
+            userDropdown.classList.add('hidden');
+            userIcon.setAttribute('aria-expanded', 'false');
+        }
+    });
+    
+    // Manejo del menú hamburguesa
+    hamburger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+    
+    // Cierra el menú hamburguesa si se hace clic fuera de él
+    window.addEventListener('click', (event) => {
+        if (!hamburger.contains(event.target) && !mobileMenu.contains(event.target)) {
+            mobileMenu.classList.add('hidden');
+        }
+    });
+    
+    </script>
   <script src="fetch/user/update.js"></script>
   <script src="fetch/user/myinformation.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
