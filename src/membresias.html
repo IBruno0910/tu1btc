@@ -18,7 +18,7 @@
                 <!-- navbar -->
                 <nav class="flex justify-between bg-white w-screen">
                     <div class="px-5 xl:px-12 py-6 flex w-full items-center">
-                        <a class="text-3xl font-bold font-heading" href="#">
+                        <a class="text-3xl font-bold font-heading" href="/index.html">
                             <img class="h-9 logo" src="imgs/02_Logo/PNG/Recurso 12.png" alt="logo">
                         </a>
                         <!-- Nav Links -->
@@ -85,11 +85,33 @@
     <h1 style="margin-top: 130px; display: flex; justify-content: center; font-size: 40px;">Membresías</h1>
     <main style="margin-top: 30px; margin-bottom: 305px;" class="content">
         <div class="container-member">
-            <div class="card-member"></div>
-            <div class="card-member"></div>
-            <div class="card-member"></div>
+            <div class="card-member">
+                <img src="imgs/05_Membresias/crypto Essentials.jpg" alt="Curso 1" class="card-image">
+                <div class="card-content">
+                    <h3>Crypto Essentials</h3>
+                    <p>Cursos: Curso A, Curso B, Curso C</p>
+                </div>
+            </div>
+            <div class="card-member">
+                <img src="imgs/05_Membresias/crypto TITAN.jpg" alt="Curso 4" class="card-image">
+                <div class="card-content">
+                    <h3>Crypto Titan</h3>
+                    <p>Cursos: Curso F, Curso G, Curso H</p>
+                </div>
+            </div>
+            <div class="card-member">
+                <div class="image-container">
+                    <img src="imgs/05_Membresias/crypto musculosa.jpg" alt="Curso 2" class="card-image">
+                    <img src="imgs/05_Membresias/crypto musculoso.jpg" alt="Curso 3" class="card-image">
+                </div>
+                <div class="card-content">
+                    <h3>Crypto musculoso/a</h3>
+                    <p>Cursos: Curso D, Curso E</p>
+                </div>
+            </div>
         </div>
     </main>
+    
     <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
     <footer class="footer">
         <div class="container">
@@ -119,6 +141,9 @@
                 </div>
             </div>
         </div>
+        <div class="footer-bottom">
+            <p>Todos los derechos reservados © 2024 | <a href="/src/terminos.html">Términos y Condiciones</a></p>
+        </div>
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -132,7 +157,7 @@
               inscriptionText.textContent = 'Mis inscripciones';
           } else {
               // Si el usuario no está logueado, cambiar a "Registrarse"
-              inscriptionLink.href = '/src/login.html'; // Redirige al login
+              inscriptionLink.href = 'login.html'; // Redirige al login
               inscriptionText.textContent = 'Registrarse';
           }
         });
@@ -153,11 +178,11 @@
             authActionBtn.textContent = 'Cerrar sesión';
             authActionBtn.onclick = () => {
                 localStorage.removeItem('authToken'); // Eliminar el token
-                window.location.href = '../src/login.html'; // Redirigir al login
+                window.location.href = 'login.html'; // Redirigir al login
             };
         } else {
             // El usuario no está logueado
-            authActionBtn.innerHTML = '<a href="src/login.html" class="w-full text-left">Iniciar sesión</a>';
+            authActionBtn.innerHTML = '<a href="login.html" class="w-full text-left">Iniciar sesión</a>';
             authActionBtn.onclick = null; // Eliminar el onclick para el botón
         }
     }

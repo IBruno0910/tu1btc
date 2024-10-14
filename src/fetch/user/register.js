@@ -35,7 +35,7 @@ document.getElementById('register-btn').addEventListener('click', function(event
       .then(data => {
           console.log('Usuario registrado:', data);
           // Redirige a la página principal si el registro es exitoso
-          window.location.href = '/src/login.html'; // Cambia la ruta según la estructura de tu proyecto
+          window.location.href = 'login.html'; // Cambia la ruta según la estructura de tu proyecto
       })
       .catch(error => {
           console.error('Hubo un problema con la solicitud:', error);

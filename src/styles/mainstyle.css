@@ -196,18 +196,24 @@ header {
 }
 
 .bot_reg{
-    font-size: 25px;
+    font-size: 20px;
+    font-weight: lighter;
     background-color: #FF9000;
+    color: white;
     padding: 10px;
     border-radius: 10px;
     box-shadow: 10px;
 }
-/*-------------------------------*/
 
-.banner_aprendizaje{
-    width: 100%;
+.bot_reg:hover{
+    background: #c07007;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
+        
 }
-/*-------------------------------*/
 
 /*productos*/
 .container{
@@ -622,7 +628,7 @@ header {
     }
 }
 
-@media (min-width:1024px) and (height:1366px){
+@media (min-width:1024px) and (min-height:1366px){
     /*main*/
 
     .img_cont{
@@ -630,9 +636,9 @@ header {
     }
 
      .img_son{
-        width: 55%;
+        width: 60%;
         height: 40%;
-        left: 50px;
+        left: 220px;
         top: 110px;
     }
 }
@@ -679,6 +685,17 @@ header {
         padding-left: 25px;
     }
 
+    .img_cont{
+        height: 550px;
+    }
+
+    .img_son{
+        width: 50%;
+        height: 55%;
+        left: 400px;
+        top: 110px;
+    }
+
 }
 
 @media (min-width:1600px){
@@ -691,7 +708,7 @@ header {
      .img_son{
         width: 50%;
         height: 55%;
-        left: 450px;
+        left: 470px;
         top: 110px;
     }
 }

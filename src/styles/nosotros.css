@@ -55,7 +55,7 @@ h2{
     text-transform: uppercase;
     margin-bottom: 25px;
 }
-p{
+.p-faq{
     font-family: "Anek Kannada", sans-serif;
     color: #111111;
     line-height: 25px;
@@ -70,7 +70,7 @@ p{
 /* Estilos base para pantallas grandes */
 .imgnosotros {
     margin-left: 450px;
-    margin-top: 40px;
+    margin-top: 30px;
     height: 200px;
     width: 200px;
     transition: transform 0.3s ease-in-out;
@@ -144,7 +144,7 @@ p{
     article{
         height: 500px;
     }
-    p{
+    .p-faq{
         margin-bottom: 80px;
     }
   

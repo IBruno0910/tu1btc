@@ -18,7 +18,7 @@
             <!-- navbar -->
             <nav class="flex justify-between bg-white w-screen">
                 <div class="px-5 xl:px-12 py-6 flex w-full items-center">
-                    <a class="text-3xl font-bold font-heading" href="#">
+                    <a class="text-3xl font-bold font-heading" href="/index.html">
                         <img class="h-9 logo" src="imgs/02_Logo/PNG/Recurso 12.png" alt="logo">
                     </a>
                     <!-- Nav Links -->
@@ -139,6 +139,9 @@
             </div>
         </div>
     </div>
+    <div class="footer-bottom">
+        <p>Todos los derechos reservados © 2024 | <a href="/src/terminos.html">Términos y Condiciones</a></p>
+    </div>
   </footer>
   <!-- scripts navbar -->
   <script>
@@ -153,7 +156,7 @@
           inscriptionText.textContent = 'Mis inscripciones';
       } else {
           // Si el usuario no está logueado, cambiar a "Registrarse"
-          inscriptionLink.href = '/src/login.html'; // Redirige al login
+          inscriptionLink.href = 'login.html'; // Redirige al login
           inscriptionText.textContent = 'Registrarse';
       }
     });
@@ -174,11 +177,11 @@ function updateDropdown() {
         authActionBtn.textContent = 'Cerrar sesión';
         authActionBtn.onclick = () => {
             localStorage.removeItem('authToken'); // Eliminar el token
-            window.location.href = '../src/login.html'; // Redirigir al login
+            window.location.href = 'login.html'; // Redirigir al login
         };
     } else {
         // El usuario no está logueado
-        authActionBtn.innerHTML = '<a href="src/login.html" class="w-full text-left">Iniciar sesión</a>';
+        authActionBtn.innerHTML = '<a href="login.html" class="w-full text-left">Iniciar sesión</a>';
         authActionBtn.onclick = null; // Eliminar el onclick para el botón
     }
 }

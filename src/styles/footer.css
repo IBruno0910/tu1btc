@@ -28,7 +28,7 @@ ul{
 
 .footer{
 	background-color: #24262b;
-    padding: 70px 0;
+    padding: 70px 0 0 0; /* Ajustado el padding inferior a 0 */
 }
 
 .footer-col{
@@ -94,6 +94,19 @@ ul{
 	background-color: #ffffff;
 }
 
+.footer-bottom {
+    text-align: center;
+    padding: 10px 0 0 0; /* Ajustado el padding inferior a 0 */
+    font-size: 14px;
+    color: #fff;
+	margin-top: 5px;
+}
+
+.footer-bottom a {
+    color: #fff; /* O el color que prefieras */
+    text-decoration: underline;
+}
+
 /*responsive*/
 @media(max-width: 767px){
   .footer-col{
@@ -106,7 +119,3 @@ ul{
     width: 100%;
 }
 }
-
-
-
-
