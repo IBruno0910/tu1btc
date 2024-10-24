@@ -93,56 +93,11 @@
         </div>
     </div>
     <div class="border"></div>
-    <section class="main-grid">
-        <div>
-            <div class="tools-grid">
-                <img class="video-grid" src="imgs/ejemplos/video.png" alt="">
-            </div>
-            <div class="tools-video">
-                <button class="card-btn">Inscribirse</button>
-            </div>
-        </div>
-        <div>
-            <div class="tools-grid">
-                <img class="video-grid" src="imgs/ejemplos/video.png" alt="">
-            </div>
-            <div class="tools-video">
-                <button class="card-btn">Inscribirse</button>
-            </div>
-        </div>
-        <div>
-            <div class="tools-grid">
-                <img class="video-grid" src="imgs/ejemplos/video.png" alt="">
-            </div>
-            <div class="tools-video">
-                <button class="card-btn">Inscribirse</button>
-            </div>
-        </div>
-        <div>
-            <div class="tools-grid">
-                <img class="video-grid" src="imgs/ejemplos/video.png" alt="">
-            </div>
-            <div class="tools-video">
-                <button class="card-btn">Inscribirse</button>
-            </div>
-        </div>
-        <div>
-            <div class="tools-grid">
-                <img class="video-grid" src="imgs/ejemplos/video.png" alt="">
-            </div>
-            <div class="tools-video">
-                <button class="card-btn">Inscribirse</button>
-            </div>
-        </div>
-        <div>
-            <div class="tools-grid">
-                <img class="video-grid" src="imgs/ejemplos/video.png" alt="">
-            </div>
-            <div class="tools-video">
-                <button class="card-btn">Inscribirse</button>
-            </div>
-        </div>
-    </section>
+
+    <div id="tools-container">
+        <!-- Aquí se insertarán dinámicamente las cards -->
+    </div>                 
+    
     </main>
     <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
     <footer class="footer">
@@ -177,6 +132,27 @@
             <p>Todos los derechos reservados © 2024 | <a href="/src/terminos.html">Términos y Condiciones</a></p>
         </div>
     </footer>
+    <script>
+        function displayTools(tools) {
+        const toolsContainer = document.getElementById('tools-container');
+        toolsContainer.innerHTML = ''; // Limpiar el contenedor
+
+        tools.forEach(tool => {
+        const toolCard = document.createElement('div');
+        toolCard.className = 'card'; // Estilos de Tailwind para la card
+        toolCard.innerHTML = `
+            <img src="https://tu1btc.com/api/tools/image/business/${tool.image}" alt="${tool.title}" class="w-full h-32 object-cover">
+            <h2>${tool.title}</h2>
+        `;
+        toolCard.addEventListener('click', () => {
+            localStorage.setItem('selectedToolId', tool.id); // Asegúrate de que el ID se almacena correctamente
+            window.location.href = 'tool-details.html'; // Redirige a la página de detalles
+        });
+        toolsContainer.appendChild(toolCard);
+        });
+    }
+    </script>
+    <script src="fetch/tools/business.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
           const token = localStorage.getItem('authToken');

@@ -82,38 +82,11 @@
             </section>
         </div>
     </header>
-    <h1 style="margin-top: 130px; display: flex; justify-content: center; font-size: 40px;">Membresías</h1>
-    <main style="margin-top: 30px; margin-bottom: 305px;" class="content">
-        <div class="container-member">
-            <div class="card-member">
-                <img src="imgs/05_Membresias/crypto-Essentials.jpg" alt="Curso 1" class="card-image">
-                <div class="card-content">
-                    <h3>Crypto Essentials</h3>
-                    <p>Cursos: Curso A, Curso B, Curso C</p>
-                </div>
-            </div>
-            <div class="card-member">
-                <img src="imgs/05_Membresias/crypto-TITAN.jpg" alt="Curso 4" class="card-image">
-                <div class="card-content">
-                    <h3>Crypto Titan</h3>
-                    <p>Cursos: Curso F, Curso G, Curso H</p>
-                </div>
-            </div>
-            <div class="card-member">
-                <div class="image-container">
-                    <img src="imgs/05_Membresias/crypto-musculosa.jpg" alt="Curso 2" class="card-image">
-                    <img src="imgs/05_Membresias/crypto-musculoso.jpg" alt="Curso 3" class="card-image">
-                </div>
-                <div class="card-content">
-                    <h3>Crypto musculoso/a</h3>
-                    <p>Cursos: Curso D, Curso E</p>
-                </div>
-            </div>
+    <main style="margin-top: 150px; margin-bottom: 305px;" class="content">
+        
+        <div id="subscription-details" class="subscription-details-container">
+            <!-- Aquí se insertará dinámicamente la información de la suscripción -->
         </div>
-
-        <div id="subscriptions-container" class="subscriptions-grid">
-            <!-- Aquí se insertarán dinámicamente las tarjetas de suscripciones -->
-        </div>        
         
     </main>
     
@@ -150,7 +123,7 @@
             <p>Todos los derechos reservados © 2024 | <a href="/src/terminos.html">Términos y Condiciones</a></p>
         </div>
     </footer>
-    <script src="fetch/subscription/subscription.js"></script>
+    <script src="fetch/subscription/subdetail.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
           const token = localStorage.getItem('authToken');

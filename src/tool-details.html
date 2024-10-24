@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="imgs/02_Logo/PNG/favicon-32x32.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/output.css">
+    <link rel="stylesheet" href="styles/herramientas.css">
     <link rel="stylesheet" href="styles/mainstyle.css">
     <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/membresia.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <title>Membresias</title>
+    <title>Herramientas</title>
 </head>
 <body>
     <header>
@@ -82,41 +82,9 @@
             </section>
         </div>
     </header>
-    <h1 style="margin-top: 130px; display: flex; justify-content: center; font-size: 40px;">Membresías</h1>
-    <main style="margin-top: 30px; margin-bottom: 305px;" class="content">
-        <div class="container-member">
-            <div class="card-member">
-                <img src="imgs/05_Membresias/crypto-Essentials.jpg" alt="Curso 1" class="card-image">
-                <div class="card-content">
-                    <h3>Crypto Essentials</h3>
-                    <p>Cursos: Curso A, Curso B, Curso C</p>
-                </div>
-            </div>
-            <div class="card-member">
-                <img src="imgs/05_Membresias/crypto-TITAN.jpg" alt="Curso 4" class="card-image">
-                <div class="card-content">
-                    <h3>Crypto Titan</h3>
-                    <p>Cursos: Curso F, Curso G, Curso H</p>
-                </div>
-            </div>
-            <div class="card-member">
-                <div class="image-container">
-                    <img src="imgs/05_Membresias/crypto-musculosa.jpg" alt="Curso 2" class="card-image">
-                    <img src="imgs/05_Membresias/crypto-musculoso.jpg" alt="Curso 3" class="card-image">
-                </div>
-                <div class="card-content">
-                    <h3>Crypto musculoso/a</h3>
-                    <p>Cursos: Curso D, Curso E</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="subscriptions-container" class="subscriptions-grid">
-            <!-- Aquí se insertarán dinámicamente las tarjetas de suscripciones -->
-        </div>        
-        
+    <main class="content">
+        <div id="tool-details" class="tool-details-container"></div> 
     </main>
-    
     <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
     <footer class="footer">
         <div class="container">
@@ -150,7 +118,7 @@
             <p>Todos los derechos reservados © 2024 | <a href="/src/terminos.html">Términos y Condiciones</a></p>
         </div>
     </footer>
-    <script src="fetch/subscription/subscription.js"></script>
+    <script src="fetch/tools/tools.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
           const token = localStorage.getItem('authToken');
@@ -223,6 +191,7 @@
     });
     
     </script>
- <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.js" integrity="sha512-5FvlLK9/1zFkolsL3agoJESBOWEd1gEzY1/Ul5Qw9cTMiPf/tiZoFD10DB9rQLK/rBBUfXECkG6ZaV7RXkcWNw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>
