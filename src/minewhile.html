@@ -84,27 +84,19 @@
         </div>
     </header>
     <main style="margin-top: 100px;">
-
+    <div id="course-details">
+        <h1 id="course-title"></h1>
+        <video id="course-video" controls>
+            <source src="" type="video/mp4"> <!-- Aquí se pondrá el enlace del video -->
+            Tu navegador no soporta la etiqueta de video.
+        </video>
+        <button id="inscribe-btn" onclick="inscribirCurso(courseId)">Inscribirse</button>
+    </div>
+    
     <video id="video" controls>
         <source src="ruta_al_video.mp4" type="video/mp4">
         Tu navegador no soporta la etiqueta de video.
-    </video>
-    
-    <form id="feedback-form">
-        <label for="description">Tu reseña:</label><br>
-        <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
-
-        <label for="rate">Calificación:</label><br>
-        <select id="rate" name="rate">
-            <option value="1">1 - Muy malo</option>
-            <option value="2">2 - Malo</option>
-            <option value="3">3 - Regular</option>
-            <option value="4">4 - Bueno</option>
-            <option value="5">5 - Excelente</option>
-        </select><br><br>
-
-        <button type="submit">Enviar Reseña</button>
-    </form>   
+    </video> 
     </main>
     <div style="background-color: #FF9000;height: 5px; margin-top: 120px;"></div>
     <footer class="footer" sr>
@@ -168,6 +160,7 @@
         });
     </script>
     <script src="fetch/course/inscription.js"></script>
+    <script src="fetch/course/id.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
           const token = localStorage.getItem('authToken');
