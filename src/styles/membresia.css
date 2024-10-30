@@ -1,145 +1,61 @@
-.container-member {
+/* Contenedor de suscripciones */
+#subscriptions-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 20px; /* Espacio entre las tarjetas */
-    flex-wrap: wrap; /* Para que las tarjetas se ajusten en dispositivos más pequeños */
-    padding: 20px;
+    align-items: flex-start; /* Cambiado para alinearse al inicio */
+    flex-wrap: wrap; /* Permitir que las tarjetas se ajusten en filas */
+    gap: 20px; /* Espaciado entre las tarjetas */
+    padding: 40px; /* Espaciado interno */
+    min-height: 50vh; /* Centrar verticalmente ocupando toda la altura */
+    box-sizing: border-box;
 }
 
-.card-member {
-    width: 300px; /* Ancho de las tarjetas */
-    height: 450px; /* Aumenta el alto de las tarjetas para ver más imagen */
-    background-color: #ffffff57; /* Color de fondo de las tarjetas */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle un efecto de elevación */
-    display: flex;
-    flex-direction: column; /* Permitir apilar elementos */
-    justify-content: flex-start; /* Alinear hacia arriba */
-    transition: transform 0.3s ease; /* Animación suave */
-    overflow: hidden; /* Asegura que el contenido no se desborde */
-}
-
-/* Efecto hover para dar un poco de interacción */
-.card-member:hover {
-    transform: translateY(-10px); /* Eleva la tarjeta al pasar el ratón */
-    background-color: #ff910035; 
-}
-
-.card-image {
-    width: 100%; /* Asegura que la imagen ocupe todo el ancho */
-    height: 275px; /* Aumenta la altura de la imagen */
-    object-fit: cover; /* Mantiene la proporción de la imagen y cubre el área */
-}
-
-.image-container {
-    position: relative;
-    width: 100%;
-    height: 275px; /* Aumenta la altura del contenedor de la imagen */
-    overflow: hidden; /* Asegura que las imágenes no se desborden */
-}
-
-.image-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; /* Asegura que las imágenes llenen el contenedor */
-    object-fit: cover; /* Cubre el contenedor sin distorsionar la imagen */
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Transición para el efecto hover */
-}
-
-/* Efecto al pasar el ratón */
-.card-member:hover .image-container img {
-    transform: scale(1.1); /* Escala la imagen al pasar el ratón */
-}
-
-.card-member:hover .image-container img:first-child {
-    opacity: 1; /* Muestra la primera imagen */
-}
-
-.card-member:hover .image-container img:last-child {
-    opacity: 0; /* Oculta la segunda imagen */
-}
-
-.card-content {
-    padding: 10px;
-    text-align: center; /* Centrar texto */
-}
-
-/* Responsividad para pantallas más pequeñas */
-@media (max-width: 768px) {
-    .card-member {
-        width: 80%; /* Reduce el tamaño de las tarjetas en pantallas pequeñas */
-    }
-}
-
-
-.subscriptions-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 suscripciones por fila en pantallas grandes */
-    gap: 20px;
-    margin: 20px;
-}
-
-@media (max-width: 768px) {
-    .subscriptions-grid {
-        grid-template-columns: repeat(1, 1fr); /* 1 suscripción por fila en pantallas más pequeñas */
-    }
-}
-
+/* Estilo de cada tarjeta de suscripción */
 .subscription-card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    transition: box-shadow 0.3s ease;
+    background-color: #ffffff60; /* Fondo blanco semitransparente para la tarjeta */
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Evitar desbordamiento del contenido */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+    cursor: pointer; /* Cambia el cursor al pasar por la tarjeta */
+    width: 300px; /* Ancho fijo para la tarjeta */
+    display: flex;
+    flex-direction: column; /* Para acomodar la imagen y el contenido verticalmente */
+    height: 100%; /* Permitir que la tarjeta tome la altura completa del contenedor */
 }
 
+/* Efecto al pasar el ratón sobre la tarjeta */
 .subscription-card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px); /* Levanta la tarjeta */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
 }
 
-.subscription-name {
-    font-size: 1.5rem;
-    font-weight: bold;
+.subscription-img {
+    width: 100% !important;
+    height: 50% !important; /* Ajusta la altura como desees */
+    object-fit: contain !important;
 }
 
-.subscription-price {
-    font-size: 1.2rem;
-    color: #28a745;
+
+/* Títulos de las suscripciones */
+.subscription-card h2 {
+    font-size: 1.5rem; /* Tamaño de fuente del título */
+    margin: 16px; /* Margen alrededor del título */
+    color: #333; /* Color del texto */
+    text-align: center;
 }
 
-.subscription-description {
-    margin-top: 10px;
-    font-size: 1rem;
-    color: #555;
+/* Descripción de las suscripciones */
+.subscription-card p {
+    font-size: 1rem; /* Tamaño de fuente de la descripción */
+    margin: 0 16px 16px; /* Margen para el texto */
+    color: #555; /* Color del texto */
+    text-align: center;
 }
 
-/*subdetail*/
-
-.subscription-details-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+/* Precio de la suscripción */
+.subscription-card p:last-of-type {
+    font-weight: bold; /* Hacer el precio más destacado */
+    color: #e67e22; /* Color para el precio */
 }
-
-.subscription-name {
-    font-size: 2rem;
-    font-weight: bold;
-}
-
-.subscription-price {
-    font-size: 1.5rem;
-    color: #28a745;
-    margin-top: 10px;
-}
-
-.subscription-description {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    color: #555;
-}
-

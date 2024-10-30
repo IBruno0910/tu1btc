@@ -83,10 +83,7 @@
         </div>
     </header>
     <main style="margin-top: 100px;">
-        <div id="my-courses-container" class="courses-container">
-            <h2 class="section-title"></h2>
-            <!-- Aquí se insertarán los cursos dinámicamente -->
-        </div>        
+        <div id="courses-container" class="courses-grid"></div>       
     </main>
     <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
     <footer class="footer">
@@ -121,7 +118,7 @@
             <p>Todos los derechos reservados © 2024 | <a href="/src/terminos.html">Términos y Condiciones</a></p>
         </div>
     </footer>
-    <script src="fetch/course/findmyallcourses.js"></script>
+    <script src="fetch/course/getallformembershipid.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
           const token = localStorage.getItem('authToken');

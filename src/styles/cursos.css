@@ -1,132 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-
-body {
+body{
     font-family: "Rubik", sans-serif;
-    margin: 0; /* Elimina el margen por defecto */
-    overflow-x: hidden; /* Previene el overflow horizontal */
+    background: #edf2f7;
+    overflow-x: hidden;
 }
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Columnas: 1 para categorías, 2 para cursos, 1 para imagen */
+    grid-template-rows: 200px ;
+    grid-template-columns: 330px;
+    grid-gap: 10px; /* Espaciado entre las columnas */
+}
+
+/*banner cursos*/
 
 .container-cursos {
-    position: relative; /* Asegúrate de que el contenedor sea relativo para la posición de los elementos hijos */
-    width: 100%; /* Asegura que el contenedor ocupe el 100% del ancho */
+    margin-bottom: 20px;
 }
 
-.h1-cursos {
-    font-weight: 350;
-    position: absolute;
-    font-size: 80px; /* Tamaño original */
-    color: white;
-    top: 60px;
-    left: 35%;
-    text-align: center; /* Alinea el texto al centro */
-}
-
+/* Estilos para la imagen principal */
 .img-main {
     position: relative;
-    height: 250px; /* Tamaño original */
-    width: 100%; /* Asegura que la imagen ocupe el 100% del ancho del contenedor */
-    object-fit: cover; /* Mantiene la proporción de la imagen */
+    height: 250px; /* Altura por defecto */
+    width: 100%; /* Ancho completo */
+    overflow: hidden; /* Evitar desbordamiento */
 }
 
-/* Media Queries para Responsive */
-@media (max-width: 1200px) {
-    .h1-cursos {
-        font-size: 100px; /* Tamaño para tablets y pantallas más pequeñas */
-        left: 20%; /* Centra el título */
-    }
-
-    .img-main {
-        height: 250px; /* Ajusta la altura para pantallas más pequeñas */
-    }
+/* Estilos para el título */
+.h1-cursos {
+    color: #fff;
+    position: absolute;
+    top: 60px; /* Espacio desde la parte superior */
+    font-size: 90px; /* Tamaño de fuente por defecto */
 }
 
-@media (max-width: 992px) {
-    .h1-cursos {
-        font-size: 80px; /* Tamaño para dispositivos más pequeños */
-        left: 10%; /* Centra más el título */
-    }
+/*-----------------------*/
 
-    .img-main {
-        height: 200px; /* Ajusta la altura para pantallas más pequeñas */
-    }
-}
-
-@media (max-width: 768px) {
-    .h1-cursos {
-        font-size: 70px; /* Reduce aún más el tamaño del texto para móviles */
-        left: 5%; /* Alinea el título más al centro */
-    }
-
-    .img-main {
-        height: 180px; /* Reduce la altura del banner para móviles */
-    }
-}
-
-@media (max-width: 576px) {
-    .h1-cursos {
-        font-size: 50px; /* Tamaño para móviles muy pequeños */
-        left: 0; /* Alinea completamente el título al centro */
-        right: 0; /* Asegura que el texto se centre */
-    }
-
-    .img-main {
-        height: 150px; /* Ajusta la altura para pantallas muy pequeñas */
-    }
-}
-
-.grid-container {
-    margin: 40px auto;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 10px; /* Añade un espacio entre los elementos de la cuadrícula */
-}
-
-.element {
-    background-color: rgba(255, 255, 255, 0.387);
-    border-radius: 10px;
-    margin: 10px 0; /* Elimina el margen lateral para prevenir overflow */
-    border-color: rgb(128, 128, 128);
-    box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);
-}
-
-.element:hover {
-    transform: scale(0.99);
-}
-
-.img-card {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 300px;
-    border-radius: 10px 10px 0 0;
-    object-fit: cover;
-}
-
-.element-cat {
-    display: flex;
-    width: 100%;
-    margin: 10px;
-    grid-row: 1/2;
-    align-items: baseline;
-}
-
-.img-categorias {
-    margin-left: 20px;
-    width: 90%;
-    height: 90%;
-    grid-row: 2/6;
-}
-
+ /*diseño card categoria*/
 .categorias {
-    margin: 0 auto; /* Centra el contenedor */
-    width: 90%; /* Cambia el ancho de la sección de categorías */
+    margin-left: 45px;
+    width: 63%;
     padding: 10px;
+    border-color: #111;
     outline: 1px solid;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: #ffffff5e;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
 }
@@ -147,150 +65,162 @@ body {
     color: #FF9000;
 }
 
-.element h3 {
-    font-weight: 450;
+input[type="checkbox"] {
+    appearance: none; /* Oculta el estilo nativo */
+    width: 17px; /* Tamaño del checkbox */
+    height: 17px; /* Tamaño del checkbox */
+    margin-right: 5px;
+    border: 2px solid #ccc; /* Borde del checkbox */
+    border-radius: 4px; /* Esquinas redondeadas */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el checkbox */
+}
+
+input[type="checkbox"]:checked {
+    background-color: #f3f3f3; /* Color de fondo cuando está marcado */
+    border-color: #FF9000; /* Cambia el color del borde */
+}
+
+/*----------------------*/
+
+.element-cat {
+    width: 400px;
     display: flex;
-    margin-left: 12px;
-    font-size: 20px;
-}
-
-.element p {
-    display: flex;
-    margin-left: 12px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    margin-right: 10px;
-    color: #444444;
-}
-
-.card-div {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin: 5px;
-    margin-bottom: 10px;
-}
-
-.card-div h4 {
-    font-weight: 700;
-    margin-left: 100px;
-    color: #FF9000;
-}
-
-/* Card */
-.card-main {
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
+    flex-direction: column;
     margin: 10px;
-    border-color: rgb(128, 128, 128);
-    box-shadow: 7px 7px 12px 0 rgba(20, 20, 20, 0.3);
+    grid-column: 1; /* Columna de categorías */
+    grid-row: 1 ; /* Ocupa la primera y segunda fila */
 }
 
-/* Precio Card */
-.card-price {
-    font-weight: 700;
-    margin-left: 100px;
-    color: #FF9000;
+.cursitos-cont {
+    grid-column: 2/4; /* Columna de tarjetas */
+    grid-row: 1 / 3; /* Ocupa la primera y segunda fila */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+    grid-gap: 10px; /* Espacio entre tarjetas */
 }
 
-/* Nombre Card */
-.card-name {
-    font-weight: 450;
-    display: flex;
-    justify-content: center;
-    margin-left: 12px;
-    font-size: 20px;
+.img-categorias {
+    margin-left: 40px;
+    grid-column: 1; /* Columna de imagen */
+    grid-row: 2 ; /* Ocupa la primera y segunda fila */
+    width: 80% !important;
+    height: auto !important;
 }
 
-/* Desc Card */
-.card-desc {
-    display: flex;
-    margin-left: 12px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    margin-right: 10px;
-    color: #444444;
+.course-card {
+    cursor: pointer;
+    background-color: rgba(211, 211, 211, 0.361); /* Color de fondo para las tarjetas */
+    border: 1px solid #ccc; /* Borde opcional */
+    border-radius: 8px; /* Esquinas redondeadas */
+    display: flex; /* Para alinear contenido */
+    flex-direction: column; /* Apilar elementos verticalmente */
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    height: 300px; /* Altura fija para todas las tarjetas */
+    text-align: center; /* Centrar texto */
 }
 
-/* Botón Card */
-.card-insc {
-    display: flex;
-    background-color: #FF9000;
-    border-radius: 15px;
-    width: 70%;
-    margin-left: 10px;
-    font-size: 20px;
-    font-weight: 450;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 2px 2px 2px;
-    margin-bottom: 10px;
+.course-image {
+    width: 100%; /* Imagen ocupa todo el ancho de la tarjeta */
+    height: 87%; /* Mantiene la proporción de la imagen */
+    object-fit: cover; /* Cubre el espacio sin distorsionar la imagen */
+    border-radius: 5px 5px 0 0; /* Esquinas redondeadas para la imagen */
 }
 
-.card-insc:hover {
-    transform: scale(1.1);
+.course-card h3 {
+    margin: 10px 0 0; /* Margen superior para el título */
+    font-size: 1.2em; /* Tamaño del texto */
 }
 
-.card-btn {
-    display: flex;
-    background-color: #FF9000;
-    border-radius: 15px;
-    width: 70%;
-    margin-left: 10px;
-    font-size: 20px;
-    font-weight: 450;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 2px 2px 2px;
-}
-
-.card-btn:hover {
-    transform: scale(1.1);
-}
-
-.categories-card {
-    display: flex;
-    justify-content: flex-start;
-    margin-bottom: 5px;
-    margin-left: 5px;
-}
-
-.categories-card div {
-    margin: 3px;
-    margin-left: 10px;
-    background-color: #c6c6c6;
-    width: 25%;
-    border-radius: 6px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.checkbox-margin {
-    margin-right: 10px;
-}
-
-/* Media Queries para Responsive */
-@media (max-width: 768px) {
-    .grid-container {
-        grid-template-columns: 1fr; /* Una columna para móviles */
-    }
-
-    .categorias {
-        width: 90%; /* Cambia el ancho de la sección de categorías */
-        margin-left: auto; /* Centra el contenedor */
-        margin-right: auto; /* Centra el contenedor */
-    }
-
-    .categorias h2 {
-        font-size: 20px; /* Ajusta el tamaño de fuente del título */
-    }
-
-    .categorias div {
-        font-size: 16px; /* Ajusta el tamaño de fuente de las opciones */
+/* Responsivo para pantallas menores a 966px */
+@media (max-width: 966px) {
+    .wrapper {
+        grid-template-columns: 1fr; /* Una columna para pantallas pequeñas */
+        grid-template-rows: auto; /* Ajustar las filas automáticamente */
     }
 
     .element-cat {
-        margin-left: 0; /* Elimina el margen izquierdo para móviles */
+        position: relative;
+        left: 40px;
+        width: 80%; /* Ajusta el ancho a 100% en pantallas pequeñas */
+        margin: 10px 0; /* Espaciado vertical entre elementos */
+        grid-column: 1; /* Ocupa toda la columna en pantallas pequeñas */
+    }
+
+    .cursitos-cont {
+        grid-column: 1; /* Las tarjetas ocuparán toda la columna */
+        grid-row: 2; /* Asegúrate de que las tarjetas estén debajo de la tarjeta de categorías */
+        grid-template-columns: repeat(2, 1fr); /* Mantener dos columnas para las tarjetas */
+        display: grid; /* Mantiene el diseño de la cuadrícula */
+        grid-gap: 10px; /* Espacio entre tarjetas */
+    }
+
+    .img-categorias {
+        display: none; /* Ocultar la imagen de la categoría en pantallas pequeñas */
+    }
+
+    .categorias {
+        margin-left: 0; /* Sin margen en pantallas pequeñas */
+        width: 100%; /* Ocupa todo el ancho */
+    }
+
+    .course-card {
+        height: auto; /* Mantener la altura fija para las tarjetas */
+        padding: 10px; /* Espacio interno adicional */
+        text-align: center; /* Asegura que el texto se mantenga centrado */
+        border-radius: 8px; /* Mantener las esquinas redondeadas */
+        background-color: rgba(211, 211, 211, 0.361); /* Color de fondo original */
+        border: 1px solid #ccc; /* Borde opcional */
+        display: flex; /* Para alinear contenido */
+        flex-direction: column; /* Apilar elementos verticalmente */
+    }
+
+    .course-image {
+        width: 100%; /* Imagen ocupa todo el ancho de la tarjeta */
+        height: 80%; /* Altura fija para las imágenes */
+        object-fit: cover; /* Cubre el espacio sin distorsionar la imagen */
+        border-radius: 5px 5px 0 0; /* Esquinas redondeadas para la imagen */
+    }
+
+    .course-card h3 {
+        font-size: 1em; /* Reduce el tamaño de la fuente en pantallas más pequeñas */
+        max-height: 30px; /* Ajustar la altura máxima permitida */
     }
 }
+
+/* Media Queries para hacer responsive */
+@media (max-width: 1200px) {
+    .img-main {
+        height: 200px; /* Ajustar la altura en pantallas más pequeñas */
+    }
+
+    .h1-cursos {
+        font-size: 70px; /* Reducir el tamaño de la fuente en pantallas más pequeñas */
+        top: 40px; /* Ajustar la posición del título */
+    }
+}
+
+@media (max-width: 900px) {
+    .img-main {
+        height: 200px; /* Ajustar la altura aún más en pantallas pequeñas */
+    }
+
+    .h1-cursos {
+        font-size: 50px; /* Seguir reduciendo el tamaño de la fuente */
+        top: 70px; /* Ajustar la posición del título */
+    }
+}
+
+@media (max-width: 600px) {
+    .img-main {
+        height: 130px; /* Altura mínima para pantallas pequeñas */
+    }
+
+    .h1-cursos {
+        font-size: 30px; /* Tamaño de fuente más pequeño */
+        top: 50px; /* Ajustar la posición del título */
+    }
+}
+
+
+

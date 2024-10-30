@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="imgs/02_Logo/PNG/favicon-32x32.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/output.css">
-    <link rel="stylesheet" href="styles/cursos.css">
+    <link rel="stylesheet" href="styles/detallescurso.css">
     <link rel="stylesheet" href="styles/mainstyle.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
@@ -82,40 +82,8 @@
         </section>
     </div>
   </header>
-  <main class="content">
-    <div class="container-cursos">
-      <div>
-          <img class="img-main" src="imgs/03_Elementos_gráficos/PNG/recurso 6 edit.png" alt="">
-      </div>
-      <div style="display: flex; justify-content: center;">
-        <h1 class="h1-cursos">Capacitación</h1>
-      </div>
-    </div>
-
-    <div class="wrapper">
-        <div class="element-cat">
-            <div class="categorias">
-                <h2>Categorías</h2>
-                <div>
-                    <input id="basica-checkbox" class="checkbox-margin" type="checkbox" checked onchange="filterCourses()">Basica
-                </div>
-                <div>
-                    <input id="media-checkbox" class="checkbox-margin" type="checkbox" checked onchange="filterCourses()">Media
-                </div>
-                <div>
-                    <input id="full-checkbox" class="checkbox-margin" type="checkbox" checked onchange="filterCourses()">Full
-                </div>
-                <div class="cat-input"><a href="">Mostrar más...</a></div>
-            </div>
-        </div>
-        <div class="cursitos-cont" id="courses-container">
-            <!-- Aquí irán las tarjetas de contenido -->
-        </div>
-        <div class="img-categorias">
-            <img src="imgs/02_Logo/PNG/Recurso 24.png" alt="">
-        </div>
-    </div>    
-    
+  <main class="content" style="margin-top: 140px;">
+    <div id="courseDetailsContainer"></div>
   </main>
   <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
   <footer class="footer">
@@ -225,7 +193,7 @@ window.addEventListener('click', (event) => {
 });
 
   </script>
-  <script src="fetch/course/getallcoursescard.js"></script>
+  <script src="fetch/course/getallcourses.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

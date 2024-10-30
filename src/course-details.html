@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="imgs/02_Logo/PNG/favicon-32x32.png" type="image/x-icon">
     <link rel="stylesheet" href="styles/output.css">
+    <link rel="stylesheet" href="styles/course-details.css">
     <link rel="stylesheet" href="styles/mainstyle.css">
     <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/membresia.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <title>Membresias</title>
+    <title>curso en especifico</title>
 </head>
 <body>
     <header>
@@ -82,14 +82,15 @@
             </section>
         </div>
     </header>
-    <main style="margin-top: 150px; margin-bottom: 305px;" class="content">
+    <main style="margin-top: 100px;">
+
+        <button id="yourButtonId">Obtener Cursos</button> <!-- Botón para obtener los cursos -->
         
-        <div id="subscription-details" class="subscription-details-container">
-            <!-- Aquí se insertará dinámicamente la información de la suscripción -->
+        <div id="coursesContainer">
+            <!-- Aquí se mostrarán los cursos -->
         </div>
-        
+
     </main>
-    
     <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
     <footer class="footer">
         <div class="container">
@@ -123,7 +124,7 @@
             <p>Todos los derechos reservados © 2024 | <a href="/src/terminos.html">Términos y Condiciones</a></p>
         </div>
     </footer>
-    <script src="fetch/subscription/subdetail.js"></script>
+    <script src="fetch/course/courseid.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
           const token = localStorage.getItem('authToken');
@@ -196,6 +197,6 @@
     });
     
     </script>
- <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
