@@ -31,7 +31,7 @@ function displayCourseDetails(course) {
       </div>
 
       <div class="study-plan-section">
-        <h3 class="course-plan-title">Plan de Estudios:</h3>
+        <h3 class="course-plan-title">Plan de Estudio:</h3>
         <ul class="study-plan">
           ${course.study_plan.map(plan => `
             <li class="study-plan-item">

@@ -38,7 +38,7 @@ async function displaySubscriptions(subscriptions) {
             </div>
             <h2>${subscription.name}</h2>
             <p>${subscription.description}</p>
-            <p>Price: $${subscription.price}</p>
+            <p>Precio: $${subscription.price}</p>
         `;
 
         // Añadir la tarjeta al contenedor

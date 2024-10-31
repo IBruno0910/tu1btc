@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+main{
+    font-family: "Anek Kannada", sans-serif;
+}
+
 /* Contenedor de suscripciones */
 #subscriptions-container {
     display: flex;
@@ -56,6 +64,20 @@
 
 /* Precio de la suscripción */
 .subscription-card p:last-of-type {
-    font-weight: bold; /* Hacer el precio más destacado */
-    color: #e67e22; /* Color para el precio */
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #FF9000;
+    color: white;
+    padding: 6px;
+    border-radius: 10px;
+    box-shadow: 10px;
+}
+
+.subscription-card p:last-of-type:hover{
+    background: #c07007;
+    letter-spacing: 1px;
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    transition: all 0.4s ease 0s;
 }

@@ -5,6 +5,10 @@ body {
     overflow-x: hidden;
 }
 
+main{
+    margin-top: 50px;
+}
+
 .contact {
     width: 100%;
     background-color: #ffffff;
@@ -236,5 +240,11 @@ textarea.contact-input ~ .icon {
 
     .left {
         padding: 50px 1.5rem; /* Espaciado */
+    }
+}
+
+@media (max-width:377px){
+    .contact-form {
+        grid-template-columns: 1fr; /* Cada input en su propia fila */
     }
 }

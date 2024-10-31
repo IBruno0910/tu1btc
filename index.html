@@ -13,6 +13,10 @@
     <title>Inicio</title>
 </head>
 <body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner"></div>
+  </div>
   <header>
         <div class="flex flex-wrap place-items-center">
             <section class="relative mx-auto">
@@ -102,7 +106,7 @@
     </div>
     </section>
     <div class="boton_register">    
-      <button class="bot_reg">Registrarse</button>
+      <button class="bot_reg"><a href="/src/login.html">Registrarse</a></button>
     </div>
     <hr>
     <section>
@@ -112,7 +116,7 @@
     </div>
     </section>
     <div class="boton_register">    
-      <button class="bot_reg">Capacitación</button>
+      <button class="bot_reg"><a href="/src/cursos.html">Capacitación</a></button>
     </div>
     <section class="banner">
         <h2 class="banner-title">¡Comienza tu viaje de aprendizaje hoy!</h1>
@@ -203,6 +207,8 @@
     </div>
   </footer>
 </body>
+<!-- Preloader -->
+ <script src="src/scripts/preloader.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
       const token = localStorage.getItem('authToken');

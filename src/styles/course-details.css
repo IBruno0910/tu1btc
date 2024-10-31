@@ -1,33 +1,233 @@
-#course-container {
-    max-width: 800px;
-    margin: 20px auto;
+@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+/* Estilos generales */
+.course-details {
+    max-width: 900px;
+    margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
+    color: #333;
 }
 
-h1 {
-    font-size: 2rem;
+.course-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Encabezado del curso: imagen y descripción */
+.course-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.course-image {
+    width: 50%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.course-description {
+    flex: 1;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #666;
+    text-align: left;
+}
+
+/* Plan de Estudios */
+.study-plan-section {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.course-plan-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #1b1e22;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Tarjetas de los planes de estudio */
+.study-plan-item {
+    background-color: #0b0a0a0b;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.plan-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #111;
     margin-bottom: 10px;
 }
 
-p {
-    font-size: 1rem;
-    margin: 10px 0;
-}
-
-h2 {
-    font-size: 1.5rem;
-    margin: 20px 0 10px;
-}
-
-ul {
-    list-style-type: none;
+/* Lista de secciones */
+.section-list {
     padding-left: 20px;
 }
 
-video {
-    width: 100%;
-    margin: 10px 0;
+.section-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: #f5f5f6;
+    border-radius: 8px;
+    border-left: 4px solid #f39c12;
+}
+
+.section-item:hover{
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.section-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0f0c07;
+    margin-bottom: 5px;
+}
+
+/* Lista de videos dentro de cada sección */
+.video-list {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.video-item {
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.video-duration {
+    color: #FF9000;
+    font-weight: bold;
+}
+
+/* Botón para ver video */
+.video-button {
+    background-color: #FF9000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.video-button:hover {
+    background-color: #f39c12;
+}
+
+/* Formulario de Feedback */
+.feedback-form-section {
+    margin-top: 30px;
+}
+
+.feedback-form-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.feedback-textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+    background-color: rgba(245, 245, 245, 0.67);
+    height: 80px;
+}
+
+.feedback-rate-input {
+    width: 180px;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    background-color: rgba(245, 245, 245, 0.67);
+    border-radius: 5px;
+    text-align: center;
+}
+
+.feedback-submit-btn {
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #FF9000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.feedback-submit-btn:hover {
+    background-color: #f39c12;
+}
+
+/* Sección de Reseñas */
+.feedback-section {
+    margin-top: 30px;
+}
+
+.feedback-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+.feedback-list {
+    list-style: none;
+    padding: 0;
+}
+
+.feedback-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.feedback-description {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.feedback-rate {
+    font-size: 0.9rem;
+    color: #f39c12;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+    .course-header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .course-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .study-plan-item {
+        padding: 15px;
+    }
 }

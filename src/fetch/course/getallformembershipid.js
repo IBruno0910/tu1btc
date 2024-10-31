@@ -19,10 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <h3 class="course-title">${course.name}</h3>
           `;
 
-          // Redirige a la página de detalles al hacer clic en la card
           courseCard.addEventListener('click', () => {
-              window.location.href = `course-details.html?id=${course.id}`; // Agrega el ID en la URL
-          });
+            window.location.href = `course-details.html?id=${course.id}`;
+        });
 
           coursesContainer.appendChild(courseCard);
       });
