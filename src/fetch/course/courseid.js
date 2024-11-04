@@ -3,8 +3,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const courseId = params.get('id');
     const token = localStorage.getItem('authToken');
-    let currentVideoId = null;
+    
     let youtubePlayer = null;
+let currentVideoId = null;
+
+// Función que YouTube llama automáticamente cuando la API está lista
+function onYouTubeIframeAPIReady() {
+    youtubePlayer = new YT.Player('video-container', {
+        height: '360',
+        width: '640',
+        videoId: '', // Deja en blanco o usa un video de ejemplo si deseas
+        events: {
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+// Cargar y reproducir el video de YouTube
+function loadYouTubeVideo(videoId, videoDbId) {
+    currentVideoId = videoDbId;
+
+    if (youtubePlayer && youtubePlayer.loadVideoById) {
+        youtubePlayer.loadVideoById(videoId);
+    } else {
+        // Espera a que `onYouTubeIframeAPIReady` inicialice el reproductor
+        const interval = setInterval(() => {
+            if (youtubePlayer && youtubePlayer.loadVideoById) {
+                youtubePlayer.loadVideoById(videoId);
+                clearInterval(interval); // Detiene el intervalo una vez que el video se carga
+            }
+        }, 100);
+    }
+}
+
 
     // Cargar contenido del curso
     fetch(`https://tu1btc.com/api/course/${courseId}`, {
