@@ -3,39 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const courseId = params.get('id');
     const token = localStorage.getItem('authToken');
-    
+
     let youtubePlayer = null;
-let currentVideoId = null;
-
-// Función que YouTube llama automáticamente cuando la API está lista
-function onYouTubeIframeAPIReady() {
-    youtubePlayer = new YT.Player('video-container', {
-        height: '360',
-        width: '640',
-        videoId: '', // Deja en blanco o usa un video de ejemplo si deseas
-        events: {
-            'onStateChange': onPlayerStateChange
-        }
-    });
-}
-
-// Cargar y reproducir el video de YouTube
-function loadYouTubeVideo(videoId, videoDbId) {
-    currentVideoId = videoDbId;
-
-    if (youtubePlayer && youtubePlayer.loadVideoById) {
-        youtubePlayer.loadVideoById(videoId);
-    } else {
-        // Espera a que `onYouTubeIframeAPIReady` inicialice el reproductor
-        const interval = setInterval(() => {
-            if (youtubePlayer && youtubePlayer.loadVideoById) {
-                youtubePlayer.loadVideoById(videoId);
-                clearInterval(interval); // Detiene el intervalo una vez que el video se carga
-            }
-        }, 100);
-    }
-}
-
+    let currentVideoId = null;
 
     // Cargar contenido del curso
     fetch(`https://tu1btc.com/api/course/${courseId}`, {
@@ -89,7 +59,6 @@ function loadYouTubeVideo(videoId, videoDbId) {
                         </li>
                     `).join('')}
                 </ul>
-                <div id="video-container"></div>
             </div>
         `;
 
@@ -99,21 +68,18 @@ function loadYouTubeVideo(videoId, videoDbId) {
                 const videoId = button.getAttribute('data-video-id');
                 const videoDbId = button.getAttribute('data-video-db-id');
                 startVideo(videoDbId);
-                loadYouTubeVideo(videoId, videoDbId);
+                loadYouTubeVideo(videoId);
             });
         });
     }
 
-    // Cargar y reproducir el video de YouTube
-    function loadYouTubeVideo(videoId, videoDbId) {
-        currentVideoId = videoDbId;
-
+    // Inicializar el reproductor de YouTube
+    function loadYouTubeVideo(videoId) {
+        currentVideoId = videoId;
         if (youtubePlayer) {
             youtubePlayer.loadVideoById(videoId);
         } else {
-            youtubePlayer = new YT.Player('video-container', {
-                height: '360',
-                width: '640',
+            youtubePlayer = new YT.Player('video-player-container', {
                 videoId: videoId,
                 events: {
                     'onStateChange': onPlayerStateChange
@@ -122,14 +88,14 @@ function loadYouTubeVideo(videoId, videoDbId) {
         }
     }
 
-    // Manejar cambios en el estado del reproductor
+    // Manejar el estado de reproducción del video
     function onPlayerStateChange(event) {
         if (event.data === YT.PlayerState.PLAYING) {
             console.log(`Video ${currentVideoId} está en reproducción`);
-            setInterval(() => {
+            const interval = setInterval(() => {
                 const seconds = Math.floor(youtubePlayer.getCurrentTime());
                 updateVideoTime(currentVideoId, seconds);
-            }, 5000); // Actualizar cada 5 segundos
+            }, 5000);
         } else if (event.data === YT.PlayerState.ENDED) {
             finishVideo(currentVideoId);
         }
@@ -192,3 +158,8 @@ function loadYouTubeVideo(videoId, videoDbId) {
         .catch(error => console.error('Error al finalizar el video:', error));
     }
 });
+
+// Cargar la API de YouTube
+function onYouTubeIframeAPIReady() {
+    console.log("API de YouTube cargada");
+}

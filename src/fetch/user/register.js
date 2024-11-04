@@ -1,5 +1,6 @@
 document.getElementById('register-btn').addEventListener('click', function(event) {
-  // Captura los valores de los inputs
+  event.preventDefault(); // Evita el envío del formulario por defecto
+
   const email = document.getElementById('email-input').value;
   const phone = document.getElementById('phone-input').value;
   const name = document.getElementById('name-input').value;
@@ -8,7 +9,6 @@ document.getElementById('register-btn').addEventListener('click', function(event
 
   // Verifica si todos los campos están completos
   if (email && phone && name && surname && password) {
-      // Crea el cuerpo de la solicitud
       const requestBody = {
           email: email,
           phone: phone,
@@ -17,30 +17,51 @@ document.getElementById('register-btn').addEventListener('click', function(event
           password: password
       };
 
-      // Realiza el fetch a la API
       fetch('https://tu1btc.com/api/user/register', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
           },
-          body: JSON.stringify(requestBody) // Convierte el objeto a JSON
+          body: JSON.stringify(requestBody)
       })
       .then(response => {
-          console.log('Respuesta recibida:', response);
           if (!response.ok) {
-              throw new Error('Error en la solicitud: ' + response.status);
+              return response.json().then(errorData => {
+                  throw new Error(errorData.message || 'Error en la solicitud');
+              });
           }
           return response.json();
       })
       .then(data => {
           console.log('Usuario registrado:', data);
-          // Redirige a la página principal si el registro es exitoso
-          window.location.href = 'login.html'; // Cambia la ruta según la estructura de tu proyecto
+          window.location.href = 'login.html'; // Redirige a la página de inicio de sesión
       })
       .catch(error => {
           console.error('Hubo un problema con la solicitud:', error);
+          showModal(error.message); // Llama a la función para mostrar el modal
       });
   } else {
-      console.error('Por favor, completa todos los campos.');
+      showModal('Por favor, completa todos los campos.');
   }
+});
+
+// Función para mostrar el modal con el mensaje de error
+function showModal(message) {
+    const modal = document.getElementById('passwordModal');
+    const modalMessage = document.getElementById('modalMessage');
+    modalMessage.textContent = message;
+    modal.style.display = 'block';
+}
+
+// Cerrar el modal cuando se hace clic en la "x"
+document.getElementById('modalClose').addEventListener('click', function() {
+    document.getElementById('passwordModal').style.display = 'none';
+});
+
+// Opcional: Cerrar el modal al hacer clic fuera de él
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('passwordModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
 });
