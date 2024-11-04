@@ -3,7 +3,7 @@ const token = localStorage.getItem('authToken');
 
 async function fetchPremiumCourses() {
   try {
-    const response = await fetch('https://tu1btc.com/api/course/getAllPremiumCoursesInfo', {
+    const response = await fetch('https://tu1btc.com/api/course/getAllCourseInfo', {
       headers: {
         'accept': 'application/json',
         'Authorization': `Bearer ${token}`,

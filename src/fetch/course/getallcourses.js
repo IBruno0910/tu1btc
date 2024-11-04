@@ -19,6 +19,39 @@ async function fetchCourseDetails(courseId) {
   }
 }
 
+// Función para enviar la reseña del curso
+async function submitFeedback(courseId, description, rate) {
+  try {
+    // Convertir rate a string en lugar de número
+    const feedbackData = {
+      description: description,
+      rate: rate.toString(), // Convertimos rate a string aquí
+      idCourse: courseId,
+    };
+
+    console.log('Datos de la reseña que se están enviando:', feedbackData); // Registro de depuración
+
+    const response = await fetch(`https://tu1btc.com/api/course/feedback/create`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(feedbackData),
+    });
+
+    if (!response.ok) throw new Error('Error al enviar la reseña');
+
+    const result = await response.json();
+    console.log('Reseña enviada con éxito:', result);
+
+    // Recargar los detalles del curso para mostrar la nueva reseña
+    fetchCourseDetails(courseId);
+  } catch (error) {
+    console.error('Error al enviar la reseña:', error);
+  }
+}
+
 // Función para mostrar los detalles del curso en el DOM
 function displayCourseDetails(course) {
   const container = document.getElementById('courseDetailsContainer');
@@ -83,7 +116,7 @@ function displayCourseDetails(course) {
       event.preventDefault();
       const description = document.getElementById('feedbackDescription').value;
       const rate = document.getElementById('feedbackRate').value;
-      submitFeedback(course.id, description, rate);
+      submitFeedback(course.id, description, rate); // Llamada a submitFeedback
     });
   } else {
     console.error('Formulario no encontrado');

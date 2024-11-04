@@ -24,7 +24,7 @@ async function fetchAndDisplayCourses() {
     const token = localStorage.getItem('authToken');
 
     try {
-        const response = await fetch('https://tu1btc.com/api/course/getAllPremiumCoursesInfo', {
+        const response = await fetch('https://tu1btc.com/api/course/getAllCourseInfo', {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + token,
@@ -73,13 +73,47 @@ function displayCourses(courses) {
             <h3>${course.name}</h3>
         `;
 
-        courseElement.addEventListener('click', () => {
-            window.location.href = `detallesCurso.html?id=${course.id}`;
-        });
+        courseElement.addEventListener('click', () => handleCourseClick(course.id));
 
         coursesContainer.appendChild(courseElement);
     });
 }
 
+// Nueva función para manejar el clic en el curso
+async function handleCourseClick(courseId) {
+    const isEnrolled = await checkInscription(courseId);
+    
+    if (isEnrolled) {
+        // Redirigir a course-details.js
+        window.location.href = `course-details.html?id=${courseId}`; // Cambia a course-details.html si es necesario
+    } else {
+        // Redirigir a detallesCurso.html
+        window.location.href = `detallesCurso.html?id=${courseId}`;
+    }
+}
 
+// Función para verificar si el usuario está inscrito en el curso
+async function checkInscription(courseId) {
+    const token = localStorage.getItem('authToken');
 
+    try {
+        const response = await fetch('https://tu1btc.com/api/course/getAllForMembershipId', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al obtener las inscripciones');
+        }
+
+        const enrolledCourses = await response.json();
+
+        // Verifica si el cursoId está en la lista de cursos a los que el usuario está inscrito
+        return enrolledCourses.some(course => course.id === courseId);
+    } catch (error) {
+        console.error('Error al verificar inscripción:', error);
+        return false; // Asumimos que no está inscrito en caso de error
+    }
+}
