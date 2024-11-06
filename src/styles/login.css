@@ -15,6 +15,16 @@ body{
     min-height: 100vh;
     background-image: url(imgs/03_Elementos_gráficos/PNG/Recurso\ 2.png);
 }
+
+.change-pass {
+    font-size: smaller;
+    font-weight: 100;
+}
+
+.change-pass:hover{
+    color: #FF9000;
+}
+
 /*modal register*/
 
 .custom-modal {
@@ -187,6 +197,7 @@ form.sign-up-form{
     font-size: 18px;
     font-weight: 600;
     color: #111111;
+    font-weight: 200;
 }
 
 .btn{

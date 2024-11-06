@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+main {
+    font-family: "Rubik", sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+main div {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 500px; /* Limita el ancho máximo */
+}
+
+/* Estilos básicos para el formulario */
+h1 {
+    font-family: "Rubik", sans-serif;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    min-width: 238px;
+    padding: 10px 10px;
+}
+
+.input-field {
+    width: 80%;
+    background: #f0f0f0;
+    margin: 15px 0;
+    border: 2px solid #FF9000;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.input-field i {
+    color: #FF9000;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.input-field input {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    color: #111111;
+}
+
+button {
+    width: 50%;
+    padding: 10px;
+    background-color: #F39000;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #b67007;
+}
+
+/* Modal Styles */
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 50%; /* Centrado vertical */
+    left: 50%; /* Centrado horizontal */
+    transform: translate(-50%, -50%); /* Ajuste para centrar completamente */
+    background-color: rgba(17, 17, 17, 0.56); /* Fondo oscuro y semi-transparente */
+    width: 80%;
+    max-width: 500px; /* Ajusta el tamaño máximo para pantallas grandes */
+    padding: 2000px;
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    z-index: 1000; /* Asegura que el modal esté encima del contenido */
+    display: none; /* Inicialmente oculto */
+}
+
+/* Asegurando que el contenido del modal esté centrado */
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 450px; /* Limita el tamaño máximo */
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    display: flex; /* Asegura que el contenido se centre dentro del modal */
+    flex-direction: column; /* Organiza el contenido de forma vertical */
+    align-items: center; /* Centrado horizontal del contenido */
+}
+
+/* Close button styles */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    background-color: #fff;
+    color: #FF9000;
+    width: 25px;
+    height: 25px;
+    padding: 5px;
+    border-radius: 50%;
+    border: none;
+}
+
+.close-btn:hover {
+    color: #111111;
+    background-color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .input-field input {
+        font-size: 14px;
+    }
+
+    button {
+        width: 70%;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+}
+
