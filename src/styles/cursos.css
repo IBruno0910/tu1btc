@@ -4,6 +4,21 @@ body{
     overflow-x: hidden;
 }
 
+/*mensaje a usuario no registrado btn*/
+.register-buttonn{
+    margin-top: 10px;
+    color: #FFF;
+    background-color: #FF9000;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.register-buttonn:hover{
+    background-color: #c07007;
+}
+
+/*---------------*/
+
 .wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Columnas: 1 para categorías, 2 para cursos, 1 para imagen */

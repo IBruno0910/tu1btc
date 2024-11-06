@@ -1,3 +1,53 @@
+.hidden {
+    display: none; /* Oculta el elemento */
+}
+
+/* Estilo para el fondo del modal */
+.modal {
+    position: fixed; /* Permite que el modal esté fijo en la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    height: 100%; /* Ocupa toda la altura de la pantalla */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+    display: flex; /* Para centrar el contenido */
+    justify-content: center; /* Alinear horizontalmente al centro */
+    align-items: center; /* Alinear verticalmente al centro */
+    z-index: 1000; /* Asegura que el modal esté encima de otros elementos */
+    visibility: hidden; /* Oculto por defecto */
+    opacity: 0; /* Opacidad inicial */
+    transition: visibility 0s, opacity 0.5s linear; /* Transición para mostrar/ocultar */
+}
+
+/* Estilo para mostrar el modal */
+.modal:not(.hidden) {
+    visibility: visible; /* Hacer visible el modal */
+    opacity: 1; /* Aumentar la opacidad */
+}
+
+/* Estilo para el contenido del modal */
+.modal-content {
+    background-color: white; /* Fondo blanco para el contenido del modal */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra del modal */
+}
+
+/* Estilo para el botón de cerrar */
+.close-button {
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    font-size: 24px; /* Tamaño del icono de cerrar */
+    float: right; /* Alinear a la derecha */
+    color: #aaa; /* Color del icono */
+}
+
+.close-button:hover {
+    color: #000; /* Cambiar color al pasar el mouse */
+}
+
+
+
+
 .user-info-container {
     background-color: white;
     border-radius: 8px;
@@ -43,4 +93,89 @@ td strong {
 
 .btn-profile:hover {
     background-color: #d87f0b;
+}
+
+/*update user form*/
+.hidden {
+    display: none; /* Oculta el elemento */
+}
+
+.div-toggle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#toggle-form-btn{
+    padding: 10px;
+    background-color: #FF9000;
+    border-radius: 4px;
+    color: #fff;
+}
+
+#toggle-form-btn:hover{
+    background-color: #d87f0b;
+}
+
+#update-user-form {
+    display: flex;
+    flex-direction: column; /* Organiza los elementos en columnas */
+    max-width: 400px; /* Ancho máximo del formulario */
+    margin: 20px auto; /* Centra el formulario en la página */
+    padding: 20px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde del formulario */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #f9f9f9; /* Color de fondo */
+    opacity: 0; /* Oculto inicialmente */
+    transform: translateY(-20px); /* Movimiento hacia arriba */
+    transition: opacity 0.4s ease, transform 0.4s ease; /* Transición suave */
+    display: none; /* Inicialmente oculto */
+}
+
+/* Clase visible para mostrar el formulario */
+#update-user-form.visible {
+    display: flex; /* Mostrar el formulario en flex */
+    opacity: 1; /* Hacerlo visible */
+    transform: translateY(0); /* Restablecer posición */
+}
+
+/* Estilos para los inputs */
+#update-user-form input {
+    padding: 10px; /* Espaciado interno en los inputs */
+    margin-bottom: 15px; /* Espaciado entre los inputs */
+    border: 1px solid #ccc; /* Borde de los inputs */
+    border-radius: 4px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de la fuente */
+    width: 100%; /* Los inputs ocupan todo el ancho disponible */
+}
+
+/* Estilos para el botón del formulario */
+#update-user-form button {
+    padding: 10px; /* Espaciado interno en el botón */
+    background-color: #FF9000; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de la fuente */
+    cursor: pointer; /* Cursor de puntero al pasar el mouse */
+    transition: background-color 0.3s; /* Transición suave al cambiar el color */
+}
+
+#update-user-form button:hover {
+    background-color: #d87f0b; /* Color de fondo al pasar el mouse */
+}
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 600px) {
+    #update-user-form {
+        padding: 15px; /* Ajusta el padding en pantallas pequeñas */
+    }
+
+    #update-user-form input {
+        font-size: 14px; /* Reduce el tamaño de la fuente en pantallas pequeñas */
+    }
+
+    #update-user-form button {
+        font-size: 14px; /* Reduce el tamaño de la fuente en pantallas pequeñas */
+    }
 }

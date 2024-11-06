@@ -26,25 +26,42 @@ async function displaySubscriptions(subscriptions) {
 
     for (const subscription of subscriptions) {
         const subscriptionCard = document.createElement('div');
-        subscriptionCard.className = 'subscription-card'; // Clase CSS para la tarjeta
+        subscriptionCard.className = 'subscription-card';
 
-        // Obtener la imagen de la suscripción
-        const imageUrl = await fetchSubscriptionImage(subscription.image);
+        // Verifica si hay dos imágenes
+        const images = await Promise.all(
+            subscription.images.map(imageName => fetchSubscriptionImage(imageName))
+        );
+        
+        const hasMultipleImages = images.length > 1;
 
         // Estructura de la tarjeta
         subscriptionCard.innerHTML = `
-            <div class="imgcardsub">            
-                <img src="${imageUrl}" alt="${subscription.name}" class="subscription-img" style="width: 100%; height: 200px; object-fit: cover;">
+            <div class="imgcardsub">
+                <img src="${images[0]}" alt="${subscription.name}" class="subscription-img" style="width: 100%; height: 200px; object-fit: cover;">
             </div>
             <h2>${subscription.name}</h2>
             <p>${subscription.description}</p>
             <p>Precio: $${subscription.price}</p>
         `;
 
-        // Añadir la tarjeta al contenedor
+        // Si tiene dos imágenes, cambiar la imagen al pasar el mouse
+        if (hasMultipleImages) {
+            const imgElement = subscriptionCard.querySelector('.subscription-img');
+            
+            subscriptionCard.addEventListener('mouseenter', () => {
+                imgElement.src = images[1]; // Cambia a la segunda imagen
+            });
+            
+            subscriptionCard.addEventListener('mouseleave', () => {
+                imgElement.src = images[0]; // Vuelve a la primera imagen
+            });
+        }
+
         subscriptionsContainer.appendChild(subscriptionCard);
     }
 }
+
 
 // Función para obtener la imagen de la suscripción
 async function fetchSubscriptionImage(imageName) {

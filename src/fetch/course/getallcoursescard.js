@@ -31,13 +31,13 @@ async function fetchAndDisplayCourses() {
                 'Content-Type': 'application/json'
             }
         });
-
+    
         if (!response.ok) {
             throw new Error('Network response was not ok: ' + response.statusText);
         }
-
+    
         const allCourses = await response.json();
-
+    
         const filteredCourses = allCourses.filter(course => {
             const hasBasic = course.validSubscriptions.some(sub => sub.name.includes("Basica"));
             const hasMedium = course.validSubscriptions.some(sub => sub.name.includes("Media"));
@@ -48,12 +48,21 @@ async function fetchAndDisplayCourses() {
             if (hasFull && isFullChecked) return true;
             return false;
         });
-
+    
         displayCourses(filteredCourses);
     } catch (error) {
         console.error("Error fetching courses:", error);
-        document.getElementById("courses-container").innerHTML = "<p>Error al cargar los cursos.</p>";
-    }
+        document.getElementById("courses-container").innerHTML = `
+            <p>¿Quieres ver nuestros cursos? 
+                <button id="register-button" class="register-buttonn">Regístrate</button>
+            </p>
+        `;
+    
+        // Agregar un listener para redirigir al registro
+        document.getElementById("register-button").addEventListener("click", () => {
+            window.location.href = "./login.html";
+        });
+    }    
 }
 
 function displayCourses(courses) {

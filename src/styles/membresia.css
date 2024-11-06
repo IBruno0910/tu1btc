@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
-
 main{
     font-family: "Anek Kannada", sans-serif;
 }
-
 /* Contenedor de suscripciones */
 #subscriptions-container {
     display: flex;
@@ -40,6 +38,7 @@ main{
 }
 
 .subscription-img {
+    transition: opacity 0.3s ease-in-out; /* Suavizar la transición */
     width: 100% !important;
     height: 50% !important; /* Ajusta la altura como desees */
     object-fit: contain !important;

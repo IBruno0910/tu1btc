@@ -102,11 +102,11 @@
       </div>
       <h1 class="h1_main">¡Bienvenido!</h1>
     <div class="video">
-      <iframe class="framevid" src="https://www.youtube.com/watch?v=Dnz6R_dC5qM&pp=ygUHYml0Y29pbg%3D%3D" frameborder="0"></iframe>
+      <iframe class="framevid" src="https://www.youtube.com/watch?v=_YVQN6_nkfs" frameborder="0"></iframe>
     </div>
     </section>
     <div class="boton_register">    
-      <button class="bot_reg"><a href="/src/login.html">Registrarse</a></button>
+      <button id="register-btn" class="bot_reg"><a href="/src/login.html">Registrarse</a></button>
     </div>
     <hr>
     <section>
@@ -207,6 +207,18 @@
     </div>
   </footer>
 </body>
+<!-- reg btn main -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const registerButton = document.getElementById('register-btn');
+    const token = localStorage.getItem('authToken'); // Verifica si el token está en localStorage
+
+    if (token) {
+        // Si hay un token (usuario logueado), oculta el botón
+        registerButton.style.display = 'none';
+    }
+    }); 
+</script>
 <!-- Preloader -->
  <script src="src/scripts/preloader.js"></script>
 <script>

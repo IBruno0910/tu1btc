@@ -86,15 +86,6 @@ function displayCourseDetails(course) {
         </ul>
       </div>
 
-      <div class="feedback-form-section">
-        <h3 class="feedback-form-title">Deja tu reseña:</h3>
-        <form id="feedbackForm" class="feedback-form">
-          <textarea id="feedbackDescription" placeholder="Escribe tu reseña aquí..." required class="feedback-textarea"></textarea>
-          <input type="number" id="feedbackRate" min="1" max="5" placeholder="Calificación (1-5)" required class="feedback-rate-input" />
-          <button type="submit" class="feedback-submit-btn">Enviar Reseña</button>
-        </form>
-      </div>
-
       <div class="feedback-section">
         <h3 class="feedback-title">Reseñas:</h3>
         <ul class="feedback-list">
@@ -119,7 +110,7 @@ function displayCourseDetails(course) {
       submitFeedback(course.id, description, rate); // Llamada a submitFeedback
     });
   } else {
-    console.error('Formulario no encontrado');
+    console.error('');
   }
 }
 

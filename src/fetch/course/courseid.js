@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(error => console.error('Error fetching course details:', error));
 
-    // Renderizar detalles del curso
+    // Renderizar detalles del curso y formulario de feedback
     function renderCourseDetails(course) {
         courseDetailsContainer.innerHTML = `
             <div class="course-details">
@@ -59,6 +59,27 @@ document.addEventListener('DOMContentLoaded', () => {
                         </li>
                     `).join('')}
                 </ul>
+
+                <div class="feedback-form-section">
+                    <h3 class="feedback-form-title">Deja tu reseña:</h3>
+                    <form id="feedbackForm" class="feedback-form">
+                        <textarea id="feedbackDescription" placeholder="Escribe tu reseña aquí..." required class="feedback-textarea"></textarea>
+                        <input type="number" id="feedbackRate" min="1" max="5" placeholder="Calificación (1-5)" required class="feedback-rate-input" />
+                        <button type="submit" class="feedback-submit-btn">Enviar Reseña</button>
+                    </form>
+                </div>
+
+                <div class="feedback-section">
+                    <h3 class="feedback-title">Reseñas:</h3>
+                    <ul class="feedback-list">
+                        ${course.feedback.map(feed => `
+                            <li class="feedback-item">
+                                <p class="feedback-description">${feed.description}</p>
+                                <span class="feedback-rate">Calificación: ${feed.rate} estrellas</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
             </div>
         `;
 
@@ -71,6 +92,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 loadYouTubeVideo(videoId);
             });
         });
+
+        // Agregar evento para enviar feedback
+        const form = document.getElementById('feedbackForm');
+        if (form) {
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const description = document.getElementById('feedbackDescription').value;
+                const rate = document.getElementById('feedbackRate').value;
+                submitFeedback(course.id, description, rate);
+            });
+        } else {
+            console.error('Formulario de feedback no encontrado');
+        }
+    }
+
+    // Enviar la reseña del curso
+    async function submitFeedback(courseId, description, rate) {
+        try {
+            const feedbackData = {
+                description: description,
+                rate: rate.toString(),
+                idCourse: courseId,
+            };
+
+            const response = await fetch(`https://tu1btc.com/api/course/feedback/create`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify(feedbackData),
+            });
+
+            if (!response.ok) throw new Error('Error al enviar la reseña');
+
+            const result = await response.json();
+            console.log('Reseña enviada con éxito:', result);
+
+            // Recargar los detalles del curso para mostrar la nueva reseña
+            fetchCourseDetails(courseId);
+        } catch (error) {
+            console.error('Error al enviar la reseña:', error);
+        }
     }
 
     // Inicializar el reproductor de YouTube
@@ -156,6 +220,25 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(`Video ${videoId} finalizado`);
         })
         .catch(error => console.error('Error al finalizar el video:', error));
+    }
+
+    // Recargar los detalles del curso con feedback actualizado
+    async function fetchCourseDetails(courseId) {
+        try {
+            const response = await fetch(`https://tu1btc.com/api/course/${courseId}`, {
+                headers: {
+                    'accept': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+            });
+
+            if (!response.ok) throw new Error('Error al obtener los detalles del curso');
+
+            const courseDetails = await response.json();
+            renderCourseDetails(courseDetails);
+        } catch (error) {
+            console.error('Error al hacer el fetch:', error);
+        }
     }
 });
 

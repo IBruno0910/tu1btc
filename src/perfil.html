@@ -120,7 +120,27 @@
             </table>
             <button class="btn-profile" id="get-info-btn">Obtener Información del Usuario</button>
         </div>
-        
+
+        <div id="success-modal" class="modal hidden">
+            <div class="modal-content">
+                <span class="close-button" id="close-modal">&times;</span>
+                <h2>¡Éxito!</h2>
+                <p>Información actualizada con éxito.</p>
+            </div>
+        </div>
+               
+
+        <div class="div-toggle">
+            <button id="toggle-form-btn">Actualizar Información</button>
+        </div>
+        <form id="update-user-form" class="hidden">
+            <input type="text" id="update-user-name" placeholder="Nombre" required>
+            <input type="text" id="update-user-surname" placeholder="Apellido" required>
+            <input type="email" id="update-user-email" placeholder="Email" required>
+            <input type="text" id="update-user-phone" placeholder="Teléfono" required>
+            <button type="submit">Actualizar Información</button>
+        </form>
+               
     </main>
     <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
     <footer class="footer">
@@ -155,6 +175,27 @@
             <p>Todos los derechos reservados © 2024 | <a href="/src/terminos.html">Términos y Condiciones</a></p>
         </div>
     </footer>
+    <!-- update form -->
+    <script>
+        document.getElementById('toggle-form-btn').addEventListener('click', function() {
+            const form = document.getElementById('update-user-form');
+            const toggleButton = document.getElementById('toggle-form-btn'); // Seleccionar el botón
+
+            if (form.classList.contains('visible')) {
+                form.classList.remove('visible');
+                setTimeout(() => {
+                    form.classList.add('hidden'); // Ocultar después de la animación
+                    toggleButton.classList.remove('hidden'); // Mostrar el botón
+                }, 400); // Esperar a que la animación termine
+                    } else {
+                    form.classList.remove('hidden'); // Mostrar el formulario
+                    setTimeout(() => {
+                    form.classList.add('visible'); // Aplicar la animación
+                    toggleButton.classList.add('hidden'); // Ocultar el botón
+                }, 10); // Esperar un poco para que se aplique el display: block
+            }
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
           const token = localStorage.getItem('authToken');
