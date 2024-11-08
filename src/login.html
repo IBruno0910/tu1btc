@@ -9,8 +9,30 @@
     <title>Login-Register</title>
 </head>
 <body style="background-image: url(imgs/03_Elementos_gráficos/PNG/Recurso\ 2.png);">
+
+        <!-- Modal para validar el token -->
+    <div id="tokenModal" class="custom-modal-token">
+        <div class="custom-modal-content-token">
+            <span class="custom-close" id="tokenModalClose" style="display: none;">&times;</span>
+            <h3>Validar Email</h3>
+            <p>Introduce el token que has recibido en tu correo:</p>
+            <div class="input-field">
+                <i class="fa-solid fa-key"></i>
+                <input type="text" id="token-input" placeholder="Token">
+            </div>
+            <button id="validate-token-btn" class="btn">Validar</button>
+            <p id="resend-token" style="margin-top: 10px; cursor: pointer; color: rgb(243, 168, 7);">
+                ¿No recibiste el token? Haz clic aquí para reenviarlo.
+            </p>
+        </div>
+    </div>
+
+
     <div class="container">
         <div class="signin-signup">
+
+            <!-- formulario login -->
+
             <form action="" class="sign-in-form">
                 <h2 class="title">Iniciar sesión</h2>
                 <div id="error-modal" class="modal">
@@ -24,12 +46,15 @@
                     <input type="email" id="login-email" placeholder="email">
                 </div>
                 <div class="input-field">
-                    <i class="fas fa-lock"></i>
+                    <i class="fa-solid fa-key"></i>
                     <input type="password" id="login-password" placeholder="Contraseña">
                 </div>
                 <a class="change-pass" href="change-password.html">Cambiar contraseña</a>
                 <input type="submit" id="login-btn" value="Iniciar sesión" class="btn">
             </form>
+
+            <!-- formulario register -->
+
             <form action="" class="sign-up-form">
                 <h2 class="title">Registrarse</h2>
                 
@@ -63,7 +88,9 @@
                     <input type="password" id="password-input" placeholder="Contraseña">
                 </div>
                 <input type="button" id="register-btn" value="Registrarse" class="btn">
+                <p id="error-message" class="error-message"></p> 
             </form>
+
         </div>
         <div class="panels-container">
             <div class="panel left-panel">

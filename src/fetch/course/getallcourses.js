@@ -10,14 +10,41 @@ async function fetchCourseDetails(courseId) {
       },
     });
 
-    if (!response.ok) throw new Error('Error al obtener los detalles del curso');
+    if (!response.ok) {
+      if (response.status === 402) {
+        // Mostrar mensaje específico para error de pago
+        throw new Error('El acceso al curso requiere un pago. Por favor, actualiza tu suscripción.');
+      } else {
+        throw new Error('Error al obtener los detalles del curso');
+      }
+    }
 
     const courseDetails = await response.json();
     displayCourseDetails(courseDetails);
   } catch (error) {
     console.error('Error al hacer el fetch:', error);
+
+    // Mostrar el mensaje de error en el HTML con un botón
+    const errorContainer = document.getElementById('error-container');
+    if (errorContainer) {
+      errorContainer.innerHTML = `
+        <p style="padding:10px">${error.message}</p>
+        <button id="membership-btn" style="padding: 10px 20px; background-color: #F39000; color: white; border: none; border-radius: 5px; cursor: pointer;">
+          Membresías
+        </button>
+      `;
+      errorContainer.style.display = 'block'; // Asegúrate de que sea visible
+
+      // Agregar redirección al botón
+      const membershipBtn = document.getElementById('membership-btn');
+      membershipBtn.addEventListener('click', () => {
+        window.location.href = 'membresias.html'; // Cambia esta URL si es diferente
+      });
+    }
   }
 }
+
+
 
 // Función para enviar la reseña del curso
 async function submitFeedback(courseId, description, rate) {

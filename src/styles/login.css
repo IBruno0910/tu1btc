@@ -25,7 +25,39 @@ body{
     color: #FF9000;
 }
 
+/*modal token*/
+
+.custom-modal-token {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .custom-modal-content-token {
+    border-radius: 10px;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+  }
+
 /*modal register*/
+
+.error-message {
+    color: rgb(255, 115, 0);
+    font-size: 14px;
+    margin-top: 10px;
+}
+
 
 .custom-modal {
     display: none;

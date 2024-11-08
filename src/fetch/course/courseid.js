@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const courseId = params.get('id');
     const token = localStorage.getItem('authToken');
 
-    let youtubePlayer = null;
+    let vimeoPlayer = null;
     let currentVideoId = null;
 
     // Cargar contenido del curso
@@ -60,6 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     `).join('')}
                 </ul>
 
+                <div id="video-player-container"></div> <!-- Contenedor del video aquí, abajo de Plan de estudio -->
+
                 <div class="feedback-form-section">
                     <h3 class="feedback-form-title">Deja tu reseña:</h3>
                     <form id="feedbackForm" class="feedback-form">
@@ -89,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const videoId = button.getAttribute('data-video-id');
                 const videoDbId = button.getAttribute('data-video-db-id');
                 startVideo(videoDbId);
-                loadYouTubeVideo(videoId);
+                loadVimeoVideo(videoId);
             });
         });
 
@@ -137,33 +139,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Inicializar el reproductor de YouTube
-    function loadYouTubeVideo(videoId) {
-        currentVideoId = videoId;
-        if (youtubePlayer) {
-            youtubePlayer.loadVideoById(videoId);
-        } else {
-            youtubePlayer = new YT.Player('video-player-container', {
-                videoId: videoId,
-                events: {
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-    }
+   // Cambia la inicialización de Vimeo Player para que ocupe más espacio y se ajuste al diseño:
+   function loadVimeoVideo(videoId) {
+    currentVideoId = videoId;
+    const videoContainer = document.getElementById('video-player-container');
+    
+    // Ajustar el tamaño del contenedor del video para hacerlo más grande
+    videoContainer.style.width = '100%';  // Mantiene la adaptabilidad
+    videoContainer.style.maxWidth = '1000px'; // Establece un ancho máximo
+    videoContainer.style.height = '500px';  // Mantén una altura fija, ajusta según necesites
 
-    // Manejar el estado de reproducción del video
-    function onPlayerStateChange(event) {
-        if (event.data === YT.PlayerState.PLAYING) {
-            console.log(`Video ${currentVideoId} está en reproducción`);
-            const interval = setInterval(() => {
-                const seconds = Math.floor(youtubePlayer.getCurrentTime());
-                updateVideoTime(currentVideoId, seconds);
-            }, 5000);
-        } else if (event.data === YT.PlayerState.ENDED) {
-            finishVideo(currentVideoId);
-        }
+    if (vimeoPlayer) {
+        vimeoPlayer.loadVideo(videoId).then(function() {
+            console.log(`Reproduciendo video de Vimeo: ${videoId}`);
+        }).catch(function(error) {
+            console.error('Error al cargar el video de Vimeo:', error);
+        });
+    } else {
+        vimeoPlayer = new Vimeo.Player(videoContainer, {
+            id: videoId,
+            width: '1000px',   // Mantiene la responsividad
+            height: 500      // Establece una altura fija
+        });
+
+        vimeoPlayer.on('play', function() {
+            console.log(`Video de Vimeo ${videoId} está en reproducción`);
+        });
     }
+}
+
+
 
     // Iniciar el video
     function startVideo(videoId) {
@@ -182,44 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(`Video ${videoId} iniciado`);
         })
         .catch(error => console.error('Error al iniciar el video:', error));
-    }
-
-    // Actualizar tiempo de visualización
-    function updateVideoTime(videoId, seconds) {
-        fetch('https://tu1btc.com/api/course/updateTime', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({ id: videoId, seconds: seconds })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            console.log(`Tiempo actualizado a ${seconds} segundos para el video ${videoId}`);
-        })
-        .catch(error => console.error('Error al actualizar el tiempo del video:', error));
-    }
-
-    // Finalizar video
-    function finishVideo(videoId) {
-        fetch('https://tu1btc.com/api/course/video/finish', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({ id: videoId, isEnd: true })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            console.log(`Video ${videoId} finalizado`);
-        })
-        .catch(error => console.error('Error al finalizar el video:', error));
     }
 
     // Recargar los detalles del curso con feedback actualizado
@@ -241,8 +208,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-
-// Cargar la API de YouTube
-function onYouTubeIframeAPIReady() {
-    console.log("API de YouTube cargada");
-}

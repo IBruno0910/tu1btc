@@ -16,6 +16,14 @@
     margin-bottom: 20px;
 }
 
+#video-player-container {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
+}
+
+
+
 /* Encabezado del curso: imagen y descripción */
 .course-header {
     display: flex;
