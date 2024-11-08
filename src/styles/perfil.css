@@ -2,6 +2,15 @@
     display: none; /* Oculta el elemento */
 }
 
+.change-pass {
+    font-size: smaller;
+    font-weight: 100;
+}
+
+.change-pass:hover{
+    color: #FF9000;
+}
+
 /* Estilo para el fondo del modal */
 .modal {
     position: fixed; /* Permite que el modal esté fijo en la pantalla */
