@@ -122,6 +122,25 @@ body{
     text-align: center;
   }
   
+
+  .close-login {
+    position: absolute;
+    color: #aaa;
+    float: right;
+    left: 490px;
+    top: 0;
+    font-size: 28px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+
+  .close-login:hover,
+  .close-login:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   .close {
     color: #aaa;
     float: right;

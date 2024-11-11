@@ -37,7 +37,7 @@
                 <h2 class="title">Iniciar sesión</h2>
                 <div id="error-modal" class="modal">
                     <div class="modal-content">
-                      <span id="close-modal" class="close">&times;</span>
+                      <span id="close-modal" class="close-login">&times;</span>
                       <p id="modal-message"></p>
                     </div>
                   </div>                  
@@ -58,13 +58,7 @@
             <form action="" class="sign-up-form">
                 <h2 class="title">Registrarse</h2>
                 
-                <div id="passwordModal" class="custom-modal">
-                    <div class="custom-modal-content">
-                        <span class="custom-close" id="modalClose">&times;</span>
-                        <h3>Error en la contraseña</h3>
-                        <p id="modalMessage"></p> <!-- Aquí se mostrará el mensaje de error -->
-                    </div>
-                </div>
+                
                 
 
                 <div class="input-field">
@@ -89,6 +83,7 @@
                 </div>
                 <input type="button" id="register-btn" value="Registrarse" class="btn">
                 <p id="error-message" class="error-message"></p> 
+                <div id="success-message" style="display: none; color: green;"></div>
             </form>
 
         </div>

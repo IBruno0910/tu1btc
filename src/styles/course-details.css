@@ -1,11 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
+/* Estilo para el Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+    justify-content: center; /* Centra el modal horizontalmente */
+    align-items: center; /* Centra el modal verticalmente */
+    overflow: hidden; /* Evita el desplazamiento si el contenido es grande */
+}
+
+/* Contenido del modal */
+.modal-content {
+    position: relative;
+    background: #ffffff49;
+    padding: 10px;
+    border-radius: 8px;
+    width: 70%; /* Asegura que el modal sea suficientemente grande */
+    max-width: 1000px; /* Controla el tamaño máximo */
+    max-height: 80%; /* Limita la altura máxima */
+    overflow: hidden;
+}
+
+/* Botón de cierre */
+.close-btn {
+    position: absolute;
+    top: 1px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.close-btn:hover{
+    color: #fff;
+}
+
+/* Contenedor del video */
+#video-player-container {
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+    max-width: 1000px; /* Limita el ancho máximo si es necesario */
+    height: auto; /* Mantiene la proporción del video */
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Video de Vimeo */
+.vimeo-video {
+    width: 100% !important; /* Asegura que el video ocupe todo el ancho del contenedor */
+    height: 100% !important; /* Asegura que el video ocupe toda la altura del contenedor */
+}
+
+
+
+
+
+
 /* Estilos generales */
 .course-details {
     max-width: 900px;
     margin: 0 auto;
     padding: 20px;
     color: #333;
+    font-family: 'Rubik', sans-serif;
 }
 
 .course-title {
@@ -16,12 +77,14 @@
     margin-bottom: 20px;
 }
 
-#video-player-container {
+/*#video-player-container {
     display: flex;
     width: 100%;
-    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
-}
-
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    transition: height 0.5s ease-in-out;
+}*/
 
 
 /* Encabezado del curso: imagen y descripción */
@@ -30,6 +93,7 @@
     align-items: flex-start;
     gap: 20px;
     flex-wrap: wrap;
+    margin-bottom: 20px;
 }
 
 .course-image {
@@ -48,12 +112,6 @@
 }
 
 /* Plan de Estudios */
-.study-plan-section {
-    margin-top: 30px;
-    padding: 20px;
-    border-radius: 8px;
-}
-
 .course-plan-title {
     font-size: 1.8rem;
     font-weight: bold;
@@ -69,6 +127,11 @@
     margin-bottom: 15px;
     border-radius: 8px;
     transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.study-plan-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .plan-name {
@@ -143,10 +206,22 @@
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .video-button:hover {
     background-color: #f39c12;
+}
+
+/* Animación para el contenedor de video */
+#video-player-container {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
+}
+
+#video-player-container.active {
+    height: 500px; /* Ajusta el tamaño del contenedor al hacer clic */
 }
 
 /* Formulario de Feedback */
@@ -164,79 +239,77 @@
 .feedback-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 .feedback-textarea {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
     resize: vertical;
-    background-color: rgba(245, 245, 245, 0.67);
-    height: 80px;
+    min-height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
 }
 
 .feedback-rate-input {
-    width: 180px;
-    padding: 8px;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    background-color: rgba(245, 245, 245, 0.67);
+    padding: 10px;
     border-radius: 5px;
-    text-align: center;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
 }
 
 .feedback-submit-btn {
-    padding: 10px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #fff;
     background-color: #FF9000;
+    color: white;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .feedback-submit-btn:hover {
     background-color: #f39c12;
 }
 
-/* Sección de Reseñas */
-.feedback-section {
-    margin-top: 30px;
-}
+/* Reseñas */
 
 .feedback-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #34495e;
-    margin-bottom: 15px;
+    font-size: 1rem;              /* Tamaño de fuente más grande para el título */
+    font-weight: bold;            /* Negrita para destacar */
+    color: #333;                  /* Color oscuro, ajustable según el tema */
+    margin-top: 1.5rem;           /* Espacio superior */
+    margin-bottom: 1rem;          /* Espacio inferior */
+    padding-bottom: 0.5rem;       /* Espacio debajo del texto */
+    border-bottom: 2px solid #ddd; /* Línea inferior para separar del contenido */
+    letter-spacing: 1px;          /* Espaciado entre letras para un estilo más limpio */
+    text-transform: uppercase;    /* Transformar el texto a mayúsculas */
 }
 
+
 .feedback-list {
+    margin-top: 20px;
     list-style: none;
-    padding: 0;
+    padding-left: 0;
 }
 
 .feedback-item {
     padding: 10px;
+    background-color: #f5f5f600;
+    margin-bottom: 10px;
     border-bottom: 1px solid #ddd;
 }
 
 .feedback-description {
     font-size: 1rem;
     color: #333;
-    margin-bottom: 5px;
 }
 
 .feedback-rate {
-    font-size: 0.9rem;
-    color: #f39c12;
+    font-size: 1rem;
+    color: #FF9000;
+    font-weight: 400;
 }
 
-/* Estilos Responsivos */
+/* Responsividad */
 @media (max-width: 768px) {
     .course-header {
         flex-direction: column;
@@ -245,15 +318,28 @@
 
     .course-image {
         width: 100%;
-        height: auto;
+        margin-bottom: 20px;
     }
 
     .course-description {
         text-align: center;
-        margin-top: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .course-title {
+        font-size: 2rem;
+    }
+
+    .video-item {
+        font-size: 0.9rem;
     }
 
     .study-plan-item {
         padding: 15px;
+    }
+
+    .plan-name {
+        font-size: 1.2rem;
     }
 }

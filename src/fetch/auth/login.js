@@ -1,10 +1,16 @@
 document.getElementById('login-btn').addEventListener('click', function(event) {
     event.preventDefault(); // Prevenir que la página se recargue
   
-    // Captura los valores del formulario de inicio de sesión
-    const email = document.getElementById('login-email').value;
+    // Captura y ajusta el valor del email a minúsculas
+    const email = document.getElementById('login-email').value.toLowerCase();
     const password = document.getElementById('login-password').value;
-  
+
+    // Verifica si la contraseña cumple con los requisitos
+    if (!validatePassword(password)) {
+        showModal('La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula y un carácter especial.');
+        return;
+    }
+
     // Verifica que ambos campos estén completos
     if (email && password) {
         // Cuerpo de la solicitud
@@ -19,16 +25,18 @@ document.getElementById('login-btn').addEventListener('click', function(event) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(loginData) // Convierte el objeto a JSON
+            body: JSON.stringify(loginData)
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Error en la solicitud: ' + response.status);
+                return response.json().then(errorData => {
+                    throw new Error(errorData.errorCode || 'UnknownError');
+                });
             }
             return response.json();
         })
         .then(data => {
-            console.log('Datos recibidos:', data); // Verifica los datos recibidos en la consola
+            console.log('Datos recibidos:', data); 
   
             // Almacena el token en localStorage
             const token = data.token;
@@ -38,33 +46,39 @@ document.getElementById('login-btn').addEventListener('click', function(event) {
             const userId = data.id;
             localStorage.setItem('userId', userId);
   
-            // Confirmación en la consola
-            console.log('Token guardado en localStorage:', token);
-            console.log('ID del usuario guardado en localStorage:', userId);
-  
             // Redirigir a la página principal o dashboard
-            window.location.href = '../index.html'; // Cambia a la URL de la página principal
+            window.location.href = '../index.html';
         })
         .catch(error => {
+            if (error.message === 'EMAIL_NOT_FOUND') {
+                showModal('El correo ingresado no está registrado. Verifica y vuelve a intentarlo.');
+            } else if (error.message === 'INVALID_PASSWORD') {
+                showModal('La contraseña ingresada es incorrecta. Por favor, intenta nuevamente.');
+            } else {
+                showModal('Hubo un problema con la solicitud. Intenta de nuevo.');
+            }
             console.error('Hubo un problema con la solicitud:', error);
-            // Mostrar el modal de error
-            showModal('Correo o contraseña incorrectos. Por favor, inténtalo de nuevo.');
         });
     } else {
         showModal('Por favor, completa ambos campos.');
     }
-  });
+});
   
-  // Función para mostrar el modal de error
-  function showModal(message) {
+// Función para mostrar el modal de error
+function showModal(message) {
     const modal = document.getElementById('error-modal');
     const modalMessage = document.getElementById('modal-message');
     modalMessage.textContent = message;
     modal.style.display = 'block';
-  }
-  
-  // Cerrar el modal al hacer clic en el botón "Cerrar"
-  document.getElementById('close-modal').addEventListener('click', function() {
+}
+
+// Validación de contraseña
+function validatePassword(password) {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    return passwordRegex.test(password);
+}
+
+// Cerrar el modal al hacer clic en el botón "Cerrar"
+document.getElementById('close-modal').addEventListener('click', function() {
     document.getElementById('error-modal').style.display = 'none';
-  });
-  
+});

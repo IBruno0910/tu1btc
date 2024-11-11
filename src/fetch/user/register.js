@@ -1,7 +1,8 @@
 document.getElementById('register-btn').addEventListener('click', function (event) {
     event.preventDefault();
 
-    const email = document.getElementById('email-input').value;
+    // Obtener los valores de los campos y convertir el email a minúsculas
+    const email = document.getElementById('email-input').value.toLowerCase();  // Convertir email a minúsculas
     const phone = document.getElementById('phone-input').value;
     const name = document.getElementById('name-input').value;
     const surname = document.getElementById('surname-input').value;
@@ -10,7 +11,15 @@ document.getElementById('register-btn').addEventListener('click', function (even
     const errorMessage = document.getElementById('error-message'); // Contenedor de errores
     errorMessage.textContent = ''; // Limpiar mensaje previo
 
+    // Verificar si todos los campos están completos
     if (email && phone && name && surname && password) {
+        // Validar la contraseña (debe tener al menos 8 caracteres, una mayúscula y un carácter especial)
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\W).{8,}$/;  // Al menos una mayúscula y un carácter especial
+        if (!passwordRegex.test(password)) {
+            errorMessage.textContent = 'La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula y un carácter especial.';
+            return;  // Detener el proceso si la contraseña no es válida
+        }
+
         const requestBody = { email, phone, name, surname, password };
 
         fetch('https://tu1btc.com/api/user/register', {
@@ -29,16 +38,20 @@ document.getElementById('register-btn').addEventListener('click', function (even
             .then((data) => {
                 console.log('Usuario registrado:', data);
                 showTokenModal(email); // Mostrar el modal para el token
+
+                // Mostrar el mensaje de éxito en el div
+                const successMessage = document.getElementById('success-message');
+                successMessage.style.display = 'block'; // Mostrar el mensaje
+                successMessage.textContent = 'Registro exitoso. Revisa tu correo para validar tu cuenta.';
             })
             .catch((error) => {
                 console.error('Hubo un problema con la solicitud:', error);
                 errorMessage.textContent = error.message; // Mostrar el mensaje de error
             });
     } else {
-        errorMessage.textContent = 'Por favor, completa todos los campos.'; // Mostrar error
+        errorMessage.textContent = 'Por favor, completa todos los campos.'; // Mostrar error si falta algún campo
     }
 });
-
 
 // Función para mostrar el modal de token
 function showTokenModal(email) {
@@ -66,7 +79,11 @@ function showTokenModal(email) {
                 })
                 .then((data) => {
                     console.log('Email validado:', data);
-                    alert('Registro completado con éxito.');
+                    // Mostrar el mensaje de éxito en el div
+                    const successMessage = document.getElementById('success-message');
+                    successMessage.style.display = 'block'; // Mostrar el mensaje
+                    successMessage.textContent = 'Registro completado con éxito.';
+
                     modal.style.display = 'none'; // Solo cierra el modal después de validar
                     window.location.href = 'login.html'; // Redirige al inicio de sesión
                 })
