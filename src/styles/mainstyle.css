@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import 'animate.css';
 
 body{
     font-family: "Rubik", sans-serif;
@@ -194,19 +195,38 @@ header {
 
 /* video */
 
-.video{
-    width: 50%;
+.video {
+    width: 80%; /* Ajusta el tamaño al 80% del contenedor principal */
+    max-width: 800px; /* Ancho máximo para no expandirse demasiado en pantallas grandes */
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto; /* Centrado con margen superior e inferior */
+    border-radius: 10px; /* Bordes redondeados */
+    overflow: hidden; /* Para asegurar que el video respete los bordes redondeados */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Sombra sutil para dar profundidad */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves al hacer hover */
 }
 
-.video::after{
+.video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px; /* Asegura que el video tenga los mismos bordes redondeados */
+}
+
+.video::after {
     content: "";
     display: block;
     width: 100%;
-    padding-bottom: 56.25%;
+    padding-bottom: 56.25%; /* Mantiene la proporción 16:9 */
 }
+
+.video:hover {
+    transform: scale(1.02); /* Ligeramente más grande al pasar el ratón */
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3); /* Aumenta la sombra al hacer hover */
+}
+
 
 .framevid{
     padding-top: 1rem;

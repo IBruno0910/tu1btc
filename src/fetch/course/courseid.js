@@ -132,41 +132,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Función para abrir el modal con el video
-    function openVideoModal(videoId) {
-        // Crear el modal en el DOM
-        const modal = document.createElement('div');
-        modal.classList.add('modal');
-        modal.innerHTML = `
-            <div class="modal-content">
-                <span class="close-btn">&times;</span>
-                <div id="video-player-container"></div>
-            </div>
-        `;
-        document.body.appendChild(modal);
+function openVideoModal(videoId) {
+    // Crear el modal en el DOM
+    const modal = document.createElement('div');
+    modal.classList.add('modal');
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div id="video-player-container"></div>
+        </div>
+    `;
+    document.body.appendChild(modal);
 
-        const closeButton = modal.querySelector('.close-btn');
-        closeButton.addEventListener('click', () => {
+    const closeButton = modal.querySelector('.close-btn');
+    closeButton.addEventListener('click', () => {
+        closeVideoModal(modal);
+    });
+
+    // Cerrar modal al hacer clic fuera del contenido del modal
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
             closeVideoModal(modal);
-        });
-
-        // Cargar el video de Vimeo
-        loadVimeoVideo(videoId);
-
-        // Mostrar el modal
-        modal.style.display = 'flex';  // Usamos 'flex' para centrar el modal correctamente
-    }
-
-    // Función para cerrar el modal y destruir el reproductor de Vimeo
-    function closeVideoModal(modal) {
-        modal.remove();  // Cerrar el modal
-
-        if (vimeoPlayer) {
-            vimeoPlayer.destroy().then(() => {
-                console.log("Reproductor destruido.");
-                vimeoPlayer = null;  // Asegurarse de que el reproductor esté limpio
-            }).catch(error => console.error('Error al destruir el reproductor de Vimeo:', error));
         }
+    });
+
+    // Cargar el video de Vimeo
+    loadVimeoVideo(videoId);
+
+    // Mostrar el modal
+    modal.style.display = 'flex';  // Usamos 'flex' para centrar el modal correctamente
+}
+
+// Función para cerrar el modal y destruir el reproductor de Vimeo
+function closeVideoModal(modal) {
+    modal.remove();  // Cerrar el modal
+
+    if (vimeoPlayer) {
+        vimeoPlayer.destroy().then(() => {
+            console.log("Reproductor destruido.");
+            vimeoPlayer = null;  // Asegurarse de que el reproductor esté limpio
+        }).catch(error => console.error('Error al destruir el reproductor de Vimeo:', error));
     }
+}
+
 
     function loadVimeoVideo(videoId) {
         currentVideoId = videoId;
@@ -186,8 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             vimeoPlayer = new Vimeo.Player(videoContainer, {
                 id: videoId,
-                width: '1000px !important',   // Mantiene la responsividad 
-                height: 'auto'   // Deja que la altura se ajuste proporcionalmente
+                responsive: true // Habilita la respuesta automática
             });
     
             vimeoPlayer.on('play', function() {
@@ -204,8 +211,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Crear un nuevo reproductor de Vimeo
         vimeoPlayer = new Vimeo.Player(videoContainer, {
             id: videoId,
-            width: '1000px',
-            height: '500px'
+            width: '100%',
+            height: 'auto'
         });
 
         vimeoPlayer.on('play', function() {

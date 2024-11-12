@@ -10,52 +10,57 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
-    justify-content: center; /* Centra el modal horizontalmente */
-    align-items: center; /* Centra el modal verticalmente */
-    overflow: hidden; /* Evita el desplazamiento si el contenido es grande */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 10px; /* Espacio adicional para dispositivos pequeños */
 }
 
 /* Contenido del modal */
 .modal-content {
     position: relative;
     background: #ffffff49;
-    padding: 10px;
-    border-radius: 8px;
-    width: 70%; /* Asegura que el modal sea suficientemente grande */
-    max-width: 1000px; /* Controla el tamaño máximo */
-    max-height: 80%; /* Limita la altura máxima */
-    overflow: hidden;
+    padding: 17px;
+    border-radius: 15px;
+    width: 90%; /* Asegura que el modal sea suficientemente grande en pantallas pequeñas */
+    max-width: 800px; /* Controla el tamaño máximo */
+    max-height: 50vh; /* Limita la altura máxima en pantallas pequeñas */
+    overflow: auto; /* Permite desplazarse si el contenido excede */
 }
 
 /* Botón de cierre */
 .close-btn {
     position: absolute;
-    top: 1px;
-    right: 10px;
+    top: -5px;
+    right: 6px;
     font-size: 24px;
     cursor: pointer;
+    z-index: 10;
+    color: #FFF;
 }
 
-.close-btn:hover{
-    color: #fff;
+.close-btn:hover {
+    color: #F39000;
 }
 
 /* Contenedor del video */
 #video-player-container {
-    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
-    max-width: 1000px; /* Limita el ancho máximo si es necesario */
-    height: auto; /* Mantiene la proporción del video */
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
     border-radius: 15px;
     overflow: hidden;
+    z-index: 1;
 }
 
 /* Video de Vimeo */
 .vimeo-video {
-    width: 100% !important; /* Asegura que el video ocupe todo el ancho del contenedor */
-    height: 100% !important; /* Asegura que el video ocupe toda la altura del contenedor */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
 }
-
-
 
 
 
