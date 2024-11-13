@@ -826,3 +826,91 @@ header {
         display: none;
     }
 }
+
+/*dark mode header*/
+
+.dark-mode header nav{
+    background-color: rgb(24, 24, 24);
+}
+
+.dark-mode .btn-insc-nav:hover {
+    background-color: rgb(24, 24, 24);
+    border-color: #FF9000;
+    color: #FF9000;
+}
+
+.dark-mode .perfil-font{
+    color: #121212;
+}
+
+.dark-mode .dark-sape li {
+    color: #111111;
+}
+
+/* Modo oscuro */
+.dark-mode {
+    background-color: #121212; /* Fondo oscuro para toda la página */
+    color: #ffffff; /* Texto blanco */
+}
+
+/* Estilo del preloader en modo oscuro */
+.dark-mode #preloader {
+    background-color: #1c1c1c; /* Fondo oscuro para el preloader */
+}
+
+.dark-mode .spinner {
+    border-top-color: #FF9000; /* Mantener el color del spinner visible */
+}
+
+/* Estilos de los banners */
+
+
+.dark-mode .btn-member {
+    background: #FF9000; /* Fondo naranja */
+    color: white; /* Texto blanco */
+}
+
+.dark-mode .btn-member:hover {
+    background: #121212; /* Fondo oscuro en hover */
+    color: #FF9000; /* Texto naranja en hover */
+}
+
+.dark-mode .prod-1 {
+    background-color: #2222221f; /* Fondo oscuro en los productos */
+    color: #ffffff; /* Texto blanco */
+}
+
+.dark-mode .prod-txt h3 {
+    color: #ffffff; /* Texto blanco en los títulos de los productos */
+}
+
+.dark-mode .btn-2 {
+    background-color: #111111; /* Fondo muy oscuro */
+    color: #ffffff; /* Texto blanco */
+}
+
+
+.dark-mode .video:hover {
+    box-shadow: 0px 6px 18px rgba(255, 255, 255, 0.3); /* Sombra blanca al pasar el ratón */
+}
+
+
+.dark-mode .productos {
+    background-color: #121212; /* Fondo oscuro en la sección de productos */
+}
+
+/* Estilos para texto y enlaces en modo oscuro */
+.dark-mode .h1_main,
+.dark-mode .h1_mainprod {
+    color: #ffffff; /* Texto blanco para los encabezados */
+}
+
+.dark-mode .bot_reg {
+    background-color: #FF9000; /* Fondo naranja */
+    color: white; /* Texto blanco */
+}
+
+.dark-mode .bot_reg:hover {
+    background-color: #c07007; /* Fondo oscuro en hover */
+    box-shadow: 0px 5px 40px -10px rgba(255, 255, 255, 0.57); /* Sombra blanca al pasar el ratón */
+}

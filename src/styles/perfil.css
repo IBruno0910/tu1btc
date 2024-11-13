@@ -188,3 +188,74 @@ td strong {
         font-size: 14px; /* Reduce el tamaño de la fuente en pantallas pequeñas */
     }
 }
+
+/*dark mode header*/
+
+.dark-mode header nav{
+    background-color: rgb(24, 24, 24);
+}
+
+.dark-mode .btn-insc-nav:hover {
+    background-color: rgb(24, 24, 24);
+    border-color: #FF9000;
+    color: #FF9000;
+}
+
+.dark-mode .perfil-font{
+    color: #121212;
+}
+
+/* Modo oscuro */
+
+.dark-mode{
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+.dark-mode .modal-content {
+    background-color: #333;
+    color: #e0e0e0;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode .close-button {
+    color: #ccc;
+}
+
+.dark-mode .close-button:hover {
+    color: #fff;
+}
+
+.dark-mode .user-info-container {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .user-info-container h2 {
+    color: #e0e0e0;
+}
+
+.dark-mode table {
+    border-color: #444;
+}
+
+.dark-mode td {
+    border-bottom: 1px solid #444;
+    color: #ccc;
+}
+
+.dark-mode td strong {
+    color: #fff;
+}
+
+.dark-mode #update-user-form {
+    background-color: #2a2a2a;
+    border-color: #555;
+}
+
+.dark-mode #update-user-form input {
+    background-color: #333;
+    border-color: #555;
+    color: #e0e0e0;
+}

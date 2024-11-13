@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/course-details.css">
     <link rel="stylesheet" href="styles/mainstyle.css">
     <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <title>curso en especifico</title>
 </head>
@@ -38,6 +39,13 @@
                                 </a>
                             </button>
                         </div>
+
+                        <div class="div-insc" >
+                            <button id="dark-mode-toggle" aria-label="Cambiar a modo oscuro">
+                                <i id="mode-icon" class="fa-solid fa-moon"></i>
+                            </button>
+                        </div>
+
                         <div class="divisor-nav"></div>
                         <!-- Header Icons -->
                         <div class="relative inline-block text-left ">
@@ -51,8 +59,8 @@
     
                             <div id="user-dropdown" class="hidden absolute right-0 z-10 mt-2 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-icon" tabindex="-1">
                                 <div class="py-1" role="none">
-                                    <a href="perfil.html" class="block px-4 py-2 text-sm text-gray-700 whitespace-nowrap" role="menuitem" tabindex="-1">Perfil</a>
-                                    <button id="auth-action-btn" type="button" style="display: flex; font-size: 10px;" class="block w-64 px-4 py-2 text-left text-sm text-gray-700 whitespace-nowrap" role="menuitem" tabindex="-1"></button>
+                                    <a href="perfil.html" class="block px-4 py-2 text-sm text-gray-700 whitespace-nowrap perfil-font" role="menuitem" tabindex="-1">Perfil</a>
+                                    <button id="auth-action-btn" type="button" style="display: flex; font-size: 10px;" class="block w-64 px-4 py-2 text-left text-sm text-gray-700 whitespace-nowrap perfil-font" role="menuitem" tabindex="-1"></button>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +93,7 @@
     <main style="margin-top: 100px;">
 
         <div id="course-details-container"></div>
-        
+
     </main>
     <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
     <footer class="footer">
@@ -120,6 +128,7 @@
             <p>Todos los derechos reservados © 2024 | <a href="/src/terminos.html">Términos y Condiciones</a></p>
         </div>
     </footer>
+    <script src="scripts/darkmode.js"></script>
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script src="fetch/course/courseid.js"></script>
     <script>

@@ -185,3 +185,54 @@ h2{
         font-size: 14px;
     }
 }
+
+/*dark mode header*/
+
+.dark-mode header nav{
+    background-color: rgb(24, 24, 24);
+}
+
+.dark-mode .btn-insc-nav:hover {
+    background-color: rgb(24, 24, 24);
+    border-color: #FF9000;
+    color: #FF9000;
+}
+
+.dark-mode .perfil-font{
+    color: #121212;
+}
+
+/*dark mode*/
+
+  body {
+    background: #c4c4c4;
+    color: #111111; /* Color de texto principal para modo claro */
+  }
+  
+  .dark-mode {
+    background-color: #1e1e1e;
+    color: #ffffff; /* Color de texto en modo oscuro */
+  }
+  
+  /* Cambios específicos para los elementos en modo oscuro */
+  .dark-mode h2 {
+    color: #FF9000;
+  }
+  
+  .dark-mode #sedans {
+    background-color: #333333;
+  }
+  
+  .dark-mode #suvs {
+    background-color: #4d4d4d;
+  }
+  
+  .dark-mode .iconosmall {
+    color: #FF9000;
+  }
+  
+  /* Opcional: Cambiar color de fondo y de texto en otros elementos */
+  .dark-mode .p-sedans {
+    color: #e0e0e0;
+  }
+  

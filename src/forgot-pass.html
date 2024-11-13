@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imgs/02_Logo/PNG/favicon-32x32.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles/change-pass.css">
+    <title>Change password</title>
+</head>
+<body style="background-image: url(imgs/03_Elementos_gráficos/PNG/Recurso\ 2.png);">
+    <main>
+
+        <h2>Solicitar Recuperación de Contraseña</h2>
+        <form id="requestTokenForm" onsubmit="handleRequestToken(event)">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" required>
+            <button type="submit">Solicitar Token</button>
+        </form>
+    
+        <form id="forgotPasswordForm" onsubmit="handleChangePassword(event)">
+            <label for="emailConfirm">Correo electrónico:</label>
+            <input type="email" id="emailConfirm" required>
+        
+            <label for="token">Token recibido:</label>
+            <input type="text" id="token" required>
+        
+            <label for="newPassword">Nueva contraseña:</label>
+            <input type="password" id="newPassword" required>
+        
+            <button type="submit">Cambiar contraseña</button>
+        </form>
+        
+        
+        
+
+    </main>   
+    <script src="fetch/auth/forgot-pass.js"></script>
+</body>
+</html>

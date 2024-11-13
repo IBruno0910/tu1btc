@@ -277,3 +277,96 @@ input[type="checkbox"]:checked {
         height: 100%;
     }
 }
+
+/*dark mode header*/
+
+.dark-mode header nav{
+    background-color: rgb(24, 24, 24);
+}
+
+.dark-mode .btn-insc-nav:hover {
+    background-color: rgb(24, 24, 24);
+    border-color: #FF9000;
+    color: #FF9000;
+}
+
+.dark-mode .perfil-font{
+    color: #121212;
+}
+
+/* Dark Mode */
+.dark-mode {
+    background: #121212; /* Fondo oscuro */
+    color: #EAEAEA; /* Color de texto claro */
+}
+
+/* Estilos para el botón de registro en dark mode */
+.dark-mode .register-buttonn {
+    color: #FFF;
+    background-color: #FF9000;
+}
+
+.dark-mode .register-buttonn:hover {
+    background-color: #c07007;
+}
+
+/* Estilos para las categorías en dark mode */
+.dark-mode .categorias {
+    background-color: #333333;
+    border-color: #555555;
+    color: #EAEAEA;
+}
+
+.dark-mode .categorias h2 {
+    color: #FF9000;
+}
+
+.dark-mode .categorias div {
+    color: #EAEAEA;
+}
+
+.dark-mode .cat-input {
+    color: #FF9000;
+}
+
+.dark-mode input[type="checkbox"] {
+    border-color: #888888;
+}
+
+.dark-mode input[type="checkbox"]:checked {
+    background-color: #FF9000;
+}
+
+/* Estilos para la imagen principal en dark mode */
+.dark-mode .img-main {
+    background-color: #444444;
+}
+
+/* Estilos para el título de los cursos */
+.dark-mode .h1-cursos {
+    color: #fff;
+}
+
+/* Estilos para las tarjetas de curso */
+.dark-mode .course-card {
+    background-color: rgba(211, 211, 211, 0.1);
+    border: 1px solid #444444;
+}
+
+.dark-mode .course-card:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .course-image {
+    border-radius: 5px 5px 0 0;
+}
+
+/* Estilos para las categorías y tarjetas de cursos */
+.dark-mode .element-cat {
+    color: #EAEAEA;
+}
+
+.dark-mode .course-card h3 {
+    color: #FFF;
+}

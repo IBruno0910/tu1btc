@@ -81,3 +81,40 @@
         height: 280px;
     }
 }
+
+/*dark mode header*/
+
+.dark-mode header nav{
+    background-color: rgb(24, 24, 24);
+}
+
+.dark-mode .btn-insc-nav:hover {
+    background-color: rgb(24, 24, 24);
+    border-color: #FF9000;
+    color: #FF9000;
+}
+
+.dark-mode .perfil-font{
+    color: #121212;
+}
+
+/* Modo oscuro */
+.dark-mode{
+    color: #fff;
+}
+
+.dark-mode main{
+    background-color: #1e1e1e;
+}
+.dark-mode .productos-main h2 {
+    color: #fff;
+}
+
+.dark-mode .productt {
+    background-color: #1f1f1f0c;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .productt img {
+    opacity: 0.9; /* Disminuye la opacidad de las imágenes en modo oscuro */
+}

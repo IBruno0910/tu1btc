@@ -218,3 +218,39 @@
         margin-left: 0; /* Ajusta el margen en móviles */
     }
 }
+
+
+/*dark mode header*/
+
+.dark-mode header nav{
+    background-color: rgb(24, 24, 24);
+}
+
+.dark-mode .btn-insc-nav:hover {
+    background-color: rgb(24, 24, 24);
+    border-color: #FF9000;
+    color: #FF9000;
+}
+
+.dark-mode .perfil-font{
+    color: #121212;
+}
+
+/* Modo oscuro */
+
+.dark-mode{
+    background-color: #1e1e1e;
+    color: #fff;
+}
+
+.dark-mode .tool-details-container {
+    background-color: #3837375b; 
+}
+
+.dark-mode .tool-details-container p {
+    color: #fff;
+}
+
+.dark-mode .tool-details-container h1 {
+    color: #fff;
+}
