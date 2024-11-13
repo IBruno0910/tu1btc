@@ -248,6 +248,7 @@
 
 .dark-mode header nav{
     background-color: rgb(24, 24, 24);
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .btn-insc-nav:hover {
@@ -264,17 +265,20 @@
 .dark-mode {
     background-color: #121212; /* Fondo oscuro general */
     color: #e0e0e0; /* Color de texto claro para contraste */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 
 .dark-mode .modal-content {
     background: #1d1d1d; /* Fondo más oscuro para el contenido del modal */
     color: #e0e0e0; /* Texto claro */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* Botón de cierre */
 .dark-mode .close-btn {
     color: #FFF; /* Mantiene el color blanco en el botón de cierre */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .close-btn:hover {
@@ -284,29 +288,35 @@
 /* Estilo de video */
 .dark-mode .vimeo-video {
     filter: brightness(0.8); /* Hace el video un poco más oscuro */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* Títulos y contenido de curso */
 .dark-mode .course-title {
     color: #FF9000; /* Naranja brillante para títulos */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .course-header {
     gap: 15px; /* Reduce el espacio para ajustarse mejor al diseño oscuro */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .course-description {
     color: #bbb; /* Texto más claro para la descripción */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* Estilo para las tarjetas de los planes de estudio */
 .dark-mode .study-plan-item {
     background-color: #333; /* Fondo oscuro para las tarjetas */
     color: #fff; /* Texto claro */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .course-plan-title{
     color: #e9e7e7;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .study-plan-item:hover {
@@ -315,59 +325,71 @@
 
 .dark-mode .plan-name {
     color: #FF9000; /* Naranja brillante para los nombres de los planes */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* Estilo de las secciones */
 .dark-mode .section-item {
     background-color: #444; /* Fondo oscuro para las secciones */
     border-left: 4px solid #FF9000; /* Barra de acento naranja */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .section-name {
     color: #FF9000; /* Naranja brillante para los nombres de las secciones */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* Estilo de los videos dentro de cada sección */
 .dark-mode .video-item {
     font-size: 1rem;
     color: #ccc; /* Texto claro para los títulos de los videos */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .video-duration {
     color: #FF9000; /* Naranja brillante para la duración */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* Botón de ver video */
 .dark-mode .video-button {
     background-color: #FF9000; /* Naranja brillante para el botón */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .video-button:hover {
     background-color: #f39c12; /* Cambio de color al pasar el mouse */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* Feedback y reseñas */
 .dark-mode .feedback-form-section h3 {
     color: #fff;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .feedback-section h3 {
     color: #fff;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .feedback-textarea {
     background-color: #333; /* Fondo oscuro para el área de texto */
     border: 1px solid #555; /* Borde más oscuro */
     color: #e0e0e0; /* Texto claro */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .feedback-rate-input {
     background-color: #333;
     color: #e0e0e0; /* Mantiene el texto claro */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .feedback-submit-btn {
     background-color: #FF9000; /* Naranja brillante para el botón de envío */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .feedback-submit-btn:hover {
@@ -376,8 +398,10 @@
 
 .dark-mode .feedback-item p{
     color: #fff; /* Texto claro */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .feedback-rate {
     color: #FF9000; /* Naranja brillante para las puntuaciones */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }

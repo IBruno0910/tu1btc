@@ -827,10 +827,27 @@ header {
     }
 }
 
+/* Efecto de transición */
+.icon-transition {
+    transition: transform 0.4s ease, color 0.4s ease;
+    transform: rotate(360deg) scale(1.1); /* Gira y hace zoom */
+}
+
+/* Personalización del color del icono en cada modo */
+.icon-sun {
+    color: #FF9000; /* Color del ícono de sol */
+}
+
+.icon-moon {
+    color: #111111; /* Color del ícono de luna */
+}
+
+
 /*dark mode header*/
 
 .dark-mode header nav{
     background-color: rgb(24, 24, 24);
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .btn-insc-nav:hover {
@@ -845,21 +862,25 @@ header {
 
 .dark-mode .dark-sape li {
     color: #111111;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* Modo oscuro */
 .dark-mode {
     background-color: #121212; /* Fondo oscuro para toda la página */
     color: #ffffff; /* Texto blanco */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* Estilo del preloader en modo oscuro */
 .dark-mode #preloader {
     background-color: #1c1c1c; /* Fondo oscuro para el preloader */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .spinner {
     border-top-color: #FF9000; /* Mantener el color del spinner visible */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* Estilos de los banners */
@@ -868,49 +889,59 @@ header {
 .dark-mode .btn-member {
     background: #FF9000; /* Fondo naranja */
     color: white; /* Texto blanco */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .btn-member:hover {
     background: #121212; /* Fondo oscuro en hover */
     color: #FF9000; /* Texto naranja en hover */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .prod-1 {
     background-color: #2222221f; /* Fondo oscuro en los productos */
     color: #ffffff; /* Texto blanco */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .prod-txt h3 {
     color: #ffffff; /* Texto blanco en los títulos de los productos */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .btn-2 {
     background-color: #111111; /* Fondo muy oscuro */
     color: #ffffff; /* Texto blanco */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 
 .dark-mode .video:hover {
     box-shadow: 0px 6px 18px rgba(255, 255, 255, 0.3); /* Sombra blanca al pasar el ratón */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 
 .dark-mode .productos {
     background-color: #121212; /* Fondo oscuro en la sección de productos */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 /* Estilos para texto y enlaces en modo oscuro */
 .dark-mode .h1_main,
 .dark-mode .h1_mainprod {
     color: #ffffff; /* Texto blanco para los encabezados */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .bot_reg {
     background-color: #FF9000; /* Fondo naranja */
     color: white; /* Texto blanco */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .bot_reg:hover {
     background-color: #c07007; /* Fondo oscuro en hover */
     box-shadow: 0px 5px 40px -10px rgba(255, 255, 255, 0.57); /* Sombra blanca al pasar el ratón */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }

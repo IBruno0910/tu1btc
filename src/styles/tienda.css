@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,76 +7,79 @@
 }
 
 /*productos section*/
-.productos-main{
+.productos-main {
     padding: 20px 0;
     text-align: center;
+    transition: padding 0.8s ease, color 0.3s ease; /* Transición de padding y color */
 }
 
-.productos-main h2{
+.productos-main h2 {
     color: #111111;
     font-size: 50px;
     text-transform: uppercase;
     margin-bottom: 50px;
+    transition: color 0.8s ease; /* Transición de color */
 }
 
 @media (min-width:350px) {
-    .productos-main h2{
+    .productos-main h2 {
         padding-top: 50px;
     }
 }
 
-.product-content{
+.product-content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
+    transition: grid-template-columns 0.8s ease, gap 0.3s ease; /* Transición para cambiar la cantidad de columnas */
 }
 
-.productt{
+.productt {
     text-align: center;
     padding: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.8s ease, background-color 0.3s ease; /* Transición en el fondo y sombra */
 }
 
 .productt img {
-    width: 100%; /* Ajusta la imagen al 100% del ancho del contenedor */
-    height: 200px; /* Establece una altura fija para todas las imágenes */
-    object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
-    transition: transform 0.3s ease-in-out; /* Suaviza la transición de zoom */
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.8s ease-in-out, opacity 0.3s ease; /* Transición suave para zoom y opacidad */
 }
 
 .productt:hover img {
-    transform: scale(1.05); /* Aumenta el tamaño de la imagen al pasar el mouse */
+    transform: scale(1.05);
 }
 
-/*footer*/
-.footer{
+.footer {
     padding: 50px 0;
 }
+
 /*-------------------------------*/
 
 /*media*/
 
-@media(max-width:991px){
-    .submenu:hover #carrito{
+@media(max-width:991px) {
+    .submenu:hover #carrito {
         min-width: 100%;
     }
 
     /*productos*/
-
-    .productos{
+    .productos {
         padding: 30px 30px 0 30px;
         flex-direction: column;
     }
 
-    .productos-main{
+    .productos-main {
         padding: 0 30px 30px 30px;
     }
-    .product-content{
+    .product-content {
         grid-template-columns: repeat(1, 1fr);
         gap: 30px;
     }
 
-    .product img{
+    .product img {
         width: 200px;
         height: 280px;
     }
@@ -84,8 +87,9 @@
 
 /*dark mode header*/
 
-.dark-mode header nav{
+.dark-mode header nav {
     background-color: rgb(24, 24, 24);
+    transition: background-color 0.5s ease; /* Transición en el fondo del nav */
 }
 
 .dark-mode .btn-insc-nav:hover {
@@ -94,27 +98,32 @@
     color: #FF9000;
 }
 
-.dark-mode .perfil-font{
+.dark-mode .perfil-font {
     color: #121212;
 }
 
 /* Modo oscuro */
-.dark-mode{
+.dark-mode {
     color: #fff;
+    transition: color 0.8s ease; /* Transición en el color de texto */
+    background-color: #1e1e1e;
+    transition: background-color 0.8s ease; /* Transición de fondo de main */
 }
 
-.dark-mode main{
-    background-color: #1e1e1e;
-}
+
+
 .dark-mode .productos-main h2 {
     color: #fff;
+    transition: color 0.8s ease; /* Transición de color del título */
 }
 
 .dark-mode .productt {
     background-color: #1f1f1f0c;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    transition: background-color 5s ease, box-shadow 0.3s ease; /* Transición de fondo y sombra */
 }
 
 .dark-mode .productt img {
-    opacity: 0.9; /* Disminuye la opacidad de las imágenes en modo oscuro */
+    opacity: 0.9;
+    transition: opacity 0.8s ease; /* Transición de opacidad */
 }

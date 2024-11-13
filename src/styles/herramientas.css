@@ -224,6 +224,7 @@
 
 .dark-mode header nav{
     background-color: rgb(24, 24, 24);
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .btn-insc-nav:hover {
@@ -241,16 +242,20 @@
 .dark-mode{
     background-color: #1e1e1e;
     color: #fff;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .tool-details-container {
     background-color: #3837375b; 
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .tool-details-container p {
     color: #fff;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .tool-details-container h1 {
     color: #fff;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }

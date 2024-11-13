@@ -253,6 +253,7 @@ textarea.contact-input ~ .icon {
 
 .dark-mode header nav{
     background-color: rgb(24, 24, 24);
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .btn-insc-nav:hover {
@@ -270,50 +271,60 @@ textarea.contact-input ~ .icon {
 .dark-mode {
     background-color: #1e1e1e; /* Fondo oscuro para el cuerpo */
     color: #ffffff; /* Texto blanco por defecto */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .contact {
     background-color: #1e1e1e; /* Fondo oscuro para la sección de contacto */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .left {
     background-color: #1e1e1e; /* Fondo oscuro para la parte izquierda */
     color: #ffffff; /* Cambiar color del texto */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .contact-heading h1 {
     color: #ffffff; /* Color blanco para los encabezados */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .contact-heading h1 span {
     color: #FF9000; /* Mantener color del acento en naranja */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .text {
     color: #FF9000; /* Mantener el texto en naranja */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .contact-input {
     background-color: #3b3b3b; /* Fondo más oscuro para los inputs */
     color: #ffffff; /* Texto blanco en los inputs */
     border: 2px solid #444444; /* Borde de los inputs en color más oscuro */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .contact-input:hover {
     background-color: #4d4d4d; /* Cambio en el fondo cuando el input es hover */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .input-wrap label {
     color: #b0b0b0; /* Color claro para las etiquetas en dark mode */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .input-wrap .icon {
     color: #f39000; /* Color claro para el icono */
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .contact-buttons .btn {
     background-color: #FF9000; /* Mantener color del botón */
     color: #ffffff; /* Mantener color del texto del botón */
     border-radius: 40px;
-    transition: 0.3s;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }

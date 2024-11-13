@@ -85,6 +85,7 @@ main{
 
 .dark-mode header nav{
     background-color: rgb(24, 24, 24);
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .btn-insc-nav:hover {
@@ -101,27 +102,33 @@ main{
 .dark-mode {
     background-color: #1e1e1e;
     color: #fff;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .subscription-card {
     background-color: #1f1f1f;
     border: 1px solid #333;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .subscription-card h2 {
     color: #e0e0e0;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .subscription-card p {
     color: #b3b3b3;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .subscription-card p:last-of-type {
     background-color: #FF8C00;
     color: #fff;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .subscription-card p:last-of-type:hover {
     background: #b36100;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }

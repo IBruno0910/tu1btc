@@ -1,26 +1,30 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const toggleButton = document.getElementById("dark-mode-toggle");
-    const modeIcon = document.getElementById("mode-icon");
-    const body = document.body;
-  
-    // Comprobar el modo guardado en localStorage
-    if (localStorage.getItem("theme") === "dark") {
+  const toggleButton = document.getElementById("dark-mode-toggle");
+  const modeIcon = document.getElementById("mode-icon");
+  const body = document.body;
+
+  // Comprobar el modo guardado en localStorage
+  if (localStorage.getItem("theme") === "dark") {
       body.classList.add("dark-mode");
-      modeIcon.setAttribute("name", "sunny-outline");
-    }
-  
-    // Alternar modo oscuro/claro
-    toggleButton.addEventListener("click", () => {
+      modeIcon.classList.add("icon-sun"); // Inicializar icono de sol si es modo oscuro
+  }
+
+  // Alternar modo oscuro/claro
+  toggleButton.addEventListener("click", () => {
       body.classList.toggle("dark-mode");
+      modeIcon.classList.add("icon-transition"); // Agregar clase de transición
       
-      // Cambiar el icono según el modo actual
       if (body.classList.contains("dark-mode")) {
-        modeIcon.setAttribute("name", "sunny-outline");
-        localStorage.setItem("theme", "dark");
+          modeIcon.classList.remove("icon-moon");
+          modeIcon.classList.add("icon-sun");
+          localStorage.setItem("theme", "dark");
       } else {
-        modeIcon.setAttribute("name", "moon-outline");
-        localStorage.setItem("theme", "light");
+          modeIcon.classList.remove("icon-sun");
+          modeIcon.classList.add("icon-moon");
+          localStorage.setItem("theme", "light");
       }
-    });
+
+      // Remover la clase de rotación después de la animación para evitar repeticiones
+      setTimeout(() => modeIcon.classList.remove("icon-transition"), 500);
   });
-  
+});

@@ -207,55 +207,74 @@ td strong {
 
 /* Modo oscuro */
 
+.modal {
+    transition: visibility 0s, opacity 0.5s linear, background-color 0.8s ease;
+}
+
+.modal-content {
+    transition: background-color 0.8s ease, color 0.8s ease;
+}
+
 .dark-mode{
     background-color: #1e1e1e;
     color: #fff;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .modal-content {
     background-color: #333;
     color: #e0e0e0;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .close-button {
     color: #ccc;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .close-button:hover {
     color: #fff;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .user-info-container {
     background-color: #1f1f1f;
     color: #e0e0e0;
     box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode .user-info-container h2 {
     color: #e0e0e0;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode table {
     border-color: #444;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode td {
     border-bottom: 1px solid #444;
     color: #ccc;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode td strong {
     color: #fff;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode #update-user-form {
     background-color: #2a2a2a;
     border-color: #555;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }
 
 .dark-mode #update-user-form input {
     background-color: #333;
     border-color: #555;
     color: #e0e0e0;
+    transition: background-color 0.8s ease, color 0.8s ease;
 }

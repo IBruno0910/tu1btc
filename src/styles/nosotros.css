@@ -1,9 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
-body{
+
+body {
     background: #c4c4c4;
+    color: #111111; /* Color de texto principal para modo claro */
+    transition: background-color 1s ease, color 0.3s ease; /* Transición suave */
 }
-.h1_main{
+
+.h1_main {
     font-weight: 400;
     font-family: "Rubik", sans-serif;
     font-size: 50px;
@@ -14,7 +18,7 @@ body{
     margin-bottom: 30px;
 }
 
-.p_align{
+.p_align {
     line-height: 50px;
     font-weight: 300;
     font-family: "Anek Kannada", sans-serif;
@@ -24,38 +28,46 @@ body{
     margin-right: 25%;
 }
 
-#main-container{
+#main-container {
     font-family: "Rubik", sans-serif;
     width: 325px;
     margin: 87px auto 20px;
     border-radius: 10px;
     overflow: hidden;
 }
-article{
+
+article {
     width: 100%;
     height: 440px;
     padding: 40px;
 }
-#sedans{
+
+#sedans {
     background-color: #383838;
+    transition: background-color 0.3s ease; /* Transición para el modo oscuro */
 }
-#suvs{
+
+#suvs {
     background-color: #FFFFFF;
+    transition: background-color 0.3s ease; /* Transición para el modo oscuro */
 }
 
 .iconosmall {
     font-size: 7rem;
     color: #FF9000;
+    transition: color 0.3s ease; /* Transición para el modo oscuro */
 }
 
-h2{
+h2 {
     color: #FF9000;
     font-family: "Rubik", sans-serif;
     font-size: 2.4em;
     text-transform: uppercase;
     margin-bottom: 25px;
+    transition: color 0.3s ease; /* Transición para el modo oscuro */
 }
-.p-faq{
+
+.p-faq {
     font-family: "Anek Kannada", sans-serif;
     color: #111111;
     line-height: 25px;
@@ -63,8 +75,9 @@ h2{
     font-size: 1.2rem;
 }
 
-.p-sedans{
+.p-sedans {
     color: #FFFFFF;
+    transition: color 0.3s ease; /* Transición para el modo oscuro */
 }
 
 /* Estilos base para pantallas grandes */
@@ -91,36 +104,35 @@ h2{
 
 /* Estilos responsive para tablets y móviles */
 @media (max-width: 768px) {
-  .nosotrosGrid {
-    grid-template-columns: 1fr; /* Coloca la imagen encima del texto */
-    text-align: center;
-  }
+    .nosotrosGrid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
 
-  .imgnosotros {
-    margin: 0 auto; /* Centra la imagen */
-    margin-top: 20px;
-    width: 150px;
-    height: 150px; /* Reduce el tamaño de la imagen en pantallas pequeñas */
-  }
+    .imgnosotros {
+        margin: 0 auto;
+        margin-top: 20px;
+        width: 150px;
+        height: 150px;
+    }
 
-  .p_align {
-    margin: 20px 10px;
-    padding: 0 10px; /* Añade algo de padding para mejor legibilidad */
-  }
+    .p_align {
+        margin: 20px 10px;
+        padding: 0 10px;
+    }
 }
 
 /* Estilos para pantallas muy pequeñas (móviles) */
 @media (max-width: 480px) {
-  .imgnosotros {
-    width: 120px;
-    height: 120px; /* Imagen más pequeña en móviles */
-  }
+    .imgnosotros {
+        width: 120px;
+        height: 120px;
+    }
 
-  .p_align {
-    font-size: 14px; /* Ajusta el tamaño del texto */
-  }
+    .p_align {
+        font-size: 14px;
+    }
 }
-
 
 @media only screen and (max-width: 943px) {
     .iconosmall {
@@ -129,25 +141,24 @@ h2{
     p {
         font-size: 0.7rem;
     }
-    .p_align{
+    .p_align {
         font-size: 20px;
         font-weight: 300;
     }
-
 }
-@media (min-width: 944px){
-    #main-container{
+
+@media (min-width: 944px) {
+    #main-container {
         margin-top: 170px;
         display: flex;
         width: 924px;
     }
-    article{
+    article {
         height: 500px;
     }
-    .p-faq{
+    .p-faq {
         margin-bottom: 80px;
     }
-  
 }
 
 @media only screen and (max-width: 768px) {
@@ -155,84 +166,74 @@ h2{
         height: 300px;
         padding: 20px;
     }
-
     section .contactForm .info .imgBox {
         display: none;
     }
 }
-
 
 @media only screen and (max-width: 600px) {
     section .contactForm .form {
         margin-left: 0px;
         width: 100%;
     }
-
     section .contactForm .info {
         margin-bottom: 30px;
     }
 }
 
-@media(max-width: 991px) {
-    .sidebar{
+@media (max-width: 991px) {
+    .sidebar {
         background-color: rgba(196, 186, 186, 0.15);
         backdrop-filter: blur(10px);
     }
 }
 
-@media(max-width: 489px){
-    .p_align{
+@media (max-width: 489px) {
+    .p_align {
         font-size: 14px;
     }
 }
 
-/*dark mode header*/
-
-.dark-mode header nav{
+/* Modo oscuro en el header */
+.dark-mode header nav {
     background-color: rgb(24, 24, 24);
+    transition: background-color 0.3s ease; /* Transición para el modo oscuro */
 }
 
 .dark-mode .btn-insc-nav:hover {
     background-color: rgb(24, 24, 24);
     border-color: #FF9000;
     color: #FF9000;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición para el modo oscuro */
 }
 
-.dark-mode .perfil-font{
+.dark-mode .perfil-font {
     color: #121212;
+    transition: color 0.3s ease; /* Transición para el modo oscuro */
 }
 
-/*dark mode*/
-
-  body {
-    background: #c4c4c4;
-    color: #111111; /* Color de texto principal para modo claro */
-  }
-  
-  .dark-mode {
+/* Modo oscuro en otros elementos */
+.dark-mode {
     background-color: #1e1e1e;
-    color: #ffffff; /* Color de texto en modo oscuro */
-  }
-  
-  /* Cambios específicos para los elementos en modo oscuro */
-  .dark-mode h2 {
+    color: #ffffff;
+}
+
+.dark-mode h2 {
     color: #FF9000;
-  }
-  
-  .dark-mode #sedans {
+}
+
+.dark-mode #sedans {
     background-color: #333333;
-  }
-  
-  .dark-mode #suvs {
+}
+
+.dark-mode #suvs {
     background-color: #4d4d4d;
-  }
-  
-  .dark-mode .iconosmall {
+}
+
+.dark-mode .iconosmall {
     color: #FF9000;
-  }
-  
-  /* Opcional: Cambiar color de fondo y de texto en otros elementos */
-  .dark-mode .p-sedans {
+}
+
+.dark-mode .p-sedans {
     color: #e0e0e0;
-  }
-  
+}
