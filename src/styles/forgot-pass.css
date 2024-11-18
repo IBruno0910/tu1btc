@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+body {
+    font-family: "Rubik", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url(imgs/03_Elementos_gráficos/PNG/Recurso\ 2.png);
+    background-size: cover; /* Asegura que el fondo cubra toda la pantalla */
+    background-position: center; /* Centra el fondo */
+    margin: 0;
+}
+
+.card-forgot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 150px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 100%; /* Se ajusta al 100% del contenedor en pantallas más pequeñas */
+    max-width: 700px; /* Límite máximo de ancho para pantallas grandes */
+    box-sizing: border-box; /* Asegura que padding y borders no afecten el ancho */
+    margin: 0 auto; /* Centra la tarjeta horizontalmente */
+}
+
+@media screen and (min-width: 600px) {
+    .card-forgot {
+        width: 600px; /* Establece el ancho fijo de 600px en pantallas grandes */
+    }
+}
+
+.cont h2{
+    display: flex;
+    justify-content: center;
+}
+
+hr {
+    width: 100%;
+    border-top: 0.2px solid #e7e7e7;
+    margin: 5px 0;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+h1 {
+    font-weight: 500;
+    font-size: 24px;
+}
+
+h2 {
+    font-weight: 400;
+}
+
+.input-field {
+    width: 100%;
+    height: 50px;
+    background: #f0f0f0;
+    margin: 10px 0;
+    border: 2px solid #FF9000;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.input-field i {
+    flex: 1;
+    text-align: center;
+    color: #FF9000;
+    font-size: 18px;
+}
+
+.input-field input {
+    flex: 5;
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111111;
+    font-weight: 200;
+}
+
+.btn {
+    justify-self: center;
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 50px;
+    background: #FF9000;
+    color: #FFFFFF;
+    font-weight: 600;
+    margin: 10px 0;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #c57308;
+}
+
+#change-response {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    color: #ff8800;
+    margin-top: 10px;
+    border-radius: 5px;
+    word-wrap: break-word;
+    white-space: normal;
+    max-height: 80px;
+    overflow: hidden;
+}
+
+#change-response.long-message {
+    max-height: 160px;
+    overflow-y: auto;
+}
+
+/* Media Queries para pantallas más pequeñas */
+
+@media screen and (max-width: 768px) {
+    .card-forgot {
+        width: 90%; /* Se reduce el ancho de la tarjeta en tabletas */
+        max-width: none; /* Se elimina el max-width */
+        padding: 15px; /* Más espacio alrededor en pantallas medianas */
+    }
+
+    h1 {
+        font-size: 22px; /* Ajusta el tamaño del título en tabletas */
+    }
+
+    .input-field {
+        height: 45px; /* Se reduce la altura de los inputs */
+    }
+
+    .btn {
+        width: 130px;
+        height: 45px; /* Botón más pequeño */
+    }
+
+    #change-response {
+        font-size: 12px; /* Reduce el tamaño del texto del mensaje */
+        padding: 8px; /* Menos espacio en el mensaje */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px; /* Añadido padding para no pegar el contenido a los bordes */
+        background-size: auto; /* Ajusta el fondo en móviles */
+    }
+
+    .card-forgot {
+        width: 100%; /* Hace que la tarjeta ocupe todo el ancho en pantallas móviles */
+        max-width: none; /* Sin limitación de ancho */
+        padding: 10px; /* Menos padding en móviles */
+    }
+
+    h1 {
+        font-size: 20px; /* Ajuste de tamaño para móviles */
+    }
+
+    .input-field {
+        height: 40px; /* Inputs más pequeños */
+    }
+
+    .btn {
+        width: 120px;
+        height: 40px; /* Botón aún más pequeño */
+    }
+
+    #change-response {
+        font-size: 11px; /* Ajuste de tamaño de mensaje */
+        padding: 6px; /* Menos padding */
+    }
+}

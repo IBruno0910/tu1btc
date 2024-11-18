@@ -217,7 +217,12 @@
 .video-button:hover {
     background-color: #f39c12;
 }
-
+.video-button.completed {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+ 
 /* Animación para el contenedor de video */
 #video-player-container {
     height: 0;
@@ -404,7 +409,6 @@
 }
 
 .dark-mode .course-header {
-    gap: 15px; /* Reduce el espacio para ajustarse mejor al diseño oscuro */
     transition: background-color 0.8s ease, color 0.8s ease;
 }
 

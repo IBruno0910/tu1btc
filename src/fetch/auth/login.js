@@ -6,7 +6,7 @@ document.getElementById('login-btn').addEventListener('click', function(event) {
 
     // Verifica si la contraseña cumple con los requisitos
     if (!validatePassword(password)) {
-        showModal('La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula y un carácter especial.');
+        showModal('La contraseña es incorrecta, debe tener al menos 8 caracteres, incluyendo una mayúscula y un carácter especial.');
         return;
     }
 

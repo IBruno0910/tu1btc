@@ -1,71 +1,94 @@
-async function requestPasswordReset(email) {
-    try {
-        const response = await fetch(`https://tu1btc.com/api/user/generateLostPassword?email=${email}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        const result = await response.json();
-        if (result === true) {
-            console.log("Token enviado al correo electrónico.");
-            // Mostrar formulario para cambiar la contraseña
-            document.getElementById('changePasswordForm').style.display = 'block';
-        } else {
-            alert("Error: no se pudo enviar el token.");
-        }
-    } catch (error) {
-        console.error("Error en la solicitud de recuperación de contraseña:", error);
-    }
-}
-
-async function changePassword(email, token, newPassword) {
-    try {
-        const response = await fetch('https://tu1btc.com/api/user/changePasswordLost', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email: email,            // Aquí pasa el email
-                token: token,            // Aquí pasa el token recibido
-                newPassword: newPassword // Aquí pasa la nueva contraseña
-            }),
-        });
-
-        // Esperamos la respuesta y procesamos
-        const result = await response.json();
-
-        if (response.ok) {
-            alert("Contraseña cambiada exitosamente.");
-        } else {
-            console.error("Error en la respuesta:", result); // Imprimir el error del servidor
-            alert("Hubo un problema al cambiar la contraseña.");
-        }
-    } catch (error) {
-        console.error("Error al cambiar la contraseña:", error);
-        alert("Hubo un error en la solicitud.");
-    }
-}
-
-function handleChangePassword(event) {
-    event.preventDefault();
-
-    // Obtener los valores de los campos
-    const email = document.getElementById('emailConfirm').value;
-    const token = document.getElementById('token').value;
-    const newPassword = document.getElementById('newPassword').value;
-
-    // Verificar si los valores están completos
-    if (!email || !token || !newPassword) {
-        alert("Por favor, completa todos los campos.");
+document.addEventListener("DOMContentLoaded", () => {
+    const requestTokenForm = document.getElementById("request-token-form");
+    const changePasswordForm = document.getElementById("change-password-form");
+    const requestResponse = document.getElementById("request-response");
+    const changePasswordSection = document.getElementById("change-password");
+    const changeResponse = document.getElementById("change-response");
+  
+    // Función para validar la contraseña
+    const isPasswordValid = (password) => {
+      const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      return passwordRegex.test(password);
+    };
+  
+    // Solicitar token
+    requestTokenForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+  
+      let email = document.getElementById("email-token").value.trim().toLowerCase(); // Convertir el correo a minúsculas
+  
+      if (!email) {
+        requestResponse.textContent = "Por favor ingresa un correo electrónico válido.";
         return;
-    }
-
-    // Llamar a la función para cambiar la contraseña
-    changePassword(email, token, newPassword);
-}
-
-
-
-
+      }
+  
+      try {
+        const response = await fetch(`https://tu1btc.com/api/user/generateLostPassword?email=${email}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+  
+        if (response.ok) {
+          requestResponse.textContent = "Un token ha sido enviado a tu correo.";
+          changePasswordSection.style.display = "block"; // Muestra el formulario para cambiar la contraseña
+        } else {
+          const errorData = await response.json();
+          requestResponse.textContent = `Error: ${errorData.message || "No se pudo completar la solicitud."}`;
+        }
+      } catch (error) {
+        console.error("Error al conectar con el servidor:", error);
+        requestResponse.textContent = "Ocurrió un problema al procesar tu solicitud.";
+      }
+    });
+  
+    // Cambiar la contraseña
+    changePasswordForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+  
+      const token = document.getElementById("token").value.trim();
+      const email = document.getElementById("email-token").value.trim().toLowerCase(); // Convertir el correo a minúsculas
+      const newPassword = document.getElementById("new-password").value.trim();
+  
+      // Validación de la contraseña
+      if (!isPasswordValid(newPassword)) {
+        changeResponse.textContent = "La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial.";
+        return;
+      }
+  
+      if (!token || !email || !newPassword) {
+        changeResponse.textContent = "Por favor, completa todos los campos.";
+        return;
+      }
+  
+      try {
+        const response = await fetch("https://tu1btc.com/api/user/changePasswordLost", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            token: token,
+            email: email,
+            password: newPassword,
+          }),
+        });
+  
+        if (response.ok) {
+          changeResponse.textContent = "Tu contraseña ha sido cambiada con éxito.";
+          // Redirigir a la página de login después de un cambio exitoso
+          setTimeout(() => {
+            window.location.href = "login.html"; // Redirige a login.html
+          }, 2000); // Espera 2 segundos antes de redirigir
+        } else {
+          const errorData = await response.json();
+          changeResponse.textContent = `Error: ${errorData.message || "No se pudo cambiar la contraseña."}`;
+        }
+      } catch (error) {
+        console.error("Error al conectar con el servidor:", error);
+        changeResponse.textContent = "Ocurrió un problema al procesar tu solicitud.";
+      }
+    });
+  });
+  

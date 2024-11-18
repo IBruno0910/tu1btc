@@ -24,6 +24,8 @@ async function displaySubscriptions(subscriptions) {
     const subscriptionsContainer = document.getElementById('subscriptions-container');
     subscriptionsContainer.innerHTML = ''; // Limpiar el contenedor antes de agregar nuevas tarjetas
 
+    const isLoggedIn = !!localStorage.getItem('authToken'); // Verificar si el usuario está logueado
+
     for (const subscription of subscriptions) {
         const subscriptionCard = document.createElement('div');
         subscriptionCard.className = 'subscription-card';
@@ -41,9 +43,17 @@ async function displaySubscriptions(subscriptions) {
                 <img src="${images[0]}" alt="${subscription.name}" class="subscription-img" style="width: 100%; height: 200px; object-fit: cover;">
             </div>
             <h2>${subscription.name}</h2>
-            <p>${subscription.description}</p>
-            <p>Precio: $${subscription.price}</p>
+            <p class="member-desc">${subscription.description}</p>
+            ${isLoggedIn ? `<p class="member-price">Precio: $${subscription.price}</p>` : ''}
         `;
+
+        // Mostrar modal si el usuario no está logueado al hacer clic en la tarjeta
+        subscriptionCard.addEventListener('click', () => {
+            if (!isLoggedIn) {
+                showModal();
+            }
+            // Aquí podrías redirigir al detalle de la suscripción si el usuario está logueado
+        });
 
         // Si tiene dos imágenes, cambiar la imagen al pasar el mouse
         if (hasMultipleImages) {
@@ -61,6 +71,26 @@ async function displaySubscriptions(subscriptions) {
         subscriptionsContainer.appendChild(subscriptionCard);
     }
 }
+
+// Función para mostrar el modal
+function showModal() {
+    const modal = document.getElementById('loginModal');
+    modal.style.display = 'flex';
+
+    const closeButton = modal.querySelector('.close-button');
+    closeButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // Cierra el modal si el usuario hace clic fuera de él
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+}
+
+
 
 
 // Función para obtener la imagen de la suscripción

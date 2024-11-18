@@ -17,6 +17,7 @@ body{
 }
 
 .change-pass {
+    color: #111;
     font-size: smaller;
     font-weight: 100;
 }
