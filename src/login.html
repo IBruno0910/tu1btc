@@ -81,6 +81,10 @@
                     <i class="fas fa-lock"></i>
                     <input type="password" id="password-input" placeholder="Contraseña">
                 </div>
+
+                <!-- RECAPTCHA -->
+                <div class="g-recaptcha" data-sitekey="TU_CLAVE_DEL_SITIO"></div>
+
                 <input type="button" id="register-btn" value="Registrarse" class="btn">
                 <p id="error-message" class="error-message"></p> 
                 <div id="success-message" style="display: none; color: green;"></div>
@@ -106,9 +110,23 @@
             </div>
         </div>
     </div>
+    <!-- RECAPTCHA -->
+    <script>
+        document.getElementById('register-btn').addEventListener('click', () => {
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (recaptchaResponse === '') {
+                document.getElementById('error-message').textContent = 'Por favor, completa el reCAPTCHA.';
+            } else {
+                document.getElementById('error-message').textContent = '';
+                // Aquí puedes enviar el formulario al backend
+                alert('Formulario listo para enviar al servidor.');
+            }
+        });
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- MORE SCRIPTS -->
     <script src="fetch/user/register.js"></script>
     <script src="fetch/auth/login.js"></script>
-    <!-- <script src="fetch/detail.js"></script> -->
     <script src="scripts/login.js"></script>
 </body>
 </html>

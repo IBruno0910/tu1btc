@@ -198,6 +198,16 @@
       <p>Todos los derechos reservados © 2024 | <a href="/src/terminos.html">Términos y Condiciones</a></p>
     </div>
   </footer>
+  <script>//script perfil
+    document.addEventListener('DOMContentLoaded', () => {
+        const token = localStorage.getItem('authToken'); // Obtén el token del localStorage
+        const profileLink = document.querySelector('.perfil-font'); // Selecciona el enlace de perfil
+        if (!token) {
+        // Si no hay token, oculta el enlace de perfil
+        profileLink.style.display = 'none';
+        }
+    });
+  </script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const token = localStorage.getItem('authToken');
