@@ -111,18 +111,7 @@
         </div>
     </div>
     <!-- RECAPTCHA -->
-    <script>
-        document.getElementById('register-btn').addEventListener('click', () => {
-            const recaptchaResponse = grecaptcha.getResponse();
-            if (recaptchaResponse === '') {
-                document.getElementById('error-message').textContent = 'Por favor, completa el reCAPTCHA.';
-            } else {
-                document.getElementById('error-message').textContent = '';
-                // Aquí puedes enviar el formulario al backend
-                alert('Formulario listo para enviar al servidor.');
-            }
-        });
-    </script>
+     <script src="scripts/recaptcha.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <!-- MORE SCRIPTS -->
     <script src="fetch/user/register.js"></script>

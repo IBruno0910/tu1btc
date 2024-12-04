@@ -1,57 +1,57 @@
-document.getElementById('register-btn').addEventListener('click', function (event) {
+document.getElementById('register-btn').addEventListener('click', async function (event) {
     event.preventDefault();
-
-    // Obtener los valores de los campos y convertir el email a minúsculas
-    const email = document.getElementById('email-input').value.toLowerCase();  // Convertir email a minúsculas
-    const phone = document.getElementById('phone-input').value;
-    const name = document.getElementById('name-input').value;
-    const surname = document.getElementById('surname-input').value;
-    const password = document.getElementById('password-input').value;
 
     const errorMessage = document.getElementById('error-message'); // Contenedor de errores
     errorMessage.textContent = ''; // Limpiar mensaje previo
 
-    // Verificar si todos los campos están completos
-    if (email && phone && name && surname && password) {
-        // Validar la contraseña (debe tener al menos 8 caracteres, una mayúscula y un carácter especial)
-        const passwordRegex = /^(?=.*[A-Z])(?=.*\W).{8,}$/;  // Al menos una mayúscula y un carácter especial
-        if (!passwordRegex.test(password)) {
-            errorMessage.textContent = 'La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula y un carácter especial.';
-            return;  // Detener el proceso si la contraseña no es válida
-        }
+    try {
+        // Validar el reCAPTCHA
+        const recaptchaToken = await validateRecaptcha();
+        console.log("reCAPTCHA validado con éxito:", recaptchaToken);
 
-        const requestBody = { email, phone, name, surname, password };
+        // Proceder con el registro solo si el reCAPTCHA es válido
+        const email = document.getElementById('email-input').value.toLowerCase();
+        const phone = document.getElementById('phone-input').value;
+        const name = document.getElementById('name-input').value;
+        const surname = document.getElementById('surname-input').value;
+        const password = document.getElementById('password-input').value;
 
-        fetch('https://tu1btc.com/api/user/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(requestBody),
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    return response.json().then((errorData) => {
-                        throw new Error(errorData.message || 'Error en la solicitud');
-                    });
-                }
-                return response.json();
-            })
-            .then((data) => {
-                console.log('Usuario registrado:', data);
-                showTokenModal(email); // Mostrar el modal para el token
+        if (email && phone && name && surname && password) {
+            const passwordRegex = /^(?=.*[A-Z])(?=.*\W).{8,}$/;
+            if (!passwordRegex.test(password)) {
+                errorMessage.textContent = 'La contraseña debe tener al menos 8 caracteres, incluyendo una mayúscula y un carácter especial.';
+                return;
+            }
 
-                // Mostrar el mensaje de éxito en el div
-                const successMessage = document.getElementById('success-message');
-                successMessage.style.display = 'block'; // Mostrar el mensaje
-                successMessage.textContent = 'Registro exitoso. Revisa tu correo para validar tu cuenta.';
-            })
-            .catch((error) => {
-                console.error('Hubo un problema con la solicitud:', error);
-                errorMessage.textContent = error.message; // Mostrar el mensaje de error
+            const requestBody = { email, phone, name, surname, password, recaptchaToken };
+
+            const response = await fetch('https://tu1btc.com/api/user/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(requestBody),
             });
-    } else {
-        errorMessage.textContent = 'Por favor, completa todos los campos.'; // Mostrar error si falta algún campo
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error en la solicitud');
+            }
+
+            const data = await response.json();
+            console.log('Usuario registrado:', data);
+            showTokenModal(email); // Mostrar el modal para el token
+            document.getElementById('success-message').textContent = 'Registro exitoso. Revisa tu correo para validar tu cuenta.';
+            document.getElementById('success-message').style.display = 'block';
+
+            grecaptcha.reset(); // Resetear el reCAPTCHA
+        } else {
+            errorMessage.textContent = 'Por favor, completa todos los campos.';
+        }
+    } catch (error) {
+        errorMessage.textContent = error;
+        console.error('Error en el proceso de registro:', error);
     }
 });
+
 
 // Función para mostrar el modal de token
 function showTokenModal(email) {
