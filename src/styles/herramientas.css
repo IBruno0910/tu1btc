@@ -31,10 +31,17 @@
 }
 
 .tool-description {
-    font-size: 1rem; 
-    line-height: 1.5; 
-    color: #555; 
+    list-style-type: disc; /* Viñetas */
+    padding-left: 20px; /* Espaciado */
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
 }
+
+.tool-description li {
+    margin-bottom: 8px; /* Espaciado entre puntos */
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {

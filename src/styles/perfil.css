@@ -54,55 +54,83 @@
     color: #000; /* Cambiar color al pasar el mouse */
 }
 
-
+/* user info */
 
 
 .user-info-container {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 400px;
-    text-align: center; /* Cambiado para centrar el contenido dentro del contenedor */
-    margin: 0 auto; /* Asegura que el contenedor esté centrado en la pantalla */
-    margin-bottom: 50px;
-    margin-top: 50px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
 }
 
 .user-info-container h2 {
     color: #333;
     margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
 }
 
-td {
+.user-item {
+    display: flex;
+    justify-content: space-between;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    color: #444;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-td strong {
-    color: #555;
+.user-item strong {
+    color: #222;
+}
+
+/* Agrupa nombre y apellido en la misma línea */
+.user-row {
+    display: flex;
+    gap: 15px;
+}
+
+/* Hace que ocupen el 50% del ancho cada uno */
+.user-row .user-item {
+    flex: 1;
 }
 
 .btn-profile {
+    display: inline-block;
     width: 100%;
-    padding: 10px;
-    background-color: #FF9000;
+    max-width: 300px;
+    padding: 12px;
+    margin-top: 20px;
+    background: linear-gradient(45deg, #FF9000, #FF5700);
     color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
     font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .btn-profile:hover {
-    background-color: #d87f0b;
+    background: linear-gradient(45deg, #FF5700, #FF9000);
+    transform: scale(1.05);
 }
+
+
 
 /*update user form*/
 .hidden {

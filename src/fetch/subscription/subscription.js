@@ -37,15 +37,35 @@ async function displaySubscriptions(subscriptions) {
         
         const hasMultipleImages = images.length > 1;
 
+        // Crear lista de descripción
+        const descriptionList = document.createElement("ul");
+        descriptionList.classList.add("subscription-description");
+
+        // Separar la descripción por saltos de línea para generar una lista
+        const descriptionItems = subscription.description.split("\n");
+        descriptionItems.forEach(item => {
+            const listItem = document.createElement("li");
+            listItem.textContent = item.trim();
+            descriptionList.appendChild(listItem);
+        });
+
         // Estructura de la tarjeta
         subscriptionCard.innerHTML = `
             <div class="imgcardsub">
                 <img src="${images[0]}" alt="${subscription.name}" class="subscription-img" style="width: 100%; height: 200px; object-fit: cover;">
             </div>
             <h2>${subscription.name}</h2>
-            <p class="member-desc">${subscription.description}</p>
-            ${isLoggedIn ? `<p class="member-price">Precio: $${subscription.price}</p>` : ''}
         `;
+
+        // Agregar la lista de descripción al card
+        subscriptionCard.appendChild(descriptionList);
+
+        if (isLoggedIn) {
+            const priceElement = document.createElement("p");
+            priceElement.className = "member-price";
+            priceElement.textContent = `Precio: $${subscription.price}`;
+            subscriptionCard.appendChild(priceElement);
+        }
 
         // Mostrar modal si el usuario no está logueado al hacer clic en la tarjeta
         subscriptionCard.addEventListener('click', () => {
@@ -71,6 +91,7 @@ async function displaySubscriptions(subscriptions) {
         subscriptionsContainer.appendChild(subscriptionCard);
     }
 }
+
 
 // Función para mostrar el modal
 function showModal() {

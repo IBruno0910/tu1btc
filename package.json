@@ -1,8 +1,23 @@
 {
   "devDependencies": {
+    "nodemon": "^3.1.9",
     "tailwindcss": "^3.4.10"
   },
   "dependencies": {
-    "animate.css": "^4.1.1"
-  }
-}
+    "animate.css": "^4.1.1",
+    "body-parser": "^1.20.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "node-fetch": "^3.3.2"
+  },
+  "name": "tu1btc",
+  "version": "1.0.0",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": ""
+} 

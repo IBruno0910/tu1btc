@@ -24,16 +24,23 @@ async function fetchToolDetails() {
 
 function displayToolDetails(tool) {
     const toolDetailsContainer = document.getElementById('tool-details');
+
+    // Dividir la descripción en puntos (puedes mejorar esto según el formato de los datos)
+    const descriptionPoints = tool.description.split('. ').filter(point => point.trim() !== '').map(point => `<li>${point.trim()}.</li>`).join('');
+
     toolDetailsContainer.innerHTML = `
         <div class="tool-details-content">
             <img src="https://tu1btc.com/api/tools/image/business/${tool.image}" alt="${tool.title}" class="tool-image">
             <div class="tool-info">
                 <h1 class="tool-title">${tool.title}</h1>
-                <p class="tool-description">${tool.description}</p>
+                <ul class="tool-description">
+                    ${descriptionPoints}
+                </ul>
             </div>
         </div>
     `;
 }
+
 
 
 // Llamar a la función para mostrar los detalles
