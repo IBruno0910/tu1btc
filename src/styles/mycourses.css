@@ -5,34 +5,73 @@ body {
 }
 
 #courses-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajusta el tamaño de las columnas */
-    gap: 20px; /* Espacio entre las cards */
-    padding: 100px; /* Espacio alrededor del grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Cards más grandes */
+  gap: 30px; /* Más espacio entre las cards */
+  padding: 50px;
+  max-width: 1200px;
+  margin: 0 auto; /* Centra el grid */
+}
+
+.course-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark-mode .course-card {
+  color: white;
+  background-color: #ffffff2f;
+}
+
+.dark-mode .course-title{
+  color: white;
+}
+
+.course-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.course-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* Ajusta la imagen */
+  border-bottom: 1px solid #ddd;
+}
+
+.course-title {
+  padding: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Media Queries para responsive */
+@media (max-width: 768px) {
+  #courses-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    padding: 20px;
   }
-  
+}
+
+@media (max-width: 480px) {
+  #courses-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 10px;
+  }
+
   .course-card {
-    border: 1px solid #ddd;
     border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    background-color: #ffffff29;
-    transition: transform 0.2s ease; /* Efecto al pasar el cursor */
   }
-  
-  .course-card:hover {
-    transform: scale(1.05); /* Amplía la card al pasar el cursor */
-  }
-  
-  .course-image {
-    width: 100%;
-    height: 170px;
-    border-bottom: 1px solid #ddd;
-  }
-  
+
   .course-title {
-    padding: 5px;
     font-size: 1.1em;
   }
+}
   

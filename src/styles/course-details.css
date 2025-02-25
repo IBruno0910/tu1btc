@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
+#recaptcha-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+
 /* Estilo para el Modal */
 .modal {
     display: none;

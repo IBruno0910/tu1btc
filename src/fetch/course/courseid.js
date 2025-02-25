@@ -63,6 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
                   <form id="feedbackForm" class="feedback-form">
                       <textarea id="feedbackDescription" placeholder="Escribe tu reseña aquí..." required class="feedback-textarea"></textarea>
                       <input type="number" id="feedbackRate" min="1" max="5" placeholder="Calificación (1-5)" required class="feedback-rate-input" />
+
+                      <!-- Contenedor del reCAPTCHA -->
+                      <div id="recaptcha-container"></div>
+
                       <button type="submit" class="feedback-submit-btn">Enviar Reseña</button>
                   </form>
                 </div>
@@ -80,7 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `;
-  
+
+        // Cargar y renderizar reCAPTCHA
+        grecaptcha.render('recaptcha-container', {
+            sitekey: '6LfEA7IqAAAAALp4WmhnbgbojTtgw63waY8H7mqm' // Reemplaza con tu clave pública de reCAPTCHA
+        });
+        
+        
+
         // Agregar eventos a los botones de video
         document.querySelectorAll('.video-button').forEach(button => {
             button.addEventListener('click', (event) => {
@@ -91,18 +102,28 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
   
-        // Agregar evento para enviar feedback
-        const form = document.getElementById('feedbackForm');
-        if (form) {
-            form.addEventListener('submit', (event) => {
-                event.preventDefault();
-                const description = document.getElementById('feedbackDescription').value;
-                const rate = document.getElementById('feedbackRate').value;
-                submitFeedback(course.id, description, rate);
-            });
-        } else {
-            console.error('Formulario de feedback no encontrado');
-        }
+            // Agregar evento para enviar feedback
+    const form = document.getElementById('feedbackForm');
+    if (form) {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevenir el envío del formulario
+
+            // Verificar si el reCAPTCHA ha sido completado
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+                alert("Por favor, verifica que no eres un robot.");
+                return; // No continuar si el reCAPTCHA no está completado
+            }
+
+            // Si el reCAPTCHA está completo, proceder con el envío
+            const description = document.getElementById('feedbackDescription').value;
+            const rate = document.getElementById('feedbackRate').value;
+            submitFeedback(course.id, description, rate);
+        });
+    } else {
+        console.error('Formulario de feedback no encontrado');
+    }
+
     }
   
   // Función startVideo que hace un fetch para el endpoint startvideo y actualiza el tiempo de vista

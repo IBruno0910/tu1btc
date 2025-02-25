@@ -25,7 +25,7 @@
                         <ul class="navlinks-resp flex px-4 mx-auto font-semibold font-heading space-x-12">
                             <li><a class="linknav" href="../index.html">Inicio</a></li>
                             <li><a class="linknav" href="membresias.html">Membresías</a></li>
-                            <li><a class="linknav" href="cursos.html">Capacitación</a></li>
+                            <li><a class="linknav" href="inscripciones.html">Capacitación</a></li>
                             <li><a class="linknav" href="herramientas.html">Herramientas</a></li>
                             <li><a class="linknav" href="tienda.html">Tienda</a></li>
                             <li><a class="linknav" href="nosotros.html">Nosotros</a></li>
@@ -98,34 +98,44 @@
                         <h1>¡Contactate con nosotros! <span>.</span></h1>
                         <p class="text">Dejanos tu mensaje</p>
                     </div>
-                    <form action="contacto.html" method="post" class="contact-form">
+                    <form id="contact-form" action="https://formsubmit.co/brunoignacio001@gmail.com" method="POST" class="contact-form">
                         <div class="input-wrap inp-wrap-1">
                             <input class="contact-input" autocomplete="off" name="first name" type="text" required>
                             <label>First name</label>
                             <i class="icon inp-1 fa-solid fa-address-card"></i>
                         </div>
-
+                    
                         <div class="input-wrap">
                             <input class="contact-input" autocomplete="off" name="Last name" type="text" required>
                             <label for="">Last name</label>
                             <i class="icon fa-solid fa-address-card"></i>
                         </div>
-
+                    
                         <div class="input-wrap w-100">
                             <input class="contact-input" autocomplete="off" name="Email" type="email" required>
                             <label for="">Email</label>
                             <i class="icon icon-resp fa-solid fa-envelope"></i>
                         </div>
-
+                    
                         <div class="input-wrap textarea w-100">
                             <textarea name="Message" autocomplete="off" class="contact-input" required></textarea>
                             <label for="">Message</label>
                             <i class="icon icon-resp fa-solid fa-inbox"></i>
                         </div>
+                    
+                        <!-- reCAPTCHA -->
+                        <div class="g-recaptcha" data-sitekey="6LfEA7IqAAAAALp4WmhnbgbojTtgw63waY8H7mqm"></div>
+                    
                         <div class="contact-buttons w-100">
                             <input type="submit" value="Enviar mensaje" class="btn">
                         </div>
                     </form>
+                    
+                    <!-- Div de "Gracias" para mostrar mensaje tras envío exitoso -->
+                    <div id="thank-you-message" style="display:none;">
+                        <h3 style="margin-top: 50px;">Gracias por tu mensaje, nos pondremos en contacto contigo pronto.</h3>
+                    </div>
+                    
                 </div>
             </div>
             <div class="right">
@@ -145,7 +155,7 @@
         <div class="container">
             <div class="row">
                 <div class="footer-col">
-                    <img src="/src/imgs/02_Logo/PNG/Recurso 19.png" style="width: 40%; height: 40%;" alt="">
+                    <img src="/src/imgs/02_Logo/PNG/Recurso_19.png" style="width: 40%; height: 40%;" alt="">
                 </div>
                 <div class="footer-col">
                     <ul>
@@ -174,6 +184,38 @@
             <p>Todos los derechos reservados © 2024 | <a href="/src/terminos.html">Términos y Condiciones</a></p>
         </div>
     </footer>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Verificar reCAPTCHA
+    const recaptchaResponse = grecaptcha.getResponse();
+    if (!recaptchaResponse) {
+        alert("Por favor, verifica que no eres un robot.");
+        return;
+    }
+
+    // Crear un formulario para enviar los datos a Formsubmit
+    const formData = new FormData(this);
+    fetch(this.action, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            // Ocultar el formulario y mostrar el mensaje de agradecimiento
+            document.getElementById('contact-form').style.display = 'none';
+            document.getElementById('thank-you-message').style.display = 'block';
+        } else {
+            alert("Hubo un error, intenta nuevamente.");
+        }
+    })
+    .catch(error => {
+        alert("Hubo un error, intenta nuevamente.");
+    });
+});
+    </script>
     <script>//script perfil
         document.addEventListener('DOMContentLoaded', () => {
             const token = localStorage.getItem('authToken'); // Obtén el token del localStorage
