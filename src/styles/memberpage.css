@@ -1,0 +1,105 @@
+/* Estilo para la sección de detalles de la membresía */
+.subscription-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas en escritorio */
+    align-items: center;
+    gap: 2px; /* Espacio entre la imagen y el contenido */
+    max-width: 2100px; /* Ajuste del ancho máximo */
+    margin: 40px auto; /* Centrado */
+    padding: 10px;
+}
+
+/* Contenedor de la imagen */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.subscription-image {
+    width: 100%;
+    max-width: 700px; /* Evita que se haga demasiado grande */
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Contenedor del contenido */
+.details-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+}
+
+/* Estilos del título */
+.subscription-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+/* Estilos de la descripción */
+.subscription-description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Estilos del precio */
+.subscription-price {
+    font-size: 1.5rem;
+    color: #faa639;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Botón de acción */
+.subscription-button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    background-color: #FF9000;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.subscription-button:hover {
+    background-color: #f08a06;
+}
+
+/* Responsive para móviles */
+@media (max-width: 1500px) {
+    .subscription-details {
+        grid-template-columns: 1fr; /* Se convierte en una sola columna */
+        text-align: center;
+    }
+
+    .details-content {
+        align-items: center;
+    }
+
+    .subscription-title {
+        font-size: 1.8rem;
+    }
+
+    .subscription-description {
+        font-size: 1rem;
+    }
+
+    .subscription-price {
+        font-size: 1.3rem;
+    }
+
+    .subscription-button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}

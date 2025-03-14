@@ -61,10 +61,16 @@ async function displaySubscriptions(subscriptions) {
         subscriptionCard.appendChild(descriptionList);
 
         if (isLoggedIn) {
-            const priceElement = document.createElement("p");
-            priceElement.className = "member-price";
-            priceElement.textContent = `Precio: $${subscription.price}`;
-            subscriptionCard.appendChild(priceElement);
+            const contentButton = document.createElement("button");
+            contentButton.className = "member-content-button";
+            contentButton.textContent = "Contenido";
+
+            // Redirigir al hacer clic en el botón "Contenido"
+            contentButton.addEventListener('click', () => {
+                window.location.href = `memberpage.html?id=${subscription.id}`; // Redirige a la página de detalles
+            });
+
+            subscriptionCard.appendChild(contentButton);
         }
 
         // Mostrar modal si el usuario no está logueado al hacer clic en la tarjeta
@@ -72,7 +78,6 @@ async function displaySubscriptions(subscriptions) {
             if (!isLoggedIn) {
                 showModal();
             }
-            // Aquí podrías redirigir al detalle de la suscripción si el usuario está logueado
         });
 
         // Si tiene dos imágenes, cambiar la imagen al pasar el mouse
@@ -92,7 +97,6 @@ async function displaySubscriptions(subscriptions) {
     }
 }
 
-
 // Función para mostrar el modal
 function showModal() {
     const modal = document.getElementById('loginModal');
@@ -110,9 +114,6 @@ function showModal() {
         }
     });
 }
-
-
-
 
 // Función para obtener la imagen de la suscripción
 async function fetchSubscriptionImage(imageName) {

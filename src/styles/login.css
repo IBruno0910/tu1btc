@@ -390,3 +390,51 @@ a{
 .container.sign-up-mode .left-panel{
     pointer-events: all;
 }
+
+
+@media (max-width: 900px) {
+    .title{
+        font-size: 30px;
+    }
+    
+    .container::before{
+        display: none;
+    }
+
+    .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90%;
+        height: 95vh;
+    }
+
+    .signin-signup{
+        display:grid;
+        position:fixed;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form{
+        width: 100%;
+    }
+
+    form.sign-in-form{
+        display: flex;
+        opacity: 1;
+        transition: none;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    form.sign-up-form{
+        opacity: 1;
+        transition: none;
+    }
+
+    .panels-container{
+        display: none;
+    }
+}
+
