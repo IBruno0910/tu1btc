@@ -1,89 +1,149 @@
 /* Estilo para la sección de detalles de la membresía */
 .subscription-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas en escritorio */
-    align-items: center;
-    gap: 2px; /* Espacio entre la imagen y el contenido */
-    max-width: 2100px; /* Ajuste del ancho máximo */
-    margin: 40px auto; /* Centrado */
-    padding: 10px;
+    display: flex;
+    flex-direction: column; /* Columna principal */
+    gap: 20px; /* Espacio entre elementos */
+    max-width: 1200px; /* Ancho máximo */
+    margin: 60px auto; /* Centrado */
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .subscription-details{
+    background-color: #28292b44;
+}
+
+/* Contenedor de la imagen y el título */
+.image-title-container {
+    display: flex;
+    align-items: center; /* Alineación vertical */
+    gap: 20px; /* Espacio entre imagen y título */
 }
 
 /* Contenedor de la imagen */
 .image-container {
+    flex: 0 0 100px; /* Tamaño fijo para la imagen en escritorio */
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    border-radius: 16px;
 }
 
 .subscription-image {
     width: 100%;
-    max-width: 700px; /* Evita que se haga demasiado grande */
     height: auto;
     object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    transition: transform 0.3s ease;
 }
 
-/* Contenedor del contenido */
-.details-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
+.subscription-image:hover {
+    transform: scale(1.05); /* Efecto hover sutil */
 }
 
 /* Estilos del título */
 .subscription-title {
-    font-size: 2.2rem;
-    font-weight: bold;
-    color: #2c3e50;
-    margin-bottom: 10px;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #363333;
+    margin: 0; /* Sin margen para alinear con la imagen */
+    line-height: 1.2;
+}
+
+.dark-mode .subscription-title{
+    color: #fff;
 }
 
 /* Estilos de la descripción */
 .subscription-description {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #555;
-    line-height: 1.6;
-    margin-bottom: 20px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.dark-mode .subscription-description{
+    color: #c2bfbf;
+}
+
+.subscription-description ul {
+    list-style-type: none; /* Eliminar viñetas */
+    padding: 0;
+    margin: 0;
+}
+
+.subscription-description li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.subscription-description li::before {
+    content: "•"; /* Usar un punto como viñeta */
+    color: #FF9000; /* Color de la viñeta */
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+.subscription-description ul ul {
+    padding-left: 20px; /* Sangría para sublistas */
+    margin-top: 5px;
+}
+
+.subscription-description ul ul li::before {
+    content: "◦"; /* Usar un círculo pequeño para sublistas */
+    color: #FF9000;
+    font-size: 1.2rem;
 }
 
 /* Estilos del precio */
 .subscription-price {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #faa639;
-    font-weight: bold;
-    margin-bottom: 15px;
+    font-weight: 500;
+    margin-bottom: 20px;
 }
 
 /* Botón de acción */
 .subscription-button {
     display: inline-block;
-    padding: 12px 24px;
+    padding: 14px 28px;
     font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 600;
     color: white;
     background-color: #FF9000;
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
     text-decoration: none;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 144, 0, 0.3);
 }
 
 .subscription-button:hover {
-    background-color: #f08a06;
+    background-color: #e67e22;
+    transform: translateY(-2px); /* Efecto hover con movimiento */
+    box-shadow: 0 6px 16px rgba(255, 144, 0, 0.4);
 }
 
 /* Responsive para móviles */
-@media (max-width: 1500px) {
+@media (max-width: 768px) {
     .subscription-details {
-        grid-template-columns: 1fr; /* Se convierte en una sola columna */
-        text-align: center;
+        padding: 15px;
     }
 
-    .details-content {
-        align-items: center;
+    .image-title-container {
+        flex-direction: row; /* Mantener la imagen y el título en la misma línea */
+        align-items: center; /* Alineación vertical */
+        gap: 15px; /* Espacio entre imagen y título */
+    }
+
+    .image-container {
+        flex: 0 0 80px; /* Tamaño fijo para la imagen en móviles */
     }
 
     .subscription-title {
@@ -95,11 +155,11 @@
     }
 
     .subscription-price {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
 
     .subscription-button {
         font-size: 1rem;
-        padding: 10px 20px;
+        padding: 12px 24px;
     }
 }

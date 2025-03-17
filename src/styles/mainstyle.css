@@ -1,6 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import 'animate.css';
 
+/* Estilo para el botón de WhatsApp con degradado */
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #25d366, #128c7e); /* Degradado moderno */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+}
+
+.whatsapp-button:hover {
+    background: linear-gradient(135deg, #128c7e, #25d366); /* Invertir el degradado al hacer hover */
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
 body{
     font-family: "Rubik", sans-serif;
     background: #edf2f7;

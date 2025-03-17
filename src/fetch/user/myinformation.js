@@ -31,6 +31,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('user-active').textContent = data.active ? 'Sí' : 'No';
                 document.getElementById('user-roles').textContent = data.roles.join(', ');
 
+                // Formatear y mostrar la fecha de finalización de la membresía (updateAt)
+                if (data.updateAt) {
+                    const fechaFormateada = formatearFecha(data.updateAt);
+                    document.getElementById('user-update-at').textContent = fechaFormateada;
+                } else {
+                    document.getElementById('user-update-at').textContent = 'No disponible';
+                }
+
                 // Prellenar el formulario de actualización si existe
                 if (document.getElementById('update-user-name')) {
                     document.getElementById('update-user-name').value = data.name;
@@ -47,7 +55,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Llamar a la función automáticamente al cargar la página
+    // Función para formatear la fecha (año, mes y día)
+    function formatearFecha(fecha) {
+        const fechaObj = new Date(fecha);
+        const año = fechaObj.getFullYear();
+        const mes = String(fechaObj.getMonth() + 1).padStart(2, '0'); // Meses van de 0 a 11
+        const dia = String(fechaObj.getDate()).padStart(2, '0');
+        return `${año}-${mes}-${dia}`;
+    }
+
+    // Llamar a la función para obtener la información del usuario
     obtenerInformacionUsuario();
 
     // Evento para el formulario de actualización

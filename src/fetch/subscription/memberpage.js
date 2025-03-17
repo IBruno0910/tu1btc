@@ -55,32 +55,54 @@ async function displaySubscriptionDetails(subscription) {
     // Obtener la imagen usando la función fetchSubscriptionImage
     const image = await fetchSubscriptionImage(subscription.images[0]); // Usar la primera imagen (ajusta si es necesario)
 
-    // Convertir la descripción en una lista
+    // Convertir la descripción en una lista estructurada
     const descriptionItems = subscription.description
-        .split(/[\n,]+/) // Dividir por comas o saltos de línea
+        .split('\n') // Dividir por saltos de línea
         .map(item => item.trim()) // Eliminar espacios en blanco
-        .filter(item => item !== '') // Evitar elementos vacíos
-        .map(item => `<li>${item}</li>`) // Crear los elementos de la lista
+        .filter(item => item !== ''); // Evitar elementos vacíos
+
+    // Extraer el primer elemento (no será parte de la lista)
+    const firstParagraph = descriptionItems[0];
+
+    // Convertir el resto de los elementos en una lista
+    const listItems = descriptionItems
+        .slice(1) // Ignorar el primer elemento
+        .map(item => {
+            // Si el texto es largo, lo dividimos en párrafos o listas
+            if (item.includes('(')) {
+                const [title, details] = item.split('(');
+                const formattedDetails = details
+                    .replace(')', '') // Eliminar el paréntesis de cierre
+                    .split(')') // Dividir si hay más detalles
+                    .map(detail => `<li>${detail.trim()}</li>`)
+                    .join('');
+                return `<li><strong>${title.trim()}</strong><ul>${formattedDetails}</ul></li>`;
+            } else {
+                return `<li>${item}</li>`;
+            }
+        })
         .join('');
 
     // Mostrar los detalles en el contenedor con un diseño más moderno
     detailsContainer.innerHTML = `
         <div class="subscription-details">
-            <div class="image-container">
-                <img src="${image}" alt="${subscription.name}" class="subscription-image">
-            </div>
-            <div class="details-content">
-                <h1 class="subscription-title">${subscription.name}</h1>
-                <ul class="subscription-description">${descriptionItems}</ul>
-                <div class="subscription-price">
-                    <span>Precio: </span><strong>$${subscription.price}</strong>
+            <div class="image-title-container">
+                <div class="image-container">
+                    <img src="${image}" alt="${subscription.name}" class="subscription-image">
                 </div>
-                <a href="#" class="subscription-button">Adquirir Membresía</a>
+                <h1 class="subscription-title">${subscription.name}</h1>
             </div>
+            <div class="subscription-description">
+                <p>${firstParagraph}</p> <!-- Primer párrafo fuera de la lista -->
+                <ul>${listItems}</ul> <!-- Resto de los elementos en lista -->
+            </div>
+            <div class="subscription-price">
+                <span>Precio: </span><strong>$${subscription.price}</strong>
+            </div>
+            <a href="#" class="subscription-button">Adquirir Membresía</a>
         </div>
     `;
 }
-
 
 // Llamar a la función para obtener los detalles de la membresía
 fetchSubscriptionDetails();

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Anek+Kannada:wght@100..800&family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
-.member-content-button{
+.member-content-button {
     font-size: 20px;
     font-weight: 500;
     background-color: #FF9000;
@@ -12,7 +12,7 @@
     margin: 20px;
 }
 
-main{
+main {
     font-family: "Anek Kannada", sans-serif;
 }
 
@@ -53,8 +53,8 @@ main{
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    gap: 100px; /* Aumenta el espacio entre tarjetas */
-    padding: 40px;
+    gap: 20px;
+    padding: 20px;
     min-height: 50vh;
     box-sizing: border-box;
 }
@@ -68,67 +68,69 @@ main{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-    width: 450px;
+    width: 30%; /* 3 tarjetas por fila */
+    max-width: 400px;
+    min-width: 250px;
     display: flex;
     flex-direction: column;
     height: 100%;
-    margin-bottom: 20px; /* Espaciado adicional entre filas */
 }
 
 /* Ajustes responsive */
-@media (max-width: 768px) {
-    #subscriptions-container {
-        gap: 15px; /* Reducir espacio en pantallas pequeñas */
-    }
+@media (max-width: 1024px) {
     .subscription-card {
-        width: 90%; /* Ocupar más espacio en pantallas chicas */
+        width: 45%; /* 2 tarjetas por fila en tablets */
     }
 }
 
+@media (max-width: 768px) {
+    .subscription-card {
+        width: 100%; /* 1 tarjeta por fila en móviles */
+    }
+}
 
 /* Efecto al pasar el ratón sobre la tarjeta */
 .subscription-card:hover {
-    transform: translateY(-5px); /* Levanta la tarjeta */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .subscription-img {
-    transition: opacity 0.3s ease-in-out; /* Suavizar la transición */
+    transition: opacity 0.3s ease-in-out;
     width: 100% !important;
-    height: 50% !important; /* Ajusta la altura como desees */
+    height: 50% !important;
     object-fit: contain !important;
 }
 
-
 /* Títulos de las suscripciones */
 .subscription-card h2 {
-    font-size: 1.5rem; /* Tamaño de fuente del título */
-    margin: 16px; /* Margen alrededor del título */
-    color: #333; /* Color del texto */
+    font-size: 1.5rem;
+    margin: 16px;
+    color: #333;
     text-align: center;
 }
 
 /* Descripción de las suscripciones */
 .subscription-card p {
-    font-size: 1rem; /* Tamaño de fuente de la descripción */
-    margin: 0 16px 16px; /* Margen para el texto */
-    color: #555; /* Color del texto */
+    font-size: 1rem;
+    margin: 0 16px 16px;
+    color: #555;
     text-align: center;
 }
 
 /* Lista de descripción */
 .subscription-description {
-    list-style-type: disc; /* Usa viñetas */
-    padding-left: 20px; /* Espaciado a la izquierda */
-    text-align: left; /* Alinear el texto */
-    margin: 10px 16px; /* Margen interno */
+    list-style-type: disc;
+    padding-left: 20px;
+    text-align: left;
+    margin: 10px 16px;
 }
 
 /* Estilo de cada ítem de la lista */
 .subscription-description li {
     font-size: 1rem;
     color: #555;
-    margin-bottom: 8px; /* Espaciado entre elementos */
+    margin-bottom: 8px;
 }
 
 /* Precio de la suscripción */
@@ -142,14 +144,15 @@ main{
     box-shadow: 10px;
 }
 
-.subscription-card .member-price:hover{
+.subscription-card .member-price:hover {
     background: #c07007;
     letter-spacing: 1px;
-    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-    -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-    box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+    box-shadow: 5px 40px -10px rgba(0, 0, 0, 0.57);
     transition: all 0.4s ease 0s;
 }
+
 
 /*dark mode header*/
 

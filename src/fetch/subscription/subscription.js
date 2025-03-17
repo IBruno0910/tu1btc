@@ -37,17 +37,10 @@ async function displaySubscriptions(subscriptions) {
         
         const hasMultipleImages = images.length > 1;
 
-        // Crear lista de descripción
-        const descriptionList = document.createElement("ul");
-        descriptionList.classList.add("subscription-description");
-
-        // Separar la descripción por saltos de línea para generar una lista
-        const descriptionItems = subscription.description.split("\n");
-        descriptionItems.forEach(item => {
-            const listItem = document.createElement("li");
-            listItem.textContent = item.trim();
-            descriptionList.appendChild(listItem);
-        });
+        // Limitar descripción a 200 caracteres
+        let truncatedDescription = subscription.description.length > 100 
+            ? subscription.description.substring(0, 200) + "..."
+            : subscription.description;
 
         // Estructura de la tarjeta
         subscriptionCard.innerHTML = `
@@ -55,10 +48,8 @@ async function displaySubscriptions(subscriptions) {
                 <img src="${images[0]}" alt="${subscription.name}" class="subscription-img" style="width: 100%; height: 200px; object-fit: cover;">
             </div>
             <h2>${subscription.name}</h2>
+            <p class="subscription-description">${truncatedDescription}</p>
         `;
-
-        // Agregar la lista de descripción al card
-        subscriptionCard.appendChild(descriptionList);
 
         if (isLoggedIn) {
             const contentButton = document.createElement("button");
@@ -96,6 +87,7 @@ async function displaySubscriptions(subscriptions) {
         subscriptionsContainer.appendChild(subscriptionCard);
     }
 }
+
 
 // Función para mostrar el modal
 function showModal() {

@@ -95,7 +95,7 @@
         <div id="user-info" class="user-info-container">
             <h2>Información del Usuario</h2>
             <div class="user-details">
-                <div class="user-item"><strong>ID:</strong> <span id="user-id"></span></div>
+                <div class="user-item" style="display: none;"><strong>ID:</strong> <span id="user-id"></span></div>
                 <div class="user-row">
                     <div class="user-item"><strong>Nombre:</strong> <span id="user-name"></span></div>
                     <div class="user-item"><strong>Apellido:</strong> <span id="user-surname"></span></div>
@@ -103,7 +103,8 @@
                 <div class="user-item"><strong>Email:</strong> <span id="user-email"></span></div>
                 <div class="user-item"><strong>Teléfono:</strong> <span id="user-phone"></span></div>
                 <div class="user-item"><strong>Activo:</strong> <span id="user-active"></span></div>
-                <div class="user-item"><strong>Roles:</strong> <span id="user-roles"></span></div>
+                <div class="user-item" style="display: none;"><strong>Roles:</strong> <span id="user-roles"></span></div>
+                <div class="user-item"><strong>Fin de membresía:</strong> <span id="user-update-at"></span></div>
             </div>
             <a class="btn-profile" href="membresias.html">Renovar Membresía</a>
             <a class="btn-profile" href="change-password.html">Cambiar contraseña</a>
@@ -130,7 +131,10 @@
             <input type="text" id="update-user-phone" placeholder="Teléfono" required>
             <button type="submit">Actualizar Información</button>
         </form>
-        
+        <!-- Botón de WhatsApp con FontAwesome -->
+        <a href="https://wa.me/5491134926411?text=Hola,%20estoy%20interesado%20en%20tu%20servicio" class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i> <!-- Ícono de WhatsApp -->
+      </a>
     </main>
     <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
     <footer class="footer">
