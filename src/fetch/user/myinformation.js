@@ -39,6 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('user-update-at').textContent = 'No disponible';
                 }
 
+                // Obtener y mostrar el nombre de la membresía
+                obtenerNombreMembresia(token);
+
                 // Prellenar el formulario de actualización si existe
                 if (document.getElementById('update-user-name')) {
                     document.getElementById('update-user-name').value = data.name;
@@ -62,6 +65,37 @@ document.addEventListener('DOMContentLoaded', function() {
         const mes = String(fechaObj.getMonth() + 1).padStart(2, '0'); // Meses van de 0 a 11
         const dia = String(fechaObj.getDate()).padStart(2, '0');
         return `${año}-${mes}-${dia}`;
+    }
+
+    // Función para obtener el nombre de la membresía
+    function obtenerNombreMembresia(token) {
+        fetch('https://tu1btc.com/api/payment/info', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la solicitud: ' + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Información de pagos:', data);
+
+            // Buscar el nombre de la membresía en los pagos manuales
+            const membresia = data.payments_manual.find(pago => pago.subscription);
+            if (membresia && membresia.subscription) {
+                document.getElementById('user-membership').textContent = membresia.subscription.name;
+            } else {
+                document.getElementById('user-membership').textContent = 'No tiene membresía activa';
+            }
+        })
+        .catch(error => {
+            console.error('Hubo un problema con la solicitud:', error);
+        });
     }
 
     // Llamar a la función para obtener la información del usuario

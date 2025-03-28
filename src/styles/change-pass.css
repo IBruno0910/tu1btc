@@ -9,7 +9,31 @@ main {
     align-items: center;
     padding: 10px;
 }
+/* Contenedor principal del reCAPTCHA */
+.g-recaptcha {
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    overflow: hidden; /* Evita desbordamiento en móviles */
+    align-items: center;
+    background-color: #11111100;
+    margin-top: -25px;
+}
 
+/* Ajustes para el widget de reCAPTCHA */
+.g-recaptcha > div {
+    display: flex;
+    align-items: center;
+    transform-origin: center; /* Escalado desde el centro */
+    transform: scale(0.95); /* Pequeño ajuste de escala (opcional) */
+    width: 100% !important; /* Forzar ancho completo */
+}
+
+/* Responsive para pantallas pequeñas (móviles) */
+@media (max-width: 480px) {
+    .g-recaptcha > div {
+        transform: scale(0.85); /* Reduce un poco el tamaño en móviles */
+    }
+}
 main div {
     background-color: #fff;
     padding: 30px;
