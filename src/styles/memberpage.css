@@ -102,9 +102,17 @@
 }
 
 /* Estilos del precio */
+.div-price{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
 .subscription-price {
+    justify-content: center;
+    align-items: center;
     font-size: 1.8rem;
-    color: #faa639;
+    color: #2c2b29;
     font-weight: 500;
     margin-bottom: 20px;
 }

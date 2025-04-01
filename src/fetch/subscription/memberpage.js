@@ -48,32 +48,28 @@ async function fetchSubscriptionDetails() {
     }
 }
 
-// Función para mostrar los detalles de la membresía
 async function displaySubscriptionDetails(subscription) {
     const detailsContainer = document.getElementById('details-container');
     
     // Obtener la imagen usando la función fetchSubscriptionImage
-    const image = await fetchSubscriptionImage(subscription.images[0]); // Usar la primera imagen (ajusta si es necesario)
+    const image = await fetchSubscriptionImage(subscription.images[0]);
 
     // Convertir la descripción en una lista estructurada
     const descriptionItems = subscription.description
-        .split('\n') // Dividir por saltos de línea
-        .map(item => item.trim()) // Eliminar espacios en blanco
-        .filter(item => item !== ''); // Evitar elementos vacíos
+        .split('\n')
+        .map(item => item.trim())
+        .filter(item => item !== '');
 
-    // Extraer el primer elemento (no será parte de la lista)
     const firstParagraph = descriptionItems[0];
 
-    // Convertir el resto de los elementos en una lista
     const listItems = descriptionItems
-        .slice(1) // Ignorar el primer elemento
+        .slice(1)
         .map(item => {
-            // Si el texto es largo, lo dividimos en párrafos o listas
             if (item.includes('(')) {
                 const [title, details] = item.split('(');
                 const formattedDetails = details
-                    .replace(')', '') // Eliminar el paréntesis de cierre
-                    .split(')') // Dividir si hay más detalles
+                    .replace(')', '')
+                    .split(')')
                     .map(detail => `<li>${detail.trim()}</li>`)
                     .join('');
                 return `<li><strong>${title.trim()}</strong><ul>${formattedDetails}</ul></li>`;
@@ -83,7 +79,30 @@ async function displaySubscriptionDetails(subscription) {
         })
         .join('');
 
-    // Mostrar los detalles en el contenedor con un diseño más moderno
+    // Verificar si la membresía es "Membresía Exclusiva"
+    let priceSection = '';
+    if (subscription.name === "Membresia Exclusiva") {
+        priceSection = `
+            <div class="div-price">
+                <a href="https://wa.me/5491134926411?text=Hola,%20Quiero%20saber%20más%20información%20sobre%20la%20membresía%20exclusiva" class="subscription-button">Contactanos</a>
+            </div>
+        `;
+    } else {
+        priceSection = `
+            <div class="div-price">
+                <div class="subscription-price">
+                    <span>Precio: </span><strong>$${subscription.price}</strong>
+                    <a href="#" class="subscription-button">Adquirir Membresía</a>
+                </div>
+                <div class="subscription-price">
+                    <span>Precio: </span><strong>$${subscription.price}</strong>
+                    <a href="#" class="subscription-button">Adquirir Membresía</a>
+                </div>
+            </div>
+        `;
+    }
+
+    // Mostrar los detalles en el contenedor
     detailsContainer.innerHTML = `
         <div class="subscription-details">
             <div class="image-title-container">
@@ -93,16 +112,14 @@ async function displaySubscriptionDetails(subscription) {
                 <h1 class="subscription-title">${subscription.name}</h1>
             </div>
             <div class="subscription-description">
-                <p>${firstParagraph}</p> <!-- Primer párrafo fuera de la lista -->
-                <ul>${listItems}</ul> <!-- Resto de los elementos en lista -->
+                <p>${firstParagraph}</p>
+                <ul>${listItems}</ul>
             </div>
-            <div class="subscription-price">
-                <span>Precio: </span><strong>$${subscription.price}</strong>
-            </div>
-            <a href="#" class="subscription-button">Adquirir Membresía</a>
+            ${priceSection} <!-- Aquí se inserta la sección de precios o WhatsApp -->
         </div>
     `;
 }
+
 
 // Llamar a la función para obtener los detalles de la membresía
 fetchSubscriptionDetails();
