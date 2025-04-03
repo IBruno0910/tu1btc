@@ -19,7 +19,7 @@
             <!-- navbar -->
             <nav class="flex justify-between bg-white w-screen">
                 <div class="px-5 xl:px-12 py-6 flex w-full items-center">
-                    <a class="text-3xl font-bold font-heading" href="/index.html">
+                    <a class="text-3xl font-bold font-heading" href="/tu1btc/index.html">
                         <img class="h-9 logo" src="imgs/02_Logo/PNG/Recurso 12.png" alt="logo">
                     </a>
                     <!-- Nav Links -->
@@ -34,8 +34,8 @@
                     </ul>
                     <div class="div-insc" >
                         <button class="btn-insc-nav" id="inscription-button">
-                            <a href="inscripciones.html" id="inscription-link">
-                                <span id="inscription-text">Mis inscripciones</span>
+                            <a href="member-nav.html" id="inscription-link">
+                                <span id="inscription-text">Mi membresía</span>
                             </a>
                         </button>
                     </div>
@@ -153,8 +153,8 @@
   
       if (token) {
           // Si el usuario está logueado, se mantienen las inscripciones
-          inscriptionLink.href = '/src/inscripciones.html';
-          inscriptionText.textContent = 'Mis inscripciones';
+          inscriptionLink.href = 'member-nav.html';
+          inscriptionText.textContent = 'Mi membresía';
       } else {
           // Si el usuario no está logueado, cambiar a "Registrarse"
           inscriptionLink.href = 'login.html'; // Redirige al login

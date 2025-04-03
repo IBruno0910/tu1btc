@@ -40,8 +40,8 @@
                         </ul>
                         <div class="div-insc" >
                             <button class="btn-insc-nav" id="inscription-button">
-                                <a href="/src/inscripciones.html" id="inscription-link">
-                                    <span id="inscription-text">Mis inscripciones</span>
+                                <a href="src/member-nav.html" id="inscription-link">
+                                    <span id="inscription-text">Mi membresía</span>
                                 </a>
                             </button>
                         </div>
@@ -255,8 +255,8 @@
   
       if (token) {
           // Si el usuario está logueado, se mantienen las inscripciones
-          inscriptionLink.href = '/src/inscripciones.html';
-          inscriptionText.textContent = 'Mis inscripciones';
+          inscriptionLink.href = 'src/member-nav.html';
+          inscriptionText.textContent = 'Mi membresía';
       } else {
           // Si el usuario no está logueado, cambiar a "Registrarse"
           inscriptionLink.href = '/src/login.html'; // Redirige al login
