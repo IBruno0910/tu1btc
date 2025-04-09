@@ -98,8 +98,8 @@ main {
 .subscription-img {
     transition: opacity 0.3s ease-in-out;
     width: 100% !important;
-    height: 50% !important;
-    object-fit: contain !important;
+    height: 400px !important;
+    object-fit: cover !important;
 }
 
 /* Títulos de las suscripciones */

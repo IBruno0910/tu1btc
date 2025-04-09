@@ -97,8 +97,10 @@ header {
 }
 
 .div-insc{
-    padding-left: 50px
+    display: grid;
+    padding-left: 50px;
 }
+
 
 .btn-insc-nav {
     padding: 10px;

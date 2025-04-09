@@ -25,8 +25,16 @@ document.getElementById('change-password-form').addEventListener('submit', async
     // Validar campos
     const currentPassword = document.getElementById('current-password').value;
     const newPassword = document.getElementById('new-password').value;
-    if (!currentPassword || !newPassword) {
+    const confirmPassword = document.getElementById('confirm-password')?.value; // Nuevo campo
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
         showModal('📝 Completa todos los campos.');
+        return;
+    }
+
+    // Validar que las nuevas contraseñas coincidan
+    if (newPassword !== confirmPassword) {
+        showModal('❗ Las nuevas contraseñas no coinciden.');
         return;
     }
 
