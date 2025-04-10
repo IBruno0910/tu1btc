@@ -46,8 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
                                             ${section.videos.map(video => `
                                                 <li class="video-item">
                                                     <span class="video-title">${video.title}</span> 
-                                                    <span class="video-duration">${video.duration} mins</span>
-                                                    <button class="video-button" data-video-id="${video.link}" data-video-db-id="${video.id}">Ver Video</button>
+                                                    ${video.type === 'Video' ? `<span class="video-duration">${video.duration} mins</span>` : ''}
+                                                    ${
+                                                        video.type === 'Video'
+                                                        ? `<button class="video-button" data-video-id="${video.link}" data-video-db-id="${video.id}">Ver Video</button>`
+                                                        : `<a class="pdf-button" href="${video.link}" target="_blank" data-video-db-id="${video.id}">Abrir PDF</a>`
+                                                    }
                                                 </li>
                                             `).join('')}
                                         </ul>
@@ -92,15 +96,28 @@ document.addEventListener('DOMContentLoaded', () => {
         
         
 
-        // Agregar eventos a los botones de video
-        document.querySelectorAll('.video-button').forEach(button => {
+        document.querySelectorAll('button.video-button').forEach(button => {
             button.addEventListener('click', (event) => {
                 const videoId = event.target.getAttribute('data-video-id');
                 const videoDbId = event.target.getAttribute('data-video-db-id');
                 openVideoModal(videoId);
-                startVideo(videoDbId);  // Llamada a la función startVideo
+                startVideo(videoDbId);
             });
         });
+        
+
+        document.querySelectorAll('.pdf-button').forEach(link => {
+            link.addEventListener('click', (event) => {
+                const videoDbId = event.target.getAttribute('data-video-db-id');
+                startVideo(videoDbId); // Para registrar que el usuario abrió el PDF
+        
+                // Simular finalización inmediata del archivo PDF
+                setTimeout(() => {
+                    finishVideo(videoDbId);  // Aquí NO necesitas el userId ni el studyPlan porque ya lo tenés
+                }, 2000); // Podés ajustar el tiempo si querés darle unos segundos
+            });
+        });
+
   
             // Agregar evento para enviar feedback
     const form = document.getElementById('feedbackForm');
