@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const courseDetailsContainer = document.getElementById('course-details-container');
     const params = new URLSearchParams(window.location.search);
-    const courseId = params.get('id');
     const token = localStorage.getItem('authToken');
+    const courseId = new URLSearchParams(window.location.search).get('id');
+
   
     let vimeoPlayer = null;
   
@@ -17,10 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(response => response.json())
     .then(course => {
         renderCourseDetails(course);
-            const savedTime = course.videos.find(video => video.id === videoDbId).savedTime;  // Suponiendo que guardes 'savedTime' en la base de datos
-            if (vimeoPlayer) {
-                vimeoPlayer.setCurrentTime(savedTime);  // Configura el tiempo donde dejó el usuario
-            }
     })
     .catch(error => console.error('Error fetching course details:', error));
   
@@ -33,6 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="https://tu1btc.com/api/course/image/${course.image}" alt="${course.name}" class="course-image" />
                     <p class="course-description">${course.description}</p>
                 </div>
+
+                <div class="course-progress">
+                    <h3>Progreso del curso</h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    <p id="progress-text">0% completado</p>
+                </div>
+
+
                 <h3 class="course-plan-title">Plan de estudio:</h3>
                 <ul>
                     ${course.study_plan.map(plan => `
@@ -141,46 +148,86 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Formulario de feedback no encontrado');
     }
 
+    calculateAndRenderProgress(course.study_plan);
+
     }
-  
-  // Función startVideo que hace un fetch para el endpoint startvideo y actualiza el tiempo de vista
-  function startVideo(videoDbId) {
-    const payload = {
-        idVideo: videoDbId
-    };
-  
-    fetch('https://tu1btc.com/api/course/startVideo', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,  // Asegúrate de incluir el token si es necesario
-        },
-        body: JSON.stringify(payload),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Error al iniciar el video. Código de estado: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('Video iniciado:', data);
-        
-        // Aquí se espera que el servidor devuelva un UUID (id) para el video y el tiempo inicial
-        const videoId = data.id;  // Asegúrate de que el servidor devuelve un UUID válido
-        const videoDbId = String(videoId); // Verifica que este sea el UUID correcto
-  
-        if (vimeoPlayer) {
-            vimeoPlayer.on('timeupdate', function(event) {
-                const currentTime = event.seconds;  // Tiempo actual del video en segundos
-                updateVideoTime(videoDbId, currentTime);
+
+    function calculateAndRenderProgress(studyPlan) {
+        let totalVideos = 0;
+        let completedVideos = 0;
+    
+        studyPlan.forEach(plan => {
+            plan.sections.forEach(section => {
+                section.videos.forEach(video => {
+                    if (video.type === 'Video') {
+                        totalVideos++;
+                        const played = video.played_video || [];
+                        console.log(`Video: ${video.title}`, played);
+                        if (played.some(pv => pv.isEnd === true || pv.isEnd === "true")) {
+                            completedVideos++;
+                        }
+                    }
+                });
             });
+        });
+    
+        const percent = totalVideos === 0 ? 0 : Math.round((completedVideos / totalVideos) * 100);
+    
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+    
+        if (progressBar) {
+            progressBar.style.width = `${percent}%`;
         }
-    })
-    .catch(error => {
-        console.error('Error al iniciar el video:', error.message);
-    });
-  }
+    
+        if (progressText) {
+            progressText.textContent = `${percent}% completado`;
+        }
+    }
+    
+    let currentPlayedVideoId = null;
+
+    function startVideo(videoDbId) {
+        fetch('https://tu1btc.com/api/course/startVideo', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({ idVideo: videoDbId }),
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Error al iniciar el video");
+            return res.json();
+        })
+        .then(data => {
+            console.log("Video iniciado:", data);
+            currentPlayedVideoId = data.id;
+
+            const savedTime = parseFloat(data.seconds || 0); 
+
+            if (vimeoPlayer && !isNaN(savedTime)) {
+                vimeoPlayer.setCurrentTime(savedTime);
+            }
+
+            let lastUpdate = 0;
+
+            vimeoPlayer.on('timeupdate', e => {
+            const now = Date.now();
+            if (now - lastUpdate > 5000) { // cada 5 segundos
+                updateVideoTime(currentPlayedVideoId, e.seconds);
+                lastUpdate = now;
+            }
+        });
+
+            vimeoPlayer.on('ended', () => {
+                finishVideo(currentPlayedVideoId, true);
+            });
+        })
+
+        .catch(err => console.error("Error al iniciar el video:", err));
+    }
+        
   
   function updateVideoTime(videoDbId, seconds) {
     const videoId = String(videoDbId);  // Asegúrate de que `videoDbId` sea un UUID válido
@@ -217,104 +264,58 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Error al actualizar el tiempo de vista del video:', error.message);
     });
   }
-  
-  function finishVideo(videoId, userId, studyPlan) {
-    // Obtener el token del localStorage
-    const token = localStorage.getItem('authToken');
-    
-    if (!token) {
-        console.error("Token no encontrado. Por favor, inicia sesión.");
-        return;
-    }
 
-    // Encontrar el video correcto por su ID
-    const section = studyPlan.find(section =>
-        section.videos.some(video => video.id === videoId)
-    );
   
-    if (!section) {
-        console.error("Sección no encontrada para el video ID:", videoId);
-        return;
-    }
-  
-    const video = section.videos.find(video => video.id === videoId);
-    if (!video) {
-        console.error("Video no encontrado con ID:", videoId);
-        return;
-    }
-  
-    const playedVideo = video.played_video.find(pv => pv.userId === userId);
-    if (!playedVideo) {
-        console.error("No se encontró registro de reproducción para el usuario:", userId);
-        return;
-    }
-  
-    const videoDbId = playedVideo.id; // ID correcto a enviar
-    console.log("ID del video que se está enviando:", videoDbId);
-  
+function finishVideo(videoDbId, isEnd = true) {
     const payload = {
-        id: videoDbId,  // ID del registro de reproducción
-        isEnd: true     // Finalización del video
+        id: videoDbId,
+        isEnd: isEnd ? "true" : "false"
     };
-  
-    console.log("Payload enviado:", payload);
-  
+    console.log("Payload enviado a finishVideo:", payload);
+
     fetch('https://tu1btc.com/api/course/video/finish', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`, // Token obtenido desde localStorage
+            'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(payload),
     })
-        .then(response => {
-            console.log('Respuesta del servidor:', response);
-            if (!response.ok) {
-                return response.json().then(errorData => {
-                    console.error('Error de servidor:', errorData);
-                    throw new Error(`Error al finalizar el video: ${errorData.message || response.statusText}`);
-                });
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Video finalizado:', data);
-  
-            // Realizar un nuevo fetch para obtener los datos actualizados
-            return fetch('https://tu1btc.com/api/course/getAllForMembershipId', {
-                method: 'GET',
+    .then(res => {
+        if (!res.ok) throw new Error("Error al finalizar el video.");
+        return res.json();
+    })
+    .then(() => {
+        console.log("Video finalizado");
+        // Esperamos 1 segundo antes de volver a cargar el curso actualizado
+        setTimeout(() => {
+            fetch(`https://tu1btc.com/api/course/${courseId}`, {
                 headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            });
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al obtener los cursos actualizados.');
-            }
-            return response.json();
-        })
-        .then(updatedCourses => {
-            console.log('Cursos actualizados:', updatedCourses);
-  
-            // Aquí puedes actualizar la UI con los datos nuevos
-            updateUIWithNewCourses(updatedCourses);
-        })
-        .catch(error => {
-            console.error('Error:', error.message);
-        });
-}
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(res => res.json())
+            .then(updatedCourse => {
+                console.log("Course actualizado después de finalizar video:", updatedCourse);
+                calculateAndRenderProgress(updatedCourse.study_plan);
+            })
+            .catch(err => console.error("Error al refrescar los detalles del curso:", err));
+        }, 1000);
+    })
+    .catch(err => console.error("Error finalizando el video:", err));
+} 
 
-  
-  // Función para actualizar la UI con los datos nuevos
-  function updateUIWithNewCourses(courses) {
-    // Aquí implementa la lógica para renderizar nuevamente los cursos en la página
+function updateUIWithNewCourses(courses) {
     console.log('Actualizando UI con los cursos:', courses);
-    // Por ejemplo:
-    // renderCourses(courses); 
-  }
-  
-  
+    
+    const course = courses.find(c => c.id === courseId);
+    if (course) {
+        calculateAndRenderProgress(course.study_plan);
+    }
+}
+window.updateUIWithNewCourses = updateUIWithNewCourses;
+
   
     // Enviar la reseña del curso
     async function submitFeedback(courseId, description, rate) {
@@ -406,11 +407,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error al cargar el video de Vimeo:', error);
             });
     
-            // Agregar el listener del evento 'ended' para cuando el video termine
-            vimeoPlayer.on('ended', function() {
-                console.log("El video ha terminado");  // Verifica que el evento se esté activando
-                finishVideo(videoId);  // Llamar la función finishVideo cuando el video termine
+            vimeoPlayer.on('ended', () => {
+                finishVideo(currentPlayedVideoId, true);
             });
+            
     
         } else {
             vimeoPlayer = new Vimeo.Player(videoContainer, {
@@ -420,13 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
             vimeoPlayer.on('play', function() {
                 console.log(`Video de Vimeo ${videoId} está en reproducción`);
-            });
-    
-            // Agregar el listener del evento 'ended' para cuando el video termine
-            vimeoPlayer.on('ended', function() {
-                console.log("El video ha terminado");  // Verifica que el evento se esté activando
-                finishVideo(videoId);  // Llamar la función finishVideo cuando el video termine
-            });
+            });       
         }
     }
     
@@ -456,6 +450,6 @@ document.addEventListener('DOMContentLoaded', () => {
             updateVideoTime(videoDbId, currentTime);  // Guarda el tiempo actual
         }
     });
-    
+
   });
   

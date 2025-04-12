@@ -11,6 +11,24 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
+.payment-options {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    padding-left: 5px;
+}
+
+.payment-options.visible {
+    max-height: 200px; /* o lo que necesites */
+    opacity: 1;
+}
+
+
 .dark-mode .subscription-details{
     background-color: #28292b44;
 }
@@ -134,7 +152,6 @@
 
 .subscription-button:hover {
     background-color: #e67e22;
-    transform: translateY(-2px); /* Efecto hover con movimiento */
     box-shadow: 0 6px 16px rgba(255, 144, 0, 0.4);
 }
 

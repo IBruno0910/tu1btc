@@ -39,46 +39,47 @@ document.addEventListener('DOMContentLoaded', async () => {
             groupedCourses[categoryName].push(course);
         });
 
-        // 4️⃣ Renderizar los cursos agrupados
-        coursesContainer.innerHTML = ''; // Limpiar contenedor
+    // 4️⃣ Renderizar los cursos agrupados
+    coursesContainer.innerHTML = ''; // Limpiar contenedor
 
-        Object.keys(groupedCourses).forEach(category => {
-            const categorySection = document.createElement('div');
-            categorySection.className = 'category-section';
+    categories.forEach(cat => {
+        const category = cat.name;
+        if (!groupedCourses[category]) return;
 
-            // Agregar título de la categoría
-            const categoryTitle = document.createElement('h2');
-            categoryTitle.className = 'category-title';
-            categoryTitle.textContent = category;
-            categorySection.appendChild(categoryTitle);
+        const categorySection = document.createElement('div');
+        categorySection.className = 'category-section';
 
-            // Crear contenedor de cursos
-            const courseList = document.createElement('div');
-            courseList.className = 'course-list'; // Clase CSS para estilos
+        const categoryTitle = document.createElement('h2');
+        categoryTitle.className = 'category-title';
+        categoryTitle.textContent = category;
+        categorySection.appendChild(categoryTitle);
 
-            groupedCourses[category].forEach(course => {
-                const courseCard = document.createElement('div');
-                courseCard.className = 'course-card';
+        const courseList = document.createElement('div');
+        courseList.className = 'course-list';
 
-                const imageUrl = course.image
-                    ? (course.image.startsWith('http') ? course.image : `https://tu1btc.com/api/course/image/${course.image}`)
-                    : 'ruta/de/imagen_por_defecto.jpg';
+        groupedCourses[category].forEach(course => {
+            const courseCard = document.createElement('div');
+            courseCard.className = 'course-card';
 
-                courseCard.innerHTML = `
-                    <img src="${imageUrl}" alt="${course.name}" class="course-image">
-                    <h3 class="course-title">${course.name}</h3>
-                `;
+            const imageUrl = course.image
+                ? (course.image.startsWith('http') ? course.image : `https://tu1btc.com/api/course/image/${course.image}`)
+                : 'ruta/de/imagen_por_defecto.jpg';
 
-                courseCard.addEventListener('click', () => {
-                    window.location.href = `course-details.html?id=${course.id}`;
-                });
+            courseCard.innerHTML = `
+                <img src="${imageUrl}" alt="${course.name}" class="course-image">
+                <h3 class="course-title">${course.name}</h3>
+            `;
 
-                courseList.appendChild(courseCard);
+            courseCard.addEventListener('click', () => {
+                window.location.href = `course-details.html?id=${course.id}`;
             });
 
-            categorySection.appendChild(courseList);
-            coursesContainer.appendChild(categorySection);
+            courseList.appendChild(courseCard);
         });
+
+        categorySection.appendChild(courseList);
+        coursesContainer.appendChild(categorySection);
+    });
 
     } catch (error) {
         console.error('Error:', error);

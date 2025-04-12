@@ -7,6 +7,27 @@
     margin-bottom: 15px;
 }
 
+/* Estilo para la barra de progreso */
+
+.course-progress {
+    margin-bottom: 20px;
+  }
+  
+  .progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background-color: #00b894;
+    width: 0%;
+    transition: width 0.5s ease;
+  }
+  
 
 /* Estilo para el Modal */
 .modal {

@@ -89,17 +89,41 @@ async function displaySubscriptionDetails(subscription) {
         `;
     } else {
         priceSection = `
-            <div class="div-price">
-                <div class="subscription-price">
-                    <span>Precio: </span><strong>$${subscription.price}</strong>
-                    <a href="#" class="subscription-button">Adquirir Membresía</a>
-                </div>
-                <div class="subscription-price">
-                    <span>Precio: </span><strong>$${subscription.price}</strong>
-                    <a href="#" class="subscription-button">Adquirir Membresía</a>
-                </div>
+    <div class="div-price">
+
+        <div class="subscription-price">
+            <span>Precio: </span><strong>$${subscription.price}</strong>
+            <button class="subscription-button toggle-payment" data-target="options-1">
+                <i class="fas fa-shopping-cart"></i> Adquirir Membresía
+            </button>
+            <div id="options-1" class="button-group payment-options" ">
+                <a href="pago-transferencia.html?id=${subscription.id}&plan=mensual" class="subscription-button">
+                    <i class="fas fa-university"></i> Transferencia Bancaria
+                </a>
+                <a href="pago-cripto.html?id=${subscription.id}&plan=mensual" class="subscription-button">
+                    <i class="fab fa-bitcoin"></i> Criptomonedas
+                </a>
             </div>
-        `;
+        </div>
+
+        <div class="subscription-price">
+            <span>Precio: </span><strong>$${subscription.price}</strong>
+            <button class="subscription-button toggle-payment" data-target="options-2">
+                <i class="fas fa-shopping-cart"></i> Adquirir Membresía
+            </button>
+            <div id="options-2" class="button-group payment-options" ">
+                <a href="pago-transferencia.html?id=${subscription.id}&plan=anual" class="subscription-button">
+                    <i class="fas fa-university"></i> Transferencia Bancaria
+                </a>
+                <a href="pago-cripto.html?id=${subscription.id}&plan=anual" class="subscription-button">
+                    <i class="fab fa-bitcoin"></i> Criptomonedas
+                </a>
+            </div>
+        </div>
+
+    </div>
+`;
+
     }
 
     // Mostrar los detalles en el contenedor
@@ -118,6 +142,20 @@ async function displaySubscriptionDetails(subscription) {
             ${priceSection} <!-- Aquí se inserta la sección de precios o WhatsApp -->
         </div>
     `;
+    document.querySelectorAll('.toggle-payment').forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.dataset.target;
+            const options = document.getElementById(targetId);
+            if (options.classList.contains('visible')) {
+                options.classList.remove('visible');
+            } else {
+                // Oculta todos los demás por si querés que solo se vea uno a la vez
+                document.querySelectorAll('.payment-options').forEach(opt => opt.classList.remove('visible'));
+                options.classList.add('visible');
+            }
+        });
+    });      
+    
 }
 
 
