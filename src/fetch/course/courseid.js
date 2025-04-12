@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   
     let vimeoPlayer = null;
   
-    // Cargar contenido del curso
-    fetch(`https://tu1btc.com/api/course/${courseId}`, {
+    
+    fetch('https://tu1btc.com/api/course/getAllForMembershipId', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -16,10 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
     .then(response => response.json())
-    .then(course => {
-        renderCourseDetails(course);
+    .then(courses => {
+        const course = courses.find(c => c.id === courseId); // Filtra el curso actual
+        if (course) {
+            renderCourseDetails(course);
+            calculateAndRenderProgress(course.study_plan);
+        } else {
+            console.error('Curso no encontrado');
+        }
     })
-    .catch(error => console.error('Error fetching course details:', error));
+    .catch(error => console.error('Error fetching courses:', error));
+
   
     // Renderizar detalles del curso y formulario de feedback
     function renderCourseDetails(course) {
@@ -155,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function calculateAndRenderProgress(studyPlan) {
         let totalVideos = 0;
         let completedVideos = 0;
-    
+      
         studyPlan.forEach(plan => {
             plan.sections.forEach(section => {
                 section.videos.forEach(video => {
@@ -170,20 +177,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
-    
+      
         const percent = totalVideos === 0 ? 0 : Math.round((completedVideos / totalVideos) * 100);
-    
+      
         const progressBar = document.getElementById('progress-bar');
         const progressText = document.getElementById('progress-text');
-    
+      
+        console.log(`Porcentaje calculado: ${percent}%`); // Verifica el valor de porcentaje
+      
         if (progressBar) {
             progressBar.style.width = `${percent}%`;
         }
-    
+      
         if (progressText) {
             progressText.textContent = `${percent}% completado`;
         }
     }
+    
     
     let currentPlayedVideoId = null;
 
@@ -266,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   
-function finishVideo(videoDbId, isEnd = true) {
+  function finishVideo(videoDbId, isEnd = true) {
     const payload = {
         id: videoDbId,
         isEnd: isEnd ? "true" : "false"
@@ -289,6 +299,7 @@ function finishVideo(videoDbId, isEnd = true) {
         console.log("Video finalizado");
         // Esperamos 1 segundo antes de volver a cargar el curso actualizado
         setTimeout(() => {
+            // Recargar el curso actualizado
             fetch(`https://tu1btc.com/api/course/${courseId}`, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -297,14 +308,16 @@ function finishVideo(videoDbId, isEnd = true) {
             })
             .then(res => res.json())
             .then(updatedCourse => {
-                console.log("Course actualizado después de finalizar video:", updatedCourse);
+                console.log("Curso actualizado después de finalizar el video:", updatedCourse);
+                // Actualizamos la barra de progreso
                 calculateAndRenderProgress(updatedCourse.study_plan);
             })
             .catch(err => console.error("Error al refrescar los detalles del curso:", err));
         }, 1000);
     })
     .catch(err => console.error("Error finalizando el video:", err));
-} 
+}
+
 
 function updateUIWithNewCourses(courses) {
     console.log('Actualizando UI con los cursos:', courses);
