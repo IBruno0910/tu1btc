@@ -38,14 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p class="course-description">${course.description}</p>
                 </div>
 
-                <div class="course-progress">
+                <div class="course-progress minimal-progress">
                     <h3>Progreso del curso</h3>
                     <div class="progress-bar-container">
                         <div class="progress-bar" id="progress-bar"></div>
                     </div>
-                    <p id="progress-text">0% completado</p>
                 </div>
-
 
                 <h3 class="course-plan-title">Plan de estudio:</h3>
                 <ul>
@@ -187,6 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
         if (progressBar) {
             progressBar.style.width = `${percent}%`;
+            progressBar.textContent = `${percent}%`;
         }
       
         if (progressText) {

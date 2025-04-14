@@ -1,3 +1,52 @@
+/* Estilos para el popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+.popup-content h3{
+    font-weight: 700;
+}
+
+.dark-mode .popup-content{
+    color: white;
+    background-color: rgba(56, 55, 55, 0.418);
+    border: #FF9000;
+    border-style: double;
+    border-color: #FF9000;
+}
+
+.popup button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #FF9000; /* Verde de WhatsApp */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.popup button:hover {
+    background-color: #c47004; /* Verde más oscuro */
+}
+
+
 /* Estilo para la sección de detalles de la membresía */
 .subscription-details {
     display: flex;
@@ -127,16 +176,19 @@
 }
 
 .subscription-price {
-    justify-content: center;
-    align-items: center;
-    font-size: 1.8rem;
-    color: #2c2b29;
-    font-weight: 500;
-    margin-bottom: 20px;
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start; /* o center si preferís */
+    min-height: 120px; /* o el alto que necesites para uniformar */
+    padding: 10px;
+  }
+  
+  
 
 /* Botón de acción */
 .subscription-button {
+    margin-top: auto;
     display: inline-block;
     padding: 14px 28px;
     font-size: 1.1rem;

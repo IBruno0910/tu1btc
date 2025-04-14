@@ -48,6 +48,72 @@ async function fetchSubscriptionDetails() {
     }
 }
 
+// Función para obtener los detalles bancarios
+async function fetchBankDetails() {
+    try {
+        const response = await fetch('https://tu1btc.com/api/settings', {
+            method: 'GET',
+            headers: {
+                'accept': '*/*'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error fetching bank details');
+        }
+
+        const data = await response.json();
+        return data.bankAccount;
+    } catch (error) {
+        console.error('Error fetching bank details:', error);
+        return null;
+    }
+}
+
+// Función para mostrar el popup con la información bancaria
+async function showBankPopup() {
+    const bankDetails = await fetchBankDetails();
+    if (!bankDetails) return;
+
+    const popup = document.createElement('div');
+    popup.classList.add('popup'); // Añadir la clase 'popup' para estilos CSS
+
+    popup.innerHTML = `
+        <div class="popup-content">
+            <h3>Información Bancaria</h3>
+            <p><strong>Nombre del Banco:</strong> ${bankDetails.bank}</p>
+            <p><strong>CBU:</strong> ${bankDetails.cbuNumber}</p>
+            <p><strong>Alias:</strong> ${bankDetails.alias}</p>
+            <p><strong>Información Adicional:</strong> ${bankDetails.information}</p>
+            <button id="sendReceiptBtn" class="subscription-button">
+                Enviar Comprobante
+            </button>
+        </div>
+    `;
+
+    document.body.appendChild(popup);
+
+    // Agregar funcionalidad al botón de "Enviar Comprobante"
+    document.getElementById('sendReceiptBtn').addEventListener('click', () => {
+        window.location.href = 'https://wa.me/5491134926411?text=Hola,%20Te%20envío%20el%20comprobante%20de%20pago';
+        closePopup(popup);
+    });
+
+    // Cerrar el popup si se hace clic fuera del contenido
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+            closePopup(popup);
+        }
+    });
+}
+
+// Función para cerrar el popup
+function closePopup(popup) {
+    document.body.removeChild(popup);
+}
+
+
+
 async function displaySubscriptionDetails(subscription) {
     const detailsContainer = document.getElementById('details-container');
     
@@ -92,39 +158,45 @@ async function displaySubscriptionDetails(subscription) {
     <div class="div-price">
 
         <div class="subscription-price">
-            <span>Precio: </span><strong>$${subscription.price}</strong>
+            <div>
+                <span>Precio:</span>
+                <strong>$${subscription.price}</strong>
+            </div>
             <button class="subscription-button toggle-payment" data-target="options-1">
                 <i class="fas fa-shopping-cart"></i> Adquirir Membresía
             </button>
             <div id="options-1" class="button-group payment-options" ">
-                <a href="pago-transferencia.html?id=${subscription.id}&plan=mensual" class="subscription-button">
+                <button id="transfPayButton" class="subscription-button">
                     <i class="fas fa-university"></i> Transferencia Bancaria
-                </a>
-                <a href="pago-cripto.html?id=${subscription.id}&plan=mensual" class="subscription-button">
+                </button>
+                <button id="cryptoPayButton" class="subscription-button">
                     <i class="fab fa-bitcoin"></i> Criptomonedas
-                </a>
+                </button>
             </div>
         </div>
 
         <div class="subscription-price">
-            <span>Precio: </span><strong>$${subscription.price}</strong>
+            <div>
+                <span>Precio: </span>
+                <strong>$${subscription.pricePeriod}</strong>
+            </div>
             <button class="subscription-button toggle-payment" data-target="options-2">
                 <i class="fas fa-shopping-cart"></i> Adquirir Membresía
             </button>
             <div id="options-2" class="button-group payment-options" ">
-                <a href="pago-transferencia.html?id=${subscription.id}&plan=anual" class="subscription-button">
+                <button id="transfPayButtonAnual" class="subscription-button">
                     <i class="fas fa-university"></i> Transferencia Bancaria
-                </a>
-                <a href="pago-cripto.html?id=${subscription.id}&plan=anual" class="subscription-button">
+                </button>
+                <button id="cryptoPayButtonAnual" class="subscription-button">
                     <i class="fab fa-bitcoin"></i> Criptomonedas
-                </a>
+                </button>
+
             </div>
         </div>
 
     </div>
 `;
-
-    }
+}
 
     // Mostrar los detalles en el contenedor
     detailsContainer.innerHTML = `
@@ -154,9 +226,107 @@ async function displaySubscriptionDetails(subscription) {
                 options.classList.add('visible');
             }
         });
-    });      
+    });
     
+    document.getElementById('cryptoPayButton').addEventListener('click', async () => {
+        const token = localStorage.getItem('authToken'); // si usan token de auth
+        const email = 'usuario@example.com'; // reemplazar con el email del usuario logueado
+        const sourceAmount = 50; // reemplazar con el monto que corresponda
+        const currency = 'USD'; // la moneda en que se cobra
+        const sourceCurrency = 'BTC'; // la cripto que va a usar (podés permitir elegir también)
+        const idCourse = 'abc123'; // el ID del curso o membresía que se está comprando
+      
+        try {
+          const response = await fetch('https://tu1btc.com/api/payment/plisio', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`, // si el backend requiere auth
+            },
+            body: JSON.stringify({
+              currency,
+              source_currency: sourceCurrency,
+              source_amount: sourceAmount,
+              email,
+              IdCourse: idCourse
+            })
+          });
+      
+          if (!response.ok) throw new Error('Error al crear la factura.');
+      
+          const data = await response.json();
+      
+          if (data.data && data.data.invoice_url) {
+            window.location.href = data.data.invoice_url;
+          } else {
+            console.error('No se recibió la URL de factura:', data);         
+          }
+        } catch (error) {
+          console.error('Error procesando el pago:', error);
+        }
+      });      
+    
+      document.getElementById('cryptoPayButtonAnual').addEventListener('click', async () => {
+        const token = localStorage.getItem('authToken');
+        const sourceAmount = subscription.pricePeriod; // Precio del plan anual
+        const currency = 'USD';
+        const sourceCurrency = 'BTC';
+        const idCourse = subscription.id;
+    
+        try {
+            // Obtener email del usuario
+            const userRes = await fetch('https://tu1btc.com/api/user/myInformation', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+    
+            if (!userRes.ok) throw new Error('No se pudo obtener el email del usuario');
+    
+            const userData = await userRes.json();
+            const email = userData.email;
+    
+            // Crear la factura en Plisio
+            const response = await fetch('https://tu1btc.com/api/payment/plisio', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    currency,
+                    source_currency: sourceCurrency,
+                    source_amount: sourceAmount,
+                    email,
+                    IdCourse: idCourse
+                })
+            });
+    
+            if (!response.ok) throw new Error('Error al crear la factura');
+    
+            const data = await response.json();
+    
+            if (data.data && data.data.invoice_url) {
+                window.location.href = data.data.invoice_url;
+            } else {
+                console.error('No se recibió la URL de factura:', data);
+            }
+        } catch (error) {
+            console.error('Error procesando el pago cripto anual:', error);
+        }
+    });   
+    
+    document.getElementById('transfPayButton').addEventListener('click', () => {
+        showBankPopup();
+    });
+    
+    document.getElementById('transfPayButtonAnual').addEventListener('click', () => {
+        showBankPopup();
+    });
+    
+
 }
+
 
 
 // Llamar a la función para obtener los detalles de la membresía
