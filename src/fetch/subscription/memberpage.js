@@ -229,52 +229,13 @@ async function displaySubscriptionDetails(subscription) {
     });
     
     document.getElementById('cryptoPayButton').addEventListener('click', async () => {
-        const token = localStorage.getItem('authToken'); // si usan token de auth
-        const email = 'usuario@example.com'; // reemplazar con el email del usuario logueado
-        const sourceAmount = 50; // reemplazar con el monto que corresponda
-        const currency = 'USD'; // la moneda en que se cobra
-        const sourceCurrency = 'BTC'; // la cripto que va a usar (podés permitir elegir también)
-        const idCourse = 'abc123'; // el ID del curso o membresía que se está comprando
-      
-        try {
-          const response = await fetch('https://tu1btc.com/api/payment/plisio', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${token}`, // si el backend requiere auth
-            },
-            body: JSON.stringify({
-              currency,
-              source_currency: sourceCurrency,
-              source_amount: sourceAmount,
-              email,
-              IdCourse: idCourse
-            })
-          });
-      
-          if (!response.ok) throw new Error('Error al crear la factura.');
-      
-          const data = await response.json();
-      
-          if (data.data && data.data.invoice_url) {
-            window.location.href = data.data.invoice_url;
-          } else {
-            console.error('No se recibió la URL de factura:', data);         
-          }
-        } catch (error) {
-          console.error('Error procesando el pago:', error);
-        }
-      });      
-    
-      document.getElementById('cryptoPayButtonAnual').addEventListener('click', async () => {
         const token = localStorage.getItem('authToken');
-        const sourceAmount = subscription.pricePeriod; // Precio del plan anual
+        const sourceAmount = subscription.price; // Precio mensual
         const currency = 'USD';
-        const sourceCurrency = 'BTC';
+        const sourceCurrency = 'USD';
         const idCourse = subscription.id;
     
         try {
-            // Obtener email del usuario
             const userRes = await fetch('https://tu1btc.com/api/user/myInformation', {
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -286,7 +247,6 @@ async function displaySubscriptionDetails(subscription) {
             const userData = await userRes.json();
             const email = userData.email;
     
-            // Crear la factura en Plisio
             const response = await fetch('https://tu1btc.com/api/payment/plisio', {
                 method: 'POST',
                 headers: {
@@ -307,14 +267,62 @@ async function displaySubscriptionDetails(subscription) {
             const data = await response.json();
     
             if (data.data && data.data.invoice_url) {
-                window.location.href = data.data.invoice_url;
+                window.open(data.data.invoice_url, '_blank'); // ⬅️ Abre en nueva pestaña
             } else {
                 console.error('No se recibió la URL de factura:', data);
             }
         } catch (error) {
-            console.error('Error procesando el pago cripto anual:', error);
+            console.error('Error procesando el pago cripto mensual:', error);
         }
-    });   
+    });       
+    
+    document.getElementById('cryptoPayButtonAnual').addEventListener('click', async () => {
+        const token = localStorage.getItem('authToken');
+        const sourceAmount = subscription.pricePeriod; // Precio anual
+        const currency = 'USD';
+        const sourceCurrency = 'USD';
+        const idCourse = subscription.id;
+    
+        try {
+            const userRes = await fetch('https://tu1btc.com/api/user/myInformation', {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+    
+            if (!userRes.ok) throw new Error('No se pudo obtener el email del usuario');
+    
+            const userData = await userRes.json();
+            const email = userData.email;
+    
+            const response = await fetch('https://tu1btc.com/api/payment/plisio', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    currency,
+                    source_currency: sourceCurrency,
+                    source_amount: sourceAmount,
+                    email,
+                    IdCourse: idCourse
+                })
+            });
+    
+            if (!response.ok) throw new Error('Error al crear la factura');
+    
+            const data = await response.json();
+    
+            if (data.data && data.data.invoice_url) {
+                window.open(data.data.invoice_url, '_blank'); // ⬅️ Abre en nueva pestaña
+            } else {
+                console.error('No se recibió la URL de factura:', data);
+            }
+            } catch (error) {
+                console.error('Error procesando el pago cripto anual:', error);
+        }
+    });      
     
     document.getElementById('transfPayButton').addEventListener('click', () => {
         showBankPopup();
