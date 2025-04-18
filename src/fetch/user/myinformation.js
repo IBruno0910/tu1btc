@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('user-surname').textContent = data.surname;
                 document.getElementById('user-email').textContent = data.email;
                 document.getElementById('user-phone').textContent = data.phone || 'No disponible';
-                document.getElementById('user-active').textContent = data.active ? 'Sí' : 'No';
+                verificarMembresiaActiva(token);
                 document.getElementById('user-roles').textContent = data.roles.join(', ');
 
                 // Formatear y mostrar la fecha de finalización de la membresía (updateAt)
@@ -67,7 +67,56 @@ document.addEventListener('DOMContentLoaded', function() {
         return `${año}-${mes}-${dia}`;
     }
 
-    // Función para obtener el nombre de la membresía
+    function verificarMembresiaActiva(token) {
+        fetch('https://tu1btc.com/api/membership/info', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json().then(data => ({ status: response.status, data })))
+        .then(({ status, data }) => {
+            if (status === 401 && !data.error) {
+                document.getElementById('user-active').textContent = 'Sí';
+                mostrarSeccionMembresia(); // por si se quiere volver a mostrar si está oculta
+            } else {
+                document.getElementById('user-active').textContent = 'No';
+                ocultarSeccionMembresia();
+            }
+        })
+        .catch(error => {
+            console.error('Error al verificar membresía activa:', error);
+            document.getElementById('user-active').textContent = 'No';
+            ocultarSeccionMembresia();
+        });
+    }
+    
+    function ocultarSeccionMembresia() {
+        const seccion = document.getElementById('membership-section');
+        const fechaMembresia = document.getElementById('user-update-at');
+    
+        if (seccion) {
+            seccion.style.display = 'none';
+        }
+        if (fechaMembresia) {
+            fechaMembresia.parentElement.style.display = 'none'; // oculta el <p> que contiene la fecha
+        }
+    }
+    
+    function mostrarSeccionMembresia() {
+        const seccion = document.getElementById('membership-section');
+        const fechaMembresia = document.getElementById('user-update-at');
+    
+        if (seccion) {
+            seccion.style.display = '';
+        }
+        if (fechaMembresia) {
+            fechaMembresia.parentElement.style.display = ''; // vuelve a mostrar el <p>
+        }
+    }
+    
+    
     function obtenerNombreMembresia(token) {
         fetch('https://tu1btc.com/api/payment/info', {
             method: 'GET',
@@ -83,20 +132,21 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
-            console.log('Información de pagos:', data);
-
-            // Buscar el nombre de la membresía en los pagos manuales
-            const membresia = data.payments_manual.find(pago => pago.subscription);
-            if (membresia && membresia.subscription) {
-                document.getElementById('user-membership').textContent = membresia.subscription.name;
+            const pagoManual = data.payments_manual?.[0];
+    
+            if (pagoManual?.subscription?.name) {
+                document.getElementById('user-membership').textContent = pagoManual.subscription.name;
             } else {
                 document.getElementById('user-membership').textContent = 'No tiene membresía activa';
             }
         })
         .catch(error => {
             console.error('Hubo un problema con la solicitud:', error);
+            document.getElementById('user-membership').textContent = 'No disponible';
         });
     }
+    
+       
 
     // Llamar a la función para obtener la información del usuario
     obtenerInformacionUsuario();
@@ -149,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('user-surname').textContent = data.surname;
                 document.getElementById('user-email').textContent = data.email;
                 document.getElementById('user-phone').textContent = data.phone || 'No disponible';
-                document.getElementById('user-active').textContent = data.active ? 'Sí' : 'No';
+                verificarMembresiaActiva(token);
                 document.getElementById('user-roles').textContent = data.roles.join(', ');
 
                 // Volver a obtener la información del usuario después de la actualización
