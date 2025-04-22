@@ -55,17 +55,19 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <li class="section-item">
                                         <span class="section-name">${section.name}</span>
                                         <ul class="video-list">
-                                            ${section.videos.map(video => `
-                                                <li class="video-item">
-                                                    <span class="video-title">${video.title}</span> 
-                                                    ${video.type === 'Video' ? `<span class="video-duration">${video.duration} mins</span>` : ''}
-                                                    ${
-                                                        video.type === 'Video'
-                                                        ? `<button class="video-button" data-video-id="${video.link}" data-video-db-id="${video.id}">Ver Video</button>`
-                                                        : `<a class="pdf-button" href="${video.link}" target="_blank" data-video-db-id="${video.id}">Abrir PDF</a>`
-                                                    }
-                                                </li>
-                                            `).join('')}
+                                            ${section.videos.map(video => {
+                                                const isCompleted = video.played_video?.some(pv => pv.isEnd === true || pv.isEnd === "true");
+                                                return `
+                                                    <li class="video-item${isCompleted ? ' video-completed' : ''}">
+                                                        <span class="video-title">${video.title}</span>
+                                                        ${video.type === 'Video' ? `<span class="video-duration">${video.duration} mins</span>` : ''}
+                                                        ${
+                                                            video.type === 'Video'
+                                                            ? `<button class="video-button" data-video-id="${video.link}" data-video-db-id="${video.id}">Ver Video</button>`
+                                                            : `<a class="pdf-button" href="${video.link}" target="_blank" data-video-db-id="${video.id}">Abrir PDF</a>`
+                                                        }
+                                                    </li>`;
+                                            }).join('')}
                                         </ul>
                                     </li>
                                 `).join('')}
@@ -119,16 +121,59 @@ document.addEventListener('DOMContentLoaded', () => {
         
 
         document.querySelectorAll('.pdf-button').forEach(link => {
-            link.addEventListener('click', (event) => {
+            link.addEventListener('click', async (event) => {
                 const videoDbId = event.target.getAttribute('data-video-db-id');
-                startVideo(videoDbId); // Para registrar que el usuario abrió el PDF
         
-                // Simular finalización inmediata del archivo PDF
-                setTimeout(() => {
-                    finishVideo(videoDbId);  // Aquí NO necesitas el userId ni el studyPlan porque ya lo tenés
-                }, 2000); // Podés ajustar el tiempo si querés darle unos segundos
+                try {
+                    const playedId = await startVideoAndReturnPlayedId(videoDbId);
+        
+                    setTimeout(async () => {
+                        await finishVideo(playedId); // ✅ Marcamos como finalizado
+                    
+                        // 🔄 Refrescamos el curso actualizado
+                        const updatedCourses = await fetch('https://tu1btc.com/api/course/getAllForMembershipId', {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}`
+                            }
+                        }).then(res => res.json());
+                    
+                        const updatedCourse = updatedCourses.find(c => c.id === courseId);
+                    
+                        if (updatedCourse) {
+                            calculateAndRenderProgress(updatedCourse.study_plan);
+                        } else {
+                            console.warn("Curso no encontrado al refrescar después de finishVideo");
+                        }
+                    }, 2000);
+                    
+                } catch (err) {
+                    console.error("Error al registrar o finalizar el PDF:", err);
+                }
             });
         });
+
+        function startVideoAndReturnPlayedId(videoDbId) {
+            return fetch('https://tu1btc.com/api/course/startVideo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({ idVideo: videoDbId }),
+            })
+            .then(res => {
+                if (!res.ok) throw new Error("Error al iniciar el video/PDF");
+                return res.json();
+            })
+            .then(data => {
+                console.log("Video/PDF iniciado (returning played_video.id):", data);
+                return data.id; // Este es el ID de played_video
+            });
+        }
+        
+        
 
   
             // Agregar evento para enviar feedback

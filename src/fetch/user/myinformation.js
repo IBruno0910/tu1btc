@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     function obtenerInformacionUsuario() {
         const token = localStorage.getItem('authToken');
-
+    
         if (token) {
             fetch('https://tu1btc.com/api/user/myInformation', {
                 method: 'GET',
@@ -18,31 +18,34 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
                 console.log('Información del usuario:', data);
-
-                // Guardar userId en localStorage
+    
                 localStorage.setItem('userId', data.id);
-
-                // Mostrar información en la tabla
+    
                 document.getElementById('user-id').textContent = data.id;
                 document.getElementById('user-name').textContent = data.name;
                 document.getElementById('user-surname').textContent = data.surname;
                 document.getElementById('user-email').textContent = data.email;
                 document.getElementById('user-phone').textContent = data.phone || 'No disponible';
-                verificarMembresiaActiva(token);
                 document.getElementById('user-roles').textContent = data.roles.join(', ');
-
-                // Formatear y mostrar la fecha de finalización de la membresía (updateAt)
+    
+                // Verificar membresía usando hasMembership
+                if (data.hasMembership) {
+                    document.getElementById('user-active').textContent = 'Sí';
+                    mostrarSeccionMembresia();
+                } else {
+                    document.getElementById('user-active').textContent = 'No';
+                    ocultarSeccionMembresia();
+                }
+    
                 if (data.updateAt) {
                     const fechaFormateada = formatearFecha(data.updateAt);
                     document.getElementById('user-update-at').textContent = fechaFormateada;
                 } else {
                     document.getElementById('user-update-at').textContent = 'No disponible';
                 }
-
-                // Obtener y mostrar el nombre de la membresía
+    
                 obtenerNombreMembresia(token);
-
-                // Prellenar el formulario de actualización si existe
+    
                 if (document.getElementById('update-user-name')) {
                     document.getElementById('update-user-name').value = data.name;
                     document.getElementById('update-user-surname').value = data.surname;
@@ -57,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('No se encontró el token de autenticación. Por favor, inicia sesión.');
         }
     }
+    
 
     // Función para formatear la fecha (año, mes y día)
     function formatearFecha(fecha) {
@@ -67,30 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return `${año}-${mes}-${dia}`;
     }
 
-    function verificarMembresiaActiva(token) {
-        fetch('https://tu1btc.com/api/membership/info', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json().then(data => ({ status: response.status, data })))
-        .then(({ status, data }) => {
-            if (status === 401 && !data.error) {
-                document.getElementById('user-active').textContent = 'Sí';
-                mostrarSeccionMembresia(); // por si se quiere volver a mostrar si está oculta
-            } else {
-                document.getElementById('user-active').textContent = 'No';
-                ocultarSeccionMembresia();
-            }
-        })
-        .catch(error => {
-            console.error('Error al verificar membresía activa:', error);
-            document.getElementById('user-active').textContent = 'No';
-            ocultarSeccionMembresia();
-        });
-    }
     
     function ocultarSeccionMembresia() {
         const seccion = document.getElementById('membership-section');
@@ -199,7 +179,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('user-surname').textContent = data.surname;
                 document.getElementById('user-email').textContent = data.email;
                 document.getElementById('user-phone').textContent = data.phone || 'No disponible';
-                verificarMembresiaActiva(token);
                 document.getElementById('user-roles').textContent = data.roles.join(', ');
 
                 // Volver a obtener la información del usuario después de la actualización

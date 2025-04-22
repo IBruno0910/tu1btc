@@ -7,7 +7,20 @@
     margin-bottom: 15px;
 }
 
-/* Estilo para la barra de progreso */
+/* Estilo para el check de progreso */
+
+.video-completed {
+    background-color: #f392002c;
+    border: 1px solid #F39000;
+    border-radius: 5px ;
+    padding: 2px;
+}
+
+.video-completed .video-title::after {
+    content: ' ✓';
+    color: #F39000;
+    font-weight: bold;
+}
 
 /* Estilo para la barra de progreso */
 .minimal-progress {

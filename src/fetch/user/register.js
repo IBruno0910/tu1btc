@@ -1,5 +1,14 @@
+let recaptchaRegisterWidgetId;
+
+window.onload = function () {
+    recaptchaRegisterWidgetId = grecaptcha.render('recaptcha-register', {
+        sitekey: '6LfEA7IqAAAAALp4WmhnbgbojTtgw63waY8H7mqm'
+    });
+};
+
 document.getElementById('register-btn').addEventListener('click', function (event) {
     event.preventDefault();
+
 
     // Obtener los valores de los campos y convertir el email a minúsculas
     const email = document.getElementById('email-input').value.toLowerCase();
@@ -20,12 +29,12 @@ document.getElementById('register-btn').addEventListener('click', function (even
             return;
         }
 
-        // Obtener el token de reCAPTCHA
-        const recaptchaResponse = grecaptcha.getResponse();
+        const recaptchaResponse = grecaptcha.getResponse(recaptchaRegisterWidgetId);
         if (!recaptchaResponse) {
             errorMessage.textContent = 'Por favor, completa el reCAPTCHA para continuar.';
             return;
         }
+        
 
         // Crear el cuerpo de la solicitud con el token incluido
         const requestBody = {
