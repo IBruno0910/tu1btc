@@ -37,12 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ocultarSeccionMembresia();
                 }
     
-                if (data.updateAt) {
-                    const fechaFormateada = formatearFecha(data.updateAt);
-                    document.getElementById('user-update-at').textContent = fechaFormateada;
-                } else {
-                    document.getElementById('user-update-at').textContent = 'No disponible';
-                }
+                obtenerFechaMembresia(token);
     
                 obtenerNombreMembresia(token);
     
@@ -59,6 +54,34 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             console.error('No se encontró el token de autenticación. Por favor, inicia sesión.');
         }
+    }
+    
+    function obtenerFechaMembresia(token) {
+        fetch('https://tu1btc.com/api/membership/info', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al obtener la información de membresía');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.length > 0 && data[0].end) {
+                const fechaFormateada = formatearFecha(data[0].end);
+                document.getElementById('user-update-at').textContent = fechaFormateada;
+            } else {
+                document.getElementById('user-update-at').textContent = 'No disponible';
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener la fecha de membresía:', error);
+            document.getElementById('user-update-at').textContent = 'No disponible';
+        });
     }
     
 
@@ -204,4 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.add('hidden');
         }
     });
+
+    const token = localStorage.getItem('authToken');
+
 });
