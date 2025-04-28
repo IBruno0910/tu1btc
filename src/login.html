@@ -26,15 +26,21 @@
             </p>
         </div>
     </div>
-
+        <!-- Modal para validar el token login -->
     <div id="token-modal" style="display: none;">
         <div id="token-modal-content">
-          <h2>🔒 Ingrese el token que recibió</h2>
-          <input type="text" id="token-input" placeholder="Token de verificación">
-          <button id="validate-token-btn">Validar Token</button>
-          <button id="close-token-modal">Cerrar</button>
+            <div style="display: flex; justify-content: flex-end;">
+                <button id="close-token-modal">&times;</button>
+            </div>
+            <i class="fa-solid fa-key" style="color: #FF9000; font-size: 2rem;"></i>
+            <h2>Introduce el token que has recibido en tu correo:</h2>
+            <input type="text" id="tokenn-input" placeholder="Token de verificación">
+            <button id="validate-tokenn-btn" class="btn-log-modal">Validar Token</button>
+            <button id="resend-tokenn-btn" style="margin-top: 10px;" class="btn-log-modal">Reenviar Token</button>
+            <div id="token-message" style="color: rgb(236, 162, 0); margin-top: 10px; text-align: center;"></div>
+            <span>*Verifica también en tu carpeta de spam</span>
         </div>
-    </div>   
+    </div>         
 
 
     <div class="container">

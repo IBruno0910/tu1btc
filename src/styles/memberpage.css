@@ -182,8 +182,26 @@
     align-items: flex-start; /* o center si preferís */
     min-height: 120px; /* o el alto que necesites para uniformar */
     padding: 10px;
-  }
+}
   
+.price-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre precios */
+    margin-top: 10px;
+}
+
+.current-price {
+    color: #f78f09; /* Rojo lindo */
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.previous-price {
+    color: #888;
+    font-size: 16px;
+    text-decoration: line-through;
+}
   
 
 /* Botón de acción */

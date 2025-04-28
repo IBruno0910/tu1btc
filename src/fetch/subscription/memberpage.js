@@ -153,50 +153,91 @@ async function displaySubscriptionDetails(subscription) {
                 <a href="https://wa.me/5491134926411?text=Hola,%20Quiero%20saber%20más%20información%20sobre%20la%20membresía%20exclusiva" class="subscription-button">Contactanos</a>
             </div>
         `;
-    } else {
+    } else if (subscription.name === "Membresia Inicial") {
         priceSection = `
-    <div class="div-price">
-
-        <div class="subscription-price">
-            <div>
-                <span>Precio:</span>
-                <strong>$${subscription.price}</strong>
+            <div class="div-price">
+    
+                <div class="subscription-price">
+                    <div>
+                        <span>Precio (1 mes):</span>
+                        <strong class="current-price">$${subscription.price}</strong>
+                    </div>
+                    <button class="subscription-button toggle-payment" data-target="options-1">
+                        <i class="fas fa-shopping-cart"></i> Adquirir Membresía
+                    </button>
+                    <div id="options-1" class="button-group payment-options">
+                        <button id="transfPayButton" class="subscription-button">
+                            <i class="fas fa-university"></i> Transferencia Bancaria
+                        </button>
+                        <button id="cryptoPayButton" class="subscription-button">
+                            <i class="fab fa-bitcoin"></i> Criptomonedas
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="subscription-price">
+                    <div class="price-container">
+                        <span>Precio (3 meses): <strong class="current-price">$${subscription.pricePeriod}</strong></span>
+                        <span class="previous-price">$150</span>
+                    </div>
+                    <button class="subscription-button toggle-payment" data-target="options-2">
+                        <i class="fas fa-shopping-cart"></i> Adquirir Membresía
+                    </button>
+                    <div id="options-2" class="button-group payment-options">
+                        <button id="transfPayButtonAnual" class="subscription-button">
+                            <i class="fas fa-university"></i> Transferencia Bancaria
+                        </button>
+                        <button id="cryptoPayButtonAnual" class="subscription-button">
+                            <i class="fab fa-bitcoin"></i> Criptomonedas
+                        </button>
+                    </div>
+                </div>
+    
             </div>
-            <button class="subscription-button toggle-payment" data-target="options-1">
-                <i class="fas fa-shopping-cart"></i> Adquirir Membresía
-            </button>
-            <div id="options-1" class="button-group payment-options" ">
-                <button id="transfPayButton" class="subscription-button">
-                    <i class="fas fa-university"></i> Transferencia Bancaria
-                </button>
-                <button id="cryptoPayButton" class="subscription-button">
-                    <i class="fab fa-bitcoin"></i> Criptomonedas
-                </button>
+        `;
+    } else if (subscription.name === "Membresia Intermedia") {
+        priceSection = `
+            <div class="div-price">
+    
+                <div class="subscription-price">
+                    <div>
+                        <span>Precio (3 meses):</span>
+                        <strong class="current-price">$${subscription.price}</strong>
+                    </div>
+                    <button class="subscription-button toggle-payment" data-target="options-1">
+                        <i class="fas fa-shopping-cart"></i> Adquirir Membresía
+                    </button>
+                    <div id="options-1" class="button-group payment-options">
+                        <button id="transfPayButton" class="subscription-button">
+                            <i class="fas fa-university"></i> Transferencia Bancaria
+                        </button>
+                        <button id="cryptoPayButton" class="subscription-button">
+                            <i class="fab fa-bitcoin"></i> Criptomonedas
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="subscription-price">
+                    <div class="price-container">
+                        <span>Precio (1 año): <strong class="current-price">$${subscription.pricePeriod}</strong></span>
+                        <span class="previous-price">$1400</span>
+                    </div>
+                    <button class="subscription-button toggle-payment" data-target="options-2">
+                        <i class="fas fa-shopping-cart"></i> Adquirir Membresía
+                    </button>
+                    <div id="options-2" class="button-group payment-options">
+                        <button id="transfPayButtonAnual" class="subscription-button">
+                            <i class="fas fa-university"></i> Transferencia Bancaria
+                        </button>
+                        <button id="cryptoPayButtonAnual" class="subscription-button">
+                            <i class="fab fa-bitcoin"></i> Criptomonedas
+                        </button>
+                    </div>
+                </div>
+    
             </div>
-        </div>
-
-        <div class="subscription-price">
-            <div>
-                <span>Precio: </span>
-                <strong>$${subscription.pricePeriod}</strong>
-            </div>
-            <button class="subscription-button toggle-payment" data-target="options-2">
-                <i class="fas fa-shopping-cart"></i> Adquirir Membresía
-            </button>
-            <div id="options-2" class="button-group payment-options" ">
-                <button id="transfPayButtonAnual" class="subscription-button">
-                    <i class="fas fa-university"></i> Transferencia Bancaria
-                </button>
-                <button id="cryptoPayButtonAnual" class="subscription-button">
-                    <i class="fab fa-bitcoin"></i> Criptomonedas
-                </button>
-
-            </div>
-        </div>
-
-    </div>
-`;
-}
+        `;
+    }    
 
     // Mostrar los detalles en el contenedor
     detailsContainer.innerHTML = `

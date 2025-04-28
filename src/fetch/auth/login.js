@@ -6,7 +6,7 @@ function showModal(message) {
 }
 
 function validatePassword(password) {
-    const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*.])[A-Za-z\d!@#$%^&*.]{8,}$/;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*.-])[A-Za-z\d!@#$%^&*.-]{8,}$/;
     return passwordRegex.test(password);
 }
 
@@ -85,7 +85,7 @@ document.getElementById('login-btn').addEventListener('click', async function(ev
                 showModal('⚠️ Error en la verificación del reCAPTCHA. Intenta de nuevo.');
                 break;
             default:
-                showModal('❌ Error al iniciar sesión. Intenta más tarde o revisa tus datos.');
+                showModal('❌ Error, ingresaste mal el mail o la contraseña, revisa los datos.');
                 break;
         }
     }
@@ -95,14 +95,28 @@ document.getElementById('login-btn').addEventListener('click', async function(ev
         modal.style.display = 'flex';
     
         const closeBtn = document.getElementById('close-token-modal');
+        const validateBtn = document.getElementById('validate-tokenn-btn');
+        const resendBtn = document.getElementById('resend-tokenn-btn');
+        const messageDiv = document.getElementById('token-message');
+    
+        let resendAttempts = 0;
+        const maxResendAttempts = 3;
+        let tokenSent = false;
+    
+        function showMessage(message, isError = true) {
+            messageDiv.textContent = message;
+            messageDiv.style.color = isError ? 'orange' : 'green';
+        }
+    
         closeBtn.addEventListener('click', () => {
             modal.style.display = 'none';
+            messageDiv.textContent = ''; // Limpiar mensaje al cerrar
         });
     
-        document.getElementById('validate-token-btn').addEventListener('click', async () => {
-            const token = document.getElementById('token-input').value;
+        validateBtn.addEventListener('click', async () => {
+            const token = document.getElementById('tokenn-input').value.trim();
             if (!token) {
-                alert('⚠️ Por favor ingresa el token.');
+                showMessage('⚠️ Por favor ingresa el token.');
                 return;
             }
     
@@ -111,16 +125,72 @@ document.getElementById('login-btn').addEventListener('click', async function(ev
                 const resData = await res.json();
     
                 if (res.ok) {
-                    modal.style.display = 'none';
-                    alert('✅ Tu cuenta fue validada con éxito. Ahora puedes iniciar sesión.');
+                    showMessage('✅ Token validado correctamente. Redirigiendo...', false);
+                    localStorage.setItem('authToken', resData.token);
+                    localStorage.setItem('userId', resData.id);
+                    setTimeout(() => {
+                        window.location.href = '../index.html';
+                    }, 1500); 
                 } else {
-                    alert(`❌ Token inválido. Verifica tu email.`);
+                    if (res.status === 406) {
+                        showMessage('❌ El token no coincide. Verifica tu email.');
+                    } else if (res.status === 409) {
+                        showMessage('❌ El token ha vencido. Solicita uno nuevo.');
+                    } else {
+                        showMessage('❌ Error al validar el token.');
+                    }
                 }
             } catch (err) {
                 console.error('Error validando token:', err);
-                alert('❌ Ocurrió un error al validar el token.');
+                showMessage('❌ Error de conexión al validar el token.');
             }
         });
-    }
     
+        resendBtn.addEventListener('click', async () => {
+            if (resendAttempts >= maxResendAttempts) {
+                showMessage('⚠️ Has alcanzado el límite de reenvíos. Intenta más tarde.');
+                resendBtn.disabled = true;
+                resendBtn.style.opacity = '0.5';
+                resendBtn.style.cursor = 'not-allowed';
+                return;
+            }
+    
+            try {
+                const res = await fetch(`https://tu1btc.com/api/user/generate?email=${encodeURIComponent(email)}`);
+    
+                if (res.ok) {
+                    resendAttempts++;
+                    tokenSent = true;
+                    showMessage('📧 Token enviado. Revisa tu correo.', false);
+    
+                    if (tokenSent) {
+                        resendBtn.textContent = 'Reenviar Token';
+                    }
+                } else {
+                    if (res.status === 409) {
+                        resendAttempts++;
+                        showMessage('⚠️ Ya solicitaste un token recientemente. Intenta más tarde.');
+                    } else {
+                        showMessage('❌ Error al enviar el token.');
+                    }
+                }
+    
+                if (resendAttempts >= maxResendAttempts) {
+                    resendBtn.disabled = true;
+                    resendBtn.style.opacity = '0.5';
+                    resendBtn.style.cursor = 'not-allowed';
+                }
+    
+            } catch (err) {
+                console.error('Error enviando token:', err);
+                showMessage('❌ Error de conexión al enviar el token.');
+            }
+        });
+    
+        resendBtn.textContent = 'Enviar Token';
+        resendBtn.disabled = false;
+        resendBtn.style.opacity = '1';
+        resendBtn.style.cursor = 'pointer';
+        messageDiv.textContent = ''; // Limpiar cualquier mensaje viejo
+    }
 });
