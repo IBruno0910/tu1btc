@@ -14,37 +14,126 @@
 
 .popup-content {
     background: white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 500px;
+    padding: 30px 25px;
+    border-radius: 16px;
+    max-width: 480px;
+    width: 90%;
+    text-align: left;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.divider {
+    border: none;
+    border-top: 1.5px solid #FF9000;
+    margin: 10px 0 20px 0;
     width: 100%;
-    text-align: center;
 }
-.popup-content h3{
+
+.divider-2 {
+    border: none;
+    border-top: 1px solid;
+    color: #c4c4c4;
+    margin: 10px 0 20px 0;
+    width: 100%;
+}
+
+
+.popup-content h2 {
     font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 19px;
+    color: #333;
 }
 
-.dark-mode .popup-content{
-    color: white;
-    background-color: rgba(56, 55, 55, 0.418);
-    border: #FF9000;
-    border-style: double;
-    border-color: #FF9000;
+.popup-content h3 {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
 }
 
-.popup button {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #FF9000; /* Verde de WhatsApp */
+.bank-info .info-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.bank-info .label {
+    width: 160px;
+    font-weight: 600;
+    color: #555;
+}
+
+.bank-info .value {
+    color: #222;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.bank-info .value.cbu {
+    font-family: monospace;
+    letter-spacing: 0.5px;
+}
+
+.send-btn {
+    display: block;
+    margin: 25px auto 0;
+    padding: 12px 24px;
+    background-color: #FF9000;
     color: white;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
 }
 
-.popup button:hover {
-    background-color: #c47004; /* Verde más oscuro */
+.send-btn:hover {
+    background-color: #c47004;
 }
+
+.dark-mode .popup-content {
+    background-color: #2e2e2e;
+    color: white;
+    border: 2px solid #FF9000;
+}
+.dark-mode h2{
+    color: #fff;
+}
+
+.dark-mode h3{
+    color: #fff;
+}
+
+.dark-mode .label {
+    color: #e7e4e0;
+}
+
+.dark-mode .value {
+    color: #ffffff;
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 8px;
+    padding: 0;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.1s ease;
+}
+
+.copy-btn:hover svg {
+    fill: #FF9000;
+    transform: scale(1.1);
+}
+
+
 
 
 /* Estilo para la sección de detalles de la membresía */
@@ -71,6 +160,16 @@
     margin-top: 10px;
     padding-left: 5px;
 }
+
+.currency-badge {
+    background-color: #f7f7f7;
+    color: #555;
+    font-size: 12px;
+    padding: 2px 5px;
+    border-radius: 5px;
+    vertical-align: middle;
+}
+
 
 .payment-options.visible {
     max-height: 200px; /* o lo que necesites */

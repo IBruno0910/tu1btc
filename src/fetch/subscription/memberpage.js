@@ -70,47 +70,7 @@ async function fetchBankDetails() {
     }
 }
 
-// Función para mostrar el popup con la información bancaria
-async function showBankPopup() {
-    const bankDetails = await fetchBankDetails();
-    if (!bankDetails) return;
 
-    const popup = document.createElement('div');
-    popup.classList.add('popup'); // Añadir la clase 'popup' para estilos CSS
-
-    popup.innerHTML = `
-        <div class="popup-content">
-            <h3>Información Bancaria</h3>
-            <p><strong>Nombre del Banco:</strong> ${bankDetails.bank}</p>
-            <p><strong>CBU:</strong> ${bankDetails.cbuNumber}</p>
-            <p><strong>Alias:</strong> ${bankDetails.alias}</p>
-            <p><strong>Información Adicional:</strong> ${bankDetails.information}</p>
-            <button id="sendReceiptBtn" class="subscription-button">
-                Enviar Comprobante
-            </button>
-        </div>
-    `;
-
-    document.body.appendChild(popup);
-
-    // Agregar funcionalidad al botón de "Enviar Comprobante"
-    document.getElementById('sendReceiptBtn').addEventListener('click', () => {
-        window.location.href = 'https://wa.me/5491134926411?text=Hola,%20Te%20envío%20el%20comprobante%20de%20pago';
-        closePopup(popup);
-    });
-
-    // Cerrar el popup si se hace clic fuera del contenido
-    popup.addEventListener('click', (e) => {
-        if (e.target === popup) {
-            closePopup(popup);
-        }
-    });
-}
-
-// Función para cerrar el popup
-function closePopup(popup) {
-    document.body.removeChild(popup);
-}
 
 
 
@@ -160,7 +120,10 @@ async function displaySubscriptionDetails(subscription) {
                 <div class="subscription-price">
                     <div>
                         <span>Precio (1 mes):</span>
-                        <strong class="current-price">$${subscription.price}</strong>
+                        <strong class="current-price">
+                            $${subscription.price}
+                            <span class="currency-badge">USD</span>
+                        </strong>
                     </div>
                     <button class="subscription-button toggle-payment" data-target="options-1">
                         <i class="fas fa-shopping-cart"></i> Adquirir Membresía
@@ -177,7 +140,11 @@ async function displaySubscriptionDetails(subscription) {
     
                 <div class="subscription-price">
                     <div class="price-container">
-                        <span>Precio (3 meses): <strong class="current-price">$${subscription.pricePeriod}</strong></span>
+                        <span>Precio (3 meses): <strong class="current-price">
+                            $${subscription.pricePeriod}
+                            <span class="currency-badge">USD</span>
+                        </strong>
+                        </span>
                         <span class="previous-price">$150</span>
                     </div>
                     <button class="subscription-button toggle-payment" data-target="options-2">
@@ -202,7 +169,10 @@ async function displaySubscriptionDetails(subscription) {
                 <div class="subscription-price">
                     <div>
                         <span>Precio (3 meses):</span>
-                        <strong class="current-price">$${subscription.price}</strong>
+                        <strong class="current-price">
+                            $${subscription.price}
+                            <span class="currency-badge">USD</span>
+                        </strong>
                     </div>
                     <button class="subscription-button toggle-payment" data-target="options-1">
                         <i class="fas fa-shopping-cart"></i> Adquirir Membresía
@@ -219,7 +189,11 @@ async function displaySubscriptionDetails(subscription) {
     
                 <div class="subscription-price">
                     <div class="price-container">
-                        <span>Precio (1 año): <strong class="current-price">$${subscription.pricePeriod}</strong></span>
+                        <span>Precio (1 año): <strong class="current-price">
+                            $${subscription.pricePeriod}
+                            <span class="currency-badge">USD</span>
+                        </strong>
+                        </span>
                         <span class="previous-price">$1400</span>
                     </div>
                     <button class="subscription-button toggle-payment" data-target="options-2">
@@ -363,19 +337,104 @@ async function displaySubscriptionDetails(subscription) {
             } catch (error) {
                 console.error('Error procesando el pago cripto anual:', error);
         }
-    });      
+    });
+    
+    window.copyToClipboard = function(text, btnElement) {
+        navigator.clipboard.writeText(text).then(() => {
+            const originalSVG = btnElement.getAttribute('data-original');
+            const checkSVG = btnElement.getAttribute('data-check');
+            btnElement.innerHTML = checkSVG;
+
+            setTimeout(() => {
+                btnElement.innerHTML = originalSVG;
+            }, 1500);
+        }).catch(err => {
+            console.error('Error al copiar:', err);
+        });
+    }
+
     
     document.getElementById('transfPayButton').addEventListener('click', () => {
-        showBankPopup();
+        showBankPopup(subscription.price); // Muestra el precio mensual
     });
     
     document.getElementById('transfPayButtonAnual').addEventListener('click', () => {
-        showBankPopup();
+        showBankPopup(subscription.pricePeriod); // Muestra el precio anual
     });
     
+    // Función para mostrar el popup con la información bancaria
+    async function showBankPopup(price) {
+        const bankDetails = await fetchBankDetails();
+        if (!bankDetails) return;
+    
+        const popup = document.createElement('div');
+        popup.classList.add('popup');
+    
+        popup.innerHTML = `
+            <div class="popup-content">
+                <h2>TRANSFERENCIA UNICAMENTE EN PESOS ARGENTINOS</h2>
+                <hr class="divider">
+                <h3>Información Bancaria</h3>
+                <hr class="divider-2">
+                <div class="bank-info">
+                    <div class="info-row">
+                        <span class="label">Banco:</span>
+                        <span class="value">${bankDetails.bank}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">CBU:</span>
+                        <span class="value cbu">
+                        ${bankDetails.cbuNumber}
+                        <button class="copy-btn" onclick="copyToClipboard('${bankDetails.cbuNumber}', this)" title="Copiar CBU"
+                            data-original='<svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18" fill="#555"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v16h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 18H8V7h11v16z"/></svg>'
+                            data-check='<svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18" fill="#28a745"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.2l-3.5-3.5L4 14.2l5 5 10-10-1.5-1.5z"/></svg>'>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18" fill="#555">
+                                <path d="M0 0h24v24H0V0z" fill="none"/>
+                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v16h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 18H8V7h11v16z"/>
+                            </svg>
+                        </button>
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Alias:</span>
+                        <span class="value">${bankDetails.alias}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Información Adicional:</span>
+                        <span class="value">${bankDetails.information}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Precio:</span>
+                        <span class="value">$${price} USD </span> 
+                    </div>
+                </div>
+                <button id="sendReceiptBtn" class="send-btn">Enviar Comprobante</button>
+            </div>
+        `;
+    
+        document.body.appendChild(popup);
+    
+        // Agregar funcionalidad al botón de "Enviar Comprobante"
+        document.getElementById('sendReceiptBtn').addEventListener('click', () => {
+            window.location.href = 'https://wa.me/5491134926411?text=Hola,%20Te%20envío%20el%20comprobante%20de%20pago';
+            closePopup(popup);
+        });
+    
+        // Cerrar el popup si se hace clic fuera del contenido
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                closePopup(popup);
+            }
+        });
+    }
+    
+    // Función para cerrar el popup
+    function closePopup(popup) {
+        document.body.removeChild(popup);
+    }
+
 
 }
-
 
 
 // Llamar a la función para obtener los detalles de la membresía
