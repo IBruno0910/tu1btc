@@ -455,7 +455,8 @@ window.updateUIWithNewCourses = updateUIWithNewCourses;
         // Ajustar el tamaño del contenedor del video para hacerlo más grande
         videoContainer.style.width = '100%';  // Mantiene la adaptabilidad
         videoContainer.style.maxWidth = '1000px'; // Establece un ancho máximo
-        videoContainer.style.height = 'auto';  // Ajusta la altura automáticamente para mantener la proporción
+        videoContainer.style.height = 'auto';
+        videoContainer.style.maxHeight = '3000px';
     
         if (vimeoPlayer) {
             vimeoPlayer.loadVideo(videoId).then(function() {

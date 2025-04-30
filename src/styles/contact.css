@@ -3,9 +3,11 @@
 body {
     font-family: "Rubik", sans-serif;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
-main{
+main {
     margin-top: 50px;
 }
 
@@ -15,18 +17,16 @@ main{
 }
 
 .contact .container {
-    height: 100vh;
     display: flex;
     flex-direction: row;
-    overflow: hidden;
+    min-height: 100vh;
+    flex-wrap: wrap;
 }
 
 .left {
-    width: 100%;
-    max-width: 80rem;
-    margin: 0 auto;
-    background-color: rgb(255, 255, 255);
-    padding: 65px 1.5rem;
+    flex: 1;
+    padding: 65px 2rem;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,7 +36,7 @@ main{
     font-weight: 600;
     color: black;
     font-size: 3.5rem;
-    line-height: 0.9;
+    line-height: 1;
     margin-bottom: 1.2rem;
 }
 
@@ -46,20 +46,20 @@ main{
 
 .text {
     color: #FF9000;
-    line-height: 1.1;
-    font-size: 1rem;
+    line-height: 1.5;
+    font-size: 1.1rem;
 }
 
 .form-wrapper {
-    max-width: 32rem;
+    max-width: 600px;
+    width: 100%;
 }
 
 .contact-form {
     display: grid;
-    margin-top: 2.55rem;
+    margin-top: 2.5rem;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 2rem;
-    row-gap: 1rem;
+    gap: 1.5rem;
 }
 
 .input-wrap {
@@ -73,45 +73,37 @@ main{
 .contact-input {
     width: 100%;
     background-color: #f2f2f2;
-    padding: 1.5rem 1.35rem;
+    padding: 1.5rem;
     border: none;
     outline: none;
     border-radius: 20px;
-    font-size: 0.9rem;
-    color: #111111;
-    border: 2px solid transparent;
-    box-shadow: 0 0 0 0px hsla(#FF9000, 92%, 54%, 0.169);
+    font-size: 1rem;
+    color: #111;
     transition: 0.3s;
-}
-
-.contact-input:hover {
-    background-color: #f2f2f2;
+    border: 2px solid transparent;
 }
 
 .input-wrap label {
     position: absolute;
     top: 50%;
-    left: calc(1.35rem + 2px);
+    left: 1.5rem;
     transform: translateY(-50%);
     color: #494848;
     pointer-events: none;
-    transition: .25s;
+    transition: 0.25s;
 }
 
 .input-wrap .icon {
     position: absolute;
-    right: calc(1.35rem - 8px);
+    right: 1.5rem;
     top: 50%;
     transform: translateY(-50%);
-    pointer-events: none;
     color: #636262;
     font-size: 1.25rem;
-    transition: .3s;
 }
 
 textarea.contact-input {
     resize: none;
-    width: 100%;
     min-height: 150px;
 }
 
@@ -127,40 +119,35 @@ textarea.contact-input ~ .icon {
 
 .input-wrap.focus .contact-input {
     background-color: #f5f4f4;
-    border: 2px solid hsl(#FF9000, 91%, 55%);
-    box-shadow: 0 0 0 5px hsla(#111111, 91%, 55%, 0.11);
+    border: 2px solid #FF9000;
+    box-shadow: 0 0 0 5px hsla(33, 100%, 50%, 0.11);
 }
 
-.input-wrap.focus label {
-    color: #FF9000;
-}
-
+.input-wrap.focus label,
 .input-wrap.focus .icon {
     color: #FF9000;
 }
 
 .input-wrap.not-empty label {
-    font-size: .66rem;
+    font-size: 0.66rem;
     top: 0.75rem;
     transform: translateY(0);
 }
 
 .contact-buttons {
-    display: table-column;
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
-    width: 200%;
+    width: 100%;
 }
 
 .btn {
     font-family: "Rubik", sans-serif;
-    padding: 1.1rem 2rem;
+    padding: 1rem 2rem;
     background-color: #FF9000;
-    color: #ffffff;
-    border-radius: 40px;
+    color: white;
     border: none;
-    font-weight: 500;
+    border-radius: 40px;
     font-size: 1rem;
     cursor: pointer;
     transition: 0.3s;
@@ -171,14 +158,17 @@ textarea.contact-input ~ .icon {
 }
 
 .right {
-    display: flex;
     flex: 1;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
 }
 
 .image-wrapper {
-    position: relative;
     width: 100%;
+    max-width: 600px;
+    position: relative;
 }
 
 .dashed-wave {
@@ -197,134 +187,165 @@ textarea.contact-input ~ .icon {
     opacity: 0.8;
 }
 
-/* Media Queries */
-@media (max-width: 1000px) {
-    .text {
-        font-size: 0.9rem;
-    }
+/* ========================= */
+/*       RESPONSIVE         */
+/* ========================= */
 
-    .contact-form {
-        grid-template-columns: 1fr; /* Cada input en su propia fila */
-    }
-
-    .contact-input {
-        border-radius: 17px;
-        font-size: 0.87rem;
-        padding: 1.5rem 1.2rem;
-    }
-
-    .input-wrap label {
-        font-size: .91rem;
-    }
-
-    .contact-buttons {
-        flex-direction: column;
-        width: 100%; /* Ajustar el ancho de los botones */
-    }
-
-    .btn {
-        width: 100%; /* Botón a 100% en móviles */
-    }
-}
-
-@media (max-width: 800px) {
+@media (max-width: 1200px) {
     .contact-heading h1 {
         font-size: 3rem;
     }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 1024px) {
+    .contact .container {
+        flex-direction: column;
+    }
+
+    .right {
+        order: -1;
+        padding: 2rem 0;
+    }
+
     .contact-heading h1 {
-        font-size: 2.6rem;
+        font-size: 2.8rem;
+    }
+
+    .contact-form {
+        grid-template-columns: 1fr;
+    }
+
+    .input-wrap.w-100 {
+        grid-column: span 1;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .contact-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-heading h1 {
+        font-size: 2.5rem;
+    }
+
+    .text {
+        font-size: 0.95rem;
+    }
+
+    .contact-form {
+        gap: 1rem;
     }
 
     .left {
-        padding: 50px 1.5rem; /* Espaciado */
+        padding: 40px 1rem;
     }
 }
 
-@media (max-width:377px){
-    .contact-form {
-        grid-template-columns: 1fr; /* Cada input en su propia fila */
+@media (max-width: 500px) {
+    .contact-heading h1 {
+        font-size: 2.2rem;
+    }
+
+    .form-wrapper {
+        padding: 0 0.5rem;
+    }
+
+    .input-wrap label {
+        font-size: 0.9rem;
+    }
+
+    .contact-input {
+        font-size: 0.9rem;
+        padding: 1.2rem;
     }
 }
 
-/*dark mode header*/
+@media (max-width: 375px) {
+    .contact-heading h1 {
+        font-size: 2rem;
+    }
 
-.dark-mode header nav{
-    background-color: rgb(24, 24, 24);
-    transition: background-color 0.8s ease, color 0.8s ease;
+    .contact-buttons {
+        padding-top: 1rem;
+    }
+}
+
+@media (max-width: 320px) {
+    .contact-heading h1 {
+        font-size: 1.8rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+
+    .input-wrap label {
+        font-size: 0.8rem;
+    }
+}
+
+/* ========================= */
+/*        DARK MODE         */
+/* ========================= */
+
+.dark-mode {
+    background-color: #1e1e1e;
+    color: white;
+    transition: 0.8s ease;
+}
+
+.dark-mode .contact,
+.dark-mode .left {
+    background-color: #1e1e1e;
+    color: white;
+}
+
+.dark-mode .contact-heading h1 {
+    color: white;
+}
+
+.dark-mode .text {
+    color: #FF9000;
+}
+
+.dark-mode .contact-input {
+    background-color: #3b3b3b;
+    color: white;
+    border: 2px solid #444;
+}
+
+.dark-mode .contact-input:hover {
+    background-color: #4d4d4d;
+}
+
+.dark-mode .input-wrap label {
+    color: #b0b0b0;
+}
+
+.dark-mode .input-wrap .icon {
+    color: #FF9000;
+}
+
+.dark-mode .btn {
+    background-color: #FF9000;
+    color: white;
+}
+
+.dark-mode header nav {
+    background-color: #181818;
 }
 
 .dark-mode .btn-insc-nav:hover {
-    background-color: rgb(24, 24, 24);
+    background-color: #181818;
     border-color: #FF9000;
     color: #FF9000;
 }
 
-.dark-mode .perfil-font{
+.dark-mode .perfil-font {
     color: #121212;
-}
-
-/* Estilos para el modo oscuro */
-
-.dark-mode {
-    background-color: #1e1e1e; /* Fondo oscuro para el cuerpo */
-    color: #ffffff; /* Texto blanco por defecto */
-    transition: background-color 0.8s ease, color 0.8s ease;
-}
-
-.dark-mode .contact {
-    background-color: #1e1e1e; /* Fondo oscuro para la sección de contacto */
-    transition: background-color 0.8s ease, color 0.8s ease;
-}
-
-.dark-mode .left {
-    background-color: #1e1e1e; /* Fondo oscuro para la parte izquierda */
-    color: #ffffff; /* Cambiar color del texto */
-    transition: background-color 0.8s ease, color 0.8s ease;
-}
-
-.dark-mode .contact-heading h1 {
-    color: #ffffff; /* Color blanco para los encabezados */
-    transition: background-color 0.8s ease, color 0.8s ease;
-}
-
-.dark-mode .contact-heading h1 span {
-    color: #FF9000; /* Mantener color del acento en naranja */
-    transition: background-color 0.8s ease, color 0.8s ease;
-}
-
-.dark-mode .text {
-    color: #FF9000; /* Mantener el texto en naranja */
-    transition: background-color 0.8s ease, color 0.8s ease;
-}
-
-.dark-mode .contact-input {
-    background-color: #3b3b3b; /* Fondo más oscuro para los inputs */
-    color: #ffffff; /* Texto blanco en los inputs */
-    border: 2px solid #444444; /* Borde de los inputs en color más oscuro */
-    transition: background-color 0.8s ease, color 0.8s ease;
-}
-
-.dark-mode .contact-input:hover {
-    background-color: #4d4d4d; /* Cambio en el fondo cuando el input es hover */
-    transition: background-color 0.8s ease, color 0.8s ease;
-}
-
-.dark-mode .input-wrap label {
-    color: #b0b0b0; /* Color claro para las etiquetas en dark mode */
-    transition: background-color 0.8s ease, color 0.8s ease;
-}
-
-.dark-mode .input-wrap .icon {
-    color: #f39000; /* Color claro para el icono */
-    transition: background-color 0.8s ease, color 0.8s ease;
-}
-
-.dark-mode .contact-buttons .btn {
-    background-color: #FF9000; /* Mantener color del botón */
-    color: #ffffff; /* Mantener color del texto del botón */
-    border-radius: 40px;
-    transition: background-color 0.8s ease, color 0.8s ease;
 }
