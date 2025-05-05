@@ -110,7 +110,7 @@ async function displaySubscriptionDetails(subscription) {
     if (subscription.name === "Membresia Exclusiva") {
         priceSection = `
             <div class="div-price">
-                <a href="https://wa.me/5491134926411?text=Hola,%20Quiero%20saber%20más%20información%20sobre%20la%20membresía%20exclusiva" class="subscription-button">Contactanos</a>
+                <a href="https://wa.me/541170632504?text=Hola,%20Quiero%20saber%20más%20información%20sobre%20la%20membresía%20exclusiva" class="subscription-button">Contactanos</a>
             </div>
         `;
     } else if (subscription.name === "Membresia Inicial") {
@@ -370,12 +370,37 @@ async function displaySubscriptionDetails(subscription) {
     document.getElementById('transfPayButtonAnual').addEventListener('click', () => {
         showBankPopup(subscription.pricePeriod); // Muestra el precio anual
     });
+
+    async function convertUSDToARS(usdAmount) {
+        const API_KEY = 'cur_live_WxhvBXaon5wwRCQsR1SwnXal3uth1psHIoF4su85';
+        const url = `https://api.currencyapi.com/v3/latest?apikey=${API_KEY}&base_currency=USD&currencies=ARS`;
+    
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+    
+            if (data && data.data && data.data.ARS) {
+                const rate = data.data.ARS.value;
+                return (usdAmount * rate).toFixed(2);
+            } else {
+                console.error("No se pudo obtener la tasa de cambio.");
+                return null;
+            }
+        } catch (error) {
+            console.error("Error al convertir moneda:", error);
+            return null;
+        }
+    }
+      
+    
     
     // Función para mostrar el popup con la información bancaria
     async function showBankPopup(price) {
         const bankDetails = await fetchBankDetails();
         if (!bankDetails) return;
     
+        const arsPrice = await convertUSDToARS(price);
+
         const popup = document.createElement('div');
         popup.classList.add('popup');
     
@@ -414,7 +439,7 @@ async function displaySubscriptionDetails(subscription) {
                     </div>
                     <div class="info-row">
                         <span class="label">Precio:</span>
-                        <span class="value">$${price} USD </span> 
+                        <span class="value">$${price} USD ${arsPrice ? `/ $${arsPrice} ARS` : ''}</span> 
                     </div>
                 </div>
                 <button id="sendReceiptBtn" class="send-btn">Enviar Comprobante</button>
@@ -425,7 +450,7 @@ async function displaySubscriptionDetails(subscription) {
     
         // Agregar funcionalidad al botón de "Enviar Comprobante"
         document.getElementById('sendReceiptBtn').addEventListener('click', () => {
-            window.location.href = 'https://wa.me/5491134926411?text=Hola,%20Te%20envío%20el%20comprobante%20de%20pago';
+            window.location.href = 'https://wa.me/541170632504?text=Hola,%20Te%20envío%20el%20comprobante%20de%20pago';
             closePopup(popup);
         });
     

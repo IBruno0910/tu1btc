@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     <ul>${listItems}</ul>
                 </div>
                 <div class="div-price">
-                <a href="https://wa.me/5491134926411?text=Hola,%20Quiero%20mejorar%20mi%20membresía" class="subscription-button">Mejorar</a>
+                <a href="https://wa.me/541170632504?text=Hola,%20Quiero%20mejorar%20mi%20membresía" class="subscription-button">Mejorar</a>
                 </div>
             </div>
         `;
