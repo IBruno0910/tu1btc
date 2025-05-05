@@ -132,7 +132,7 @@ async function displaySubscriptionDetails(subscription) {
                         <button id="transfPayButton" class="subscription-button">
                             <i class="fas fa-university"></i> Transferencia Bancaria
                         </button>
-                        <button id="cryptoPayButton" class="subscription-button">
+                        <button id="cryptoPayButton" class="subscription-button" data-period="${subscription.periodMonth}">
                             <i class="fab fa-bitcoin"></i> Criptomonedas
                         </button>
                     </div>
@@ -154,7 +154,7 @@ async function displaySubscriptionDetails(subscription) {
                         <button id="transfPayButtonAnual" class="subscription-button">
                             <i class="fas fa-university"></i> Transferencia Bancaria
                         </button>
-                        <button id="cryptoPayButtonAnual" class="subscription-button">
+                        <button id="cryptoPayButtonAnual" class="subscription-button" data-period="${subscription.periodQuarter}">
                             <i class="fab fa-bitcoin"></i> Criptomonedas
                         </button>
                     </div>
@@ -181,7 +181,7 @@ async function displaySubscriptionDetails(subscription) {
                         <button id="transfPayButton" class="subscription-button">
                             <i class="fas fa-university"></i> Transferencia Bancaria
                         </button>
-                        <button id="cryptoPayButton" class="subscription-button">
+                        <button id="cryptoPayButton" class="subscription-button" data-period="${subscription.periodMonth}">
                             <i class="fab fa-bitcoin"></i> Criptomonedas
                         </button>
                     </div>
@@ -203,7 +203,7 @@ async function displaySubscriptionDetails(subscription) {
                         <button id="transfPayButtonAnual" class="subscription-button">
                             <i class="fas fa-university"></i> Transferencia Bancaria
                         </button>
-                        <button id="cryptoPayButtonAnual" class="subscription-button">
+                        <button id="cryptoPayButtonAnual" class="subscription-button" data-period="${subscription.periodQuarter}">
                             <i class="fab fa-bitcoin"></i> Criptomonedas
                         </button>
                     </div>
@@ -248,7 +248,10 @@ async function displaySubscriptionDetails(subscription) {
         const sourceAmount = subscription.price; // Precio mensual
         const currency = 'USD';
         const sourceCurrency = 'USD';
-        const idCourse = subscription.id;
+        const idSubscription = subscription.id; 
+    
+        // Obtener el periodo (días) desde el botón
+        const period = document.getElementById('cryptoPayButton').getAttribute('data-period'); // Obtiene el valor del periodo (en días)
     
         try {
             const userRes = await fetch('https://tu1btc.com/api/user/myInformation', {
@@ -273,7 +276,8 @@ async function displaySubscriptionDetails(subscription) {
                     source_currency: sourceCurrency,
                     source_amount: sourceAmount,
                     email,
-                    IdCourse: idCourse
+                    IdSubscription: idSubscription,  // Usando IdSubscription ahora
+                    period: period                   // Se pasa el periodo como número de días
                 })
             });
     
@@ -289,14 +293,17 @@ async function displaySubscriptionDetails(subscription) {
         } catch (error) {
             console.error('Error procesando el pago cripto mensual:', error);
         }
-    });       
+    });
     
     document.getElementById('cryptoPayButtonAnual').addEventListener('click', async () => {
         const token = localStorage.getItem('authToken');
         const sourceAmount = subscription.pricePeriod; // Precio anual
         const currency = 'USD';
         const sourceCurrency = 'USD';
-        const idCourse = subscription.id;
+        const idSubscription = subscription.id; // Cambié a IdSubscription
+    
+        // Obtener el periodo (días) desde el botón
+        const period = document.getElementById('cryptoPayButtonAnual').getAttribute('data-period'); // Obtiene el valor del periodo (en días)
     
         try {
             const userRes = await fetch('https://tu1btc.com/api/user/myInformation', {
@@ -321,7 +328,8 @@ async function displaySubscriptionDetails(subscription) {
                     source_currency: sourceCurrency,
                     source_amount: sourceAmount,
                     email,
-                    IdCourse: idCourse
+                    IdSubscription: idSubscription,  // Usando IdSubscription ahora
+                    period: period                   // Se pasa el periodo como número de días
                 })
             });
     
@@ -334,10 +342,11 @@ async function displaySubscriptionDetails(subscription) {
             } else {
                 console.error('No se recibió la URL de factura:', data);
             }
-            } catch (error) {
-                console.error('Error procesando el pago cripto anual:', error);
+        } catch (error) {
+            console.error('Error procesando el pago cripto anual:', error);
         }
     });
+    
     
     window.copyToClipboard = function(text, btnElement) {
         navigator.clipboard.writeText(text).then(() => {
