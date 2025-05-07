@@ -251,7 +251,6 @@ header {
 }
 
 .video:hover {
-    transform: scale(1.02); /* Ligeramente más grande al pasar el ratón */
     box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3); /* Aumenta la sombra al hacer hover */
 }
 

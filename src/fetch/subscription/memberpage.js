@@ -71,9 +71,6 @@ async function fetchBankDetails() {
 }
 
 
-
-
-
 async function displaySubscriptionDetails(subscription) {
     const detailsContainer = document.getElementById('details-container');
     
@@ -242,8 +239,40 @@ async function displaySubscriptionDetails(subscription) {
             }
         });
     });
+
+    function showLoader() {
+        const loader = document.createElement('div');
+        loader.id = 'js-loader';
+        loader.style.cssText = `
+          position: fixed; top: 0; left: 0;
+          width: 100vw; height: 100vh;
+          background: rgba(0,0,0,0.5);
+          display: flex; align-items: center; justify-content: center;
+          z-index: 9999;
+        `;
+        loader.innerHTML = `
+          <div style="
+            width: 50px; height: 50px;
+            border: 6px solid #eee; border-top: 6px solid #F39000;
+            border-radius: 50%; animation: spin 1s linear infinite;
+          "></div>
+          <style>
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+          </style>
+        `;
+        document.body.appendChild(loader);
+      }
+      
+      function hideLoader() {
+        const loader = document.getElementById('js-loader');
+        if (loader) loader.remove();
+      }
     
     document.getElementById('cryptoPayButton').addEventListener('click', async () => {
+        showLoader();
         const token = localStorage.getItem('authToken');
         const sourceAmount = subscription.price; // Precio mensual
         const currency = 'USD';
@@ -292,10 +321,13 @@ async function displaySubscriptionDetails(subscription) {
             }
         } catch (error) {
             console.error('Error procesando el pago cripto mensual:', error);
+        } finally {
+            hideLoader();
         }
     });
     
     document.getElementById('cryptoPayButtonAnual').addEventListener('click', async () => {
+        showLoader();
         const token = localStorage.getItem('authToken');
         const sourceAmount = subscription.pricePeriod; // Precio anual
         const currency = 'USD';
@@ -344,6 +376,8 @@ async function displaySubscriptionDetails(subscription) {
             }
         } catch (error) {
             console.error('Error procesando el pago cripto anual:', error);
+        } finally {
+            hideLoader();
         }
     });
     
@@ -370,6 +404,7 @@ async function displaySubscriptionDetails(subscription) {
     document.getElementById('transfPayButtonAnual').addEventListener('click', () => {
         showBankPopup(subscription.pricePeriod); // Muestra el precio anual
     });
+
 
     async function convertUSDToARS(usdAmount) {
         const API_KEY = 'cur_live_WxhvBXaon5wwRCQsR1SwnXal3uth1psHIoF4su85';
@@ -439,7 +474,7 @@ async function displaySubscriptionDetails(subscription) {
                     </div>
                     <div class="info-row">
                         <span class="label">Precio:</span>
-                        <span class="value">$${price} USD ${arsPrice ? `/ $${arsPrice} ARS` : ''}</span> 
+                        <span class="value"> ${arsPrice ? ` $${arsPrice} ARS` : ''}</span> 
                     </div>
                 </div>
                 <button id="sendReceiptBtn" class="send-btn">Enviar Comprobante</button>
@@ -469,6 +504,21 @@ async function displaySubscriptionDetails(subscription) {
 
 
 }
+
+// ————— prueba rápida de CurrencyAPI —————
+;(async () => {
+    try {
+      const API_KEY = 'cur_live_WxhvBXaon5wwRCQsR1SwnXal3uth1psHIoF4su85';
+      const url = `https://api.currencyapi.com/v3/latest?apikey=${API_KEY}&base_currency=USD&currencies=ARS`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const json = await res.json();
+      console.log('🟢 Cotización USD→ARS:', json.data.ARS.value);
+      console.log('⏰ Última actualización:', json.meta.last_updated_at);
+    } catch (e) {
+      console.error('🔴 Error prueba CurrencyAPI:', e);
+    }
+  })();
 
 
 // Llamar a la función para obtener los detalles de la membresía
