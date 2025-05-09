@@ -395,130 +395,109 @@ async function displaySubscriptionDetails(subscription) {
             console.error('Error al copiar:', err);
         });
     }
+// Realiza la solicitud al endpoint para obtener todas las suscripciones
+async function loadSubscriptionData() {
+    const response = await fetch('https://tu1btc.com/api/subscription');
+    const subscriptionData = await response.json();
 
-    
-    document.getElementById('transfPayButton').addEventListener('click', () => {
-        showBankPopup(subscription.price); // Muestra el precio mensual
-    });
-    
-    document.getElementById('transfPayButtonAnual').addEventListener('click', () => {
-        showBankPopup(subscription.pricePeriod); // Muestra el precio anual
-    });
+    // Verifica que la respuesta tenga los datos esperados
+    console.log(subscriptionData);  // Verifica los datos
 
+    // Aquí estamos asumiendo que necesitas mostrar la información para la primera suscripción
+    const subscription = subscriptionData[0]; // Cambia esto según cuál suscripción necesitas
 
-    async function convertUSDToARS(usdAmount) {
-        const API_KEY = 'cur_live_WxhvBXaon5wwRCQsR1SwnXal3uth1psHIoF4su85';
-        const url = `https://api.currencyapi.com/v3/latest?apikey=${API_KEY}&base_currency=USD&currencies=ARS`;
-    
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-    
-            if (data && data.data && data.data.ARS) {
-                const rate = data.data.ARS.value;
-                return (usdAmount * rate).toFixed(2);
-            } else {
-                console.error("No se pudo obtener la tasa de cambio.");
-                return null;
-            }
-        } catch (error) {
-            console.error("Error al convertir moneda:", error);
-            return null;
-        }
+    if (subscription) {
+        // Asocia los eventos de clic para los botones
+        document.getElementById('transfPayButton').addEventListener('click', () => {
+            showBankPopup(subscription.pricePesos);  // Muestra el precio mensual en pesos
+        });
+
+        document.getElementById('transfPayButtonAnual').addEventListener('click', () => {
+            showBankPopup(subscription.pricePeriodPesos);  // Muestra el precio anual en pesos
+        });
+    } else {
+        console.error("No se encontraron suscripciones.");
     }
-      
-    
-    
-    // Función para mostrar el popup con la información bancaria
-    async function showBankPopup(price) {
-        const bankDetails = await fetchBankDetails();
-        if (!bankDetails) return;
-    
-        const arsPrice = await convertUSDToARS(price);
+}
 
-        const popup = document.createElement('div');
-        popup.classList.add('popup');
-    
-        popup.innerHTML = `
-            <div class="popup-content">
-                <h2>TRANSFERENCIA UNICAMENTE EN PESOS ARGENTINOS</h2>
-                <hr class="divider">
-                <h3>Información Bancaria</h3>
-                <hr class="divider-2">
-                <div class="bank-info">
-                    <div class="info-row">
-                        <span class="label">Banco:</span>
-                        <span class="value">${bankDetails.bank}</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="label">CBU:</span>
-                        <span class="value cbu">
-                        ${bankDetails.cbuNumber}
-                        <button class="copy-btn" onclick="copyToClipboard('${bankDetails.cbuNumber}', this)" title="Copiar CBU"
-                            data-original='<svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18" fill="#555"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v16h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 18H8V7h11v16z"/></svg>'
-                            data-check='<svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18" fill="#28a745"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.2l-3.5-3.5L4 14.2l5 5 10-10-1.5-1.5z"/></svg>'>
-                            <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18" fill="#555">
-                                <path d="M0 0h24v24H0V0z" fill="none"/>
-                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v16h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 18H8V7h11v16z"/>
-                            </svg>
-                        </button>
-                        </span>
-                    </div>
-                    <div class="info-row">
-                        <span class="label">Alias:</span>
-                        <span class="value">${bankDetails.alias}</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="label">Información Adicional:</span>
-                        <span class="value">${bankDetails.information}</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="label">Precio:</span>
-                        <span class="value"> ${arsPrice ? ` $${arsPrice} ARS` : ''}</span> 
-                    </div>
+// Llama a la función que carga los datos
+loadSubscriptionData();
+
+// Función para mostrar el popup con la información bancaria
+async function showBankPopup(price) {
+    const bankDetails = await fetchBankDetails();
+    if (!bankDetails) return;
+
+    const popup = document.createElement('div');
+    popup.classList.add('popup');
+
+    popup.innerHTML = `
+        <div class="popup-content">
+            <h2>TRANSFERENCIA UNICAMENTE EN PESOS ARGENTINOS</h2>
+            <hr class="divider">
+            <h3>Información Bancaria</h3>
+            <hr class="divider-2">
+            <div class="bank-info">
+                <div class="info-row">
+                    <span class="label">Banco:</span>
+                    <span class="value">${bankDetails.bank}</span>
                 </div>
-                <button id="sendReceiptBtn" class="send-btn">Enviar Comprobante</button>
+                <div class="info-row">
+                    <span class="label">CBU:</span>
+                    <span class="value cbu">
+                    ${bankDetails.cbuNumber}
+                    <button class="copy-btn" onclick="copyToClipboard('${bankDetails.cbuNumber}', this)" title="Copiar CBU"
+                        data-original='<svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18" fill="#555"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v16h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 18H8V7h11v16z"/></svg>'
+                        data-check='<svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18" fill="#28a745"><path d="M0 0h24v24H0z" fill="none"/><path d="M9 16.2l-3.5-3.5L4 14.2l5 5 10-10-1.5-1.5z"/></svg>'>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18" fill="#555">
+                            <path d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v16h14c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 18H8V7h11v16z"/>
+                        </svg>
+                    </button>
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Alias:</span>
+                    <span class="value">${bankDetails.alias}</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Información Adicional:</span>
+                    <span class="value">${bankDetails.information}</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Precio:</span>
+                    <span class="value"> $${price} ARS</span> 
+                </div>
             </div>
-        `;
-    
-        document.body.appendChild(popup);
-    
-        // Agregar funcionalidad al botón de "Enviar Comprobante"
-        document.getElementById('sendReceiptBtn').addEventListener('click', () => {
-            window.location.href = 'https://wa.me/541170632504?text=Hola,%20Te%20envío%20el%20comprobante%20de%20pago';
+            <button id="sendReceiptBtn" class="send-btn">Enviar Comprobante</button>
+        </div>
+    `;
+
+    document.body.appendChild(popup);
+
+    // Agregar funcionalidad al botón de "Enviar Comprobante"
+    document.getElementById('sendReceiptBtn').addEventListener('click', () => {
+        window.location.href = 'https://wa.me/541170632504?text=Hola,%20Te%20envío%20el%20comprobante%20de%20pago';
+        closePopup(popup);
+    });
+
+    // Cerrar el popup si se hace clic fuera del contenido
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
             closePopup(popup);
-        });
+        }
+    });
+}
+
+// Función para cerrar el popup
+function closePopup(popup) {
+    document.body.removeChild(popup);
+}
+
     
-        // Cerrar el popup si se hace clic fuera del contenido
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                closePopup(popup);
-            }
-        });
-    }
-    
-    // Función para cerrar el popup
-    function closePopup(popup) {
-        document.body.removeChild(popup);
-    }
 
 
 }
-
-// ————— prueba rápida de CurrencyAPI —————
-;(async () => {
-    try {
-      const API_KEY = 'cur_live_WxhvBXaon5wwRCQsR1SwnXal3uth1psHIoF4su85';
-      const url = `https://api.currencyapi.com/v3/latest?apikey=${API_KEY}&base_currency=USD&currencies=ARS`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const json = await res.json();
-      console.log('🟢 Cotización USD→ARS:', json.data.ARS.value);
-      console.log('⏰ Última actualización:', json.meta.last_updated_at);
-    } catch (e) {
-      console.error('🔴 Error prueba CurrencyAPI:', e);
-    }
-  })();
 
 
 // Llamar a la función para obtener los detalles de la membresía
