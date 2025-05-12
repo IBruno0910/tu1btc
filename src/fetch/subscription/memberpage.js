@@ -126,7 +126,7 @@ async function displaySubscriptionDetails(subscription) {
                         <i class="fas fa-shopping-cart"></i> Adquirir Membresía
                     </button>
                     <div id="options-1" class="button-group payment-options">
-                        <button id="transfPayButton" class="subscription-button">
+                        <button id="transfPayButton" data-id="0efb2065-89e3-4b81-adf5-8877692b32b1" class="subscription-button">
                             <i class="fas fa-university"></i> Transferencia Bancaria
                         </button>
                         <button id="cryptoPayButton" class="subscription-button" data-period="${subscription.periodMonth}">
@@ -148,7 +148,7 @@ async function displaySubscriptionDetails(subscription) {
                         <i class="fas fa-shopping-cart"></i> Adquirir Membresía
                     </button>
                     <div id="options-2" class="button-group payment-options">
-                        <button id="transfPayButtonAnual" class="subscription-button">
+                        <button id="transfPayButtonAnual" data-id="0efb2065-89e3-4b81-adf5-8877692b32b1" data-anual="true" class="subscription-button">
                             <i class="fas fa-university"></i> Transferencia Bancaria
                         </button>
                         <button id="cryptoPayButtonAnual" class="subscription-button" data-period="${subscription.periodQuarter}">
@@ -175,7 +175,7 @@ async function displaySubscriptionDetails(subscription) {
                         <i class="fas fa-shopping-cart"></i> Adquirir Membresía
                     </button>
                     <div id="options-1" class="button-group payment-options">
-                        <button id="transfPayButton" class="subscription-button">
+                        <button id="transfPayButton" data-id="cbd21fe7-f1d1-470d-9224-0385e662304b" class="subscription-button">
                             <i class="fas fa-university"></i> Transferencia Bancaria
                         </button>
                         <button id="cryptoPayButton" class="subscription-button" data-period="${subscription.periodMonth}">
@@ -197,7 +197,7 @@ async function displaySubscriptionDetails(subscription) {
                         <i class="fas fa-shopping-cart"></i> Adquirir Membresía
                     </button>
                     <div id="options-2" class="button-group payment-options">
-                        <button id="transfPayButtonAnual" class="subscription-button">
+                        <button id="transfPayButtonAnual" data-id="cbd21fe7-f1d1-470d-9224-0385e662304b" data-anual="true" class="subscription-button">
                             <i class="fas fa-university"></i> Transferencia Bancaria
                         </button>
                         <button id="cryptoPayButtonAnual" class="subscription-button" data-period="${subscription.periodQuarter}">
@@ -395,32 +395,28 @@ async function displaySubscriptionDetails(subscription) {
             console.error('Error al copiar:', err);
         });
     }
-// Realiza la solicitud al endpoint para obtener todas las suscripciones
-async function loadSubscriptionData() {
+
+    async function loadSubscriptionData() {
     const response = await fetch('https://tu1btc.com/api/subscription');
     const subscriptionData = await response.json();
 
-    // Verifica que la respuesta tenga los datos esperados
-    console.log(subscriptionData);  // Verifica los datos
+    // Asociar eventos a todos los botones de transferencia
+    document.querySelectorAll('button[id^="transfPayButton"]').forEach(button => {
+        const subId = button.getAttribute('data-id');
+        const isAnual = button.hasAttribute('data-anual');
 
-    // Aquí estamos asumiendo que necesitas mostrar la información para la primera suscripción
-    const subscription = subscriptionData[0]; // Cambia esto según cuál suscripción necesitas
-
-    if (subscription) {
-        // Asocia los eventos de clic para los botones
-        document.getElementById('transfPayButton').addEventListener('click', () => {
-            showBankPopup(subscription.pricePesos);  // Muestra el precio mensual en pesos
+        button.addEventListener('click', () => {
+            const subscription = subscriptionData.find(sub => sub.id === subId);
+            if (subscription) {
+                const priceToShow = isAnual ? subscription.pricePeriodPesos : subscription.pricePesos;
+                showBankPopup(priceToShow);
+            } else {
+                console.error("Suscripción no encontrada para ID:", subId);
+            }
         });
-
-        document.getElementById('transfPayButtonAnual').addEventListener('click', () => {
-            showBankPopup(subscription.pricePeriodPesos);  // Muestra el precio anual en pesos
-        });
-    } else {
-        console.error("No se encontraron suscripciones.");
-    }
+    });
 }
 
-// Llama a la función que carga los datos
 loadSubscriptionData();
 
 // Función para mostrar el popup con la información bancaria
