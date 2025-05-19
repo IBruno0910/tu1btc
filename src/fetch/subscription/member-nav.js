@@ -9,40 +9,55 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     try {
-        const response = await fetch("https://tu1btc.com/api/payment/info", {
+        // 1. Obtener el subscriptionId desde /api/membership/info
+        const membershipRes = await fetch("https://tu1btc.com/api/membership/info", {
             method: "GET",
             headers: {
-                "Accept": "application/json",
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                "Accept": "application/json"
             }
         });
 
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        if (!membershipRes.ok) {
+            throw new Error("No se pudo obtener la membresía");
         }
 
-        const data = await response.json();
-        
-        console.log("Respuesta del servidor:", data);
+        const membershipData = await membershipRes.json();
+        console.log("Membership Info:", membershipData);
 
-        if (!data || !data.payments_manual || data.payments_manual.length === 0) {
-            outputElement.innerHTML = "<p>No hay membresías activas.</p>";
+        if (!membershipData || membershipData.length === 0 || !membershipData[0].subscriptionId) {
+            outputElement.innerHTML = "<p>No tienes una membresía activa.</p>";
             return;
         }
 
-        // Obtener la primera membresía del array `payments_manual`
-        const membership = data.payments_manual[0].subscription;
+        const subscriptionId = membershipData[0].subscriptionId;
 
-        if (!membership) {
-            outputElement.innerHTML = "<p>No se encontró información de la membresía.</p>";
+        // 2. Obtener info detallada desde /api/subscription/:id
+        const subscriptionRes = await fetch(`https://tu1btc.com/api/subscription/${subscriptionId}`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Accept": "application/json"
+            }
+        });
+
+        if (!subscriptionRes.ok) {
+            throw new Error("No se pudo obtener información de la suscripción");
+        }
+
+        const subscription = await subscriptionRes.json();
+        console.log("Subscription Data:", subscription);
+
+        if (!subscription || !subscription.description || !subscription.name) {
+            outputElement.innerHTML = "<p>No se encontró información de la suscripción.</p>";
             return;
         }
 
-        // Obtener la imagen con la función reutilizada
-        const imageUrl = await fetchSubscriptionImage(membership.image);
+        // Obtener imagen
+        const imageUrl = await fetchSubscriptionImage(subscription.images);
 
-        // Formatear la descripción en lista estructurada
-        const descriptionItems = membership.description
+        // Descripción procesada
+        const descriptionItems = subscription.description
             .split("\n")
             .map(item => item.trim())
             .filter(item => item !== "");
@@ -51,66 +66,48 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const listItems = descriptionItems
             .slice(1)
-            .map(item => {
-                if (item.includes("(")) {
-                    const [title, details] = item.split("(");
-                    const formattedDetails = details
-                        .replace(")", "")
-                        .split(")")
-                        .map(detail => `<li>${detail.trim()}</li>`)
-                        .join("");
-                    return `<li><strong>${title.trim()}</strong><ul>${formattedDetails}</ul></li>`;
-                } else {
-                    return `<li>${item}</li>`;
-                }
-            })
+            .map(item => `<li>${item}</li>`)
             .join("");
 
-        // Mostrar los detalles en el HTML con el mismo formato de la otra sección
+        // Mostrar HTML
         outputElement.innerHTML = `
             <div class="subscription-details">
                 <div class="image-title-container">
                     <div class="image-container">
-                        <img src="${imageUrl}" alt="${membership.name}" class="subscription-image">
+                        <img src="${imageUrl}" alt="${subscription.name}" class="subscription-image">
                     </div>
-                    <h1 class="subscription-title">${membership.name}</h1>
+                    <h1 class="subscription-title">${subscription.name}</h1>
                 </div>
                 <div class="subscription-description">
                     <p>${firstParagraph}</p>
                     <ul>${listItems}</ul>
                 </div>
                 <div class="div-price">
-                <a href="https://wa.me/541170632504?text=Hola,%20Quiero%20mejorar%20mi%20membresía" class="subscription-button">Mejorar</a>
+                    <a href="https://wa.me/541170632504?text=Hola,%20Quiero%20mejorar%20mi%20membresía" class="subscription-button">Mejorar</a>
                 </div>
             </div>
         `;
 
     } catch (error) {
-        console.error("Error obteniendo la información:", error);
+        console.error("Error:", error);
         outputElement.innerHTML = `<p>Error al obtener datos: ${error.message}</p>`;
     }
 });
 
-// Función para obtener la imagen de la membresía
+// Función para obtener la imagen
 async function fetchSubscriptionImage(imageName) {
     const token = localStorage.getItem("authToken");
     try {
-        const response = await fetch(`https://tu1btc.com/api/subscription/image/${imageName}`, {
-            method: "GET",
+        const res = await fetch(`https://tu1btc.com/api/subscription/image/${imageName}`, {
             headers: {
-                "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             }
         });
-
-        if (!response.ok) {
-            throw new Error(`Error fetching image: ${response.status}`);
-        }
-
-        const blob = await response.blob();
+        if (!res.ok) throw new Error("Error obteniendo imagen");
+        const blob = await res.blob();
         return URL.createObjectURL(blob);
-    } catch (error) {
-        console.error("Error fetching image:", error);
-        return "./imgs/05_Membresias/default.jpg"; // Imagen por defecto
+    } catch (err) {
+        console.error("Error al cargar la imagen:", err);
+        return "./imgs/05_Membresias/default.jpg";
     }
 }

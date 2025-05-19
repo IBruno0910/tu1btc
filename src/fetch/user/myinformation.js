@@ -120,7 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
 function obtenerNombreMembresia(token) {
-    // Paso 1: Obtener los datos de membresía
     fetch('https://tu1btc.com/api/membership/info', {
         method: 'GET',
         headers: {
@@ -140,11 +139,15 @@ function obtenerNombreMembresia(token) {
             return;
         }
 
-        // Tomamos el ID del primer objeto de membresía
-        const membershipId = membershipData[0].id;
+        const subscriptionId = membershipData[0].subscriptionId;
 
-        // Paso 2: Obtener los datos de pago
-        fetch('https://tu1btc.com/api/payment/info', {
+        if (!subscriptionId) {
+            document.getElementById('user-membership').textContent = 'Membresía no disponible';
+            return;
+        }
+
+        // Ahora obtenemos la suscripción por ID
+        fetch(`https://tu1btc.com/api/subscription/${subscriptionId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -152,29 +155,16 @@ function obtenerNombreMembresia(token) {
             }
         })
         .then(response => {
-            if (!response.ok) throw new Error('Error en la solicitud de payment: ' + response.status);
+            if (!response.ok) throw new Error('Error en la solicitud de subscription: ' + response.status);
             return response.json();
         })
-        .then(paymentData => {
-            console.log('Datos de /api/payment/info:', paymentData);
-
-            const pagosManual = paymentData?.payments_manual || [];
-            const pagosAutomaticos = paymentData?.payments || [];
-
-            // Unimos ambos arrays
-            const todosLosPagos = [...pagosManual, ...pagosAutomaticos];
-
-            // Buscamos el pago correspondiente
-            const pagoEncontrado = todosLosPagos.find(p => p.membershipId === membershipId);
-
-            if (pagoEncontrado?.nameProduct) {
-                document.getElementById('user-membership').textContent = pagoEncontrado.nameProduct;
-            } else {
-                document.getElementById('user-membership').textContent = 'Membresía no encontrada';
-            }
+        .then(subscriptionData => {
+            console.log('Datos de /api/subscription/:id:', subscriptionData);
+            const nombreMembresia = subscriptionData.name || 'Nombre no disponible';
+            document.getElementById('user-membership').textContent = nombreMembresia;
         })
         .catch(error => {
-            console.error('Error al obtener los datos de payment:', error);
+            console.error('Error al obtener la información de la suscripción:', error);
             document.getElementById('user-membership').textContent = 'No disponible';
         });
 
@@ -184,6 +174,7 @@ function obtenerNombreMembresia(token) {
         document.getElementById('user-membership').textContent = 'No disponible';
     });
 }
+
 
     // Llamar a la función para obtener la información del usuario
     obtenerInformacionUsuario();
