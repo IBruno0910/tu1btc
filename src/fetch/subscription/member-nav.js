@@ -19,6 +19,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
         if (!membershipRes.ok) {
+            if (membershipRes.status === 404) {
+                // Aquí asumimos que 404 significa que no tiene membresía
+                showNoMembershipMessage();
+                return;
+            }
             throw new Error("No se pudo obtener la membresía");
         }
 
@@ -26,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.log("Membership Info:", membershipData);
 
         if (!membershipData || membershipData.length === 0 || !membershipData[0].subscriptionId) {
-            outputElement.innerHTML = "<p>No tienes una membresía activa.</p>";
+            showNoMembershipMessage();
             return;
         }
 
@@ -49,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.log("Subscription Data:", subscription);
 
         if (!subscription || !subscription.description || !subscription.name) {
-            outputElement.innerHTML = "<p>No se encontró información de la suscripción.</p>";
+            showNoMembershipMessage();
             return;
         }
 
@@ -83,16 +88,40 @@ document.addEventListener("DOMContentLoaded", async function () {
                     <ul>${listItems}</ul>
                 </div>
                 <div class="div-price">
-                    <a href="https://wa.me/541170632504?text=Hola,%20Quiero%20mejorar%20mi%20membresía" class="subscription-button">Mejorar</a>
+                    <a 
+                        href="https://wa.me/541170632504?text=Hola,%20Quiero%20mejorar%20mi%20membresía" 
+                        class="subscription-button" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                    >
+                        Mejorar
+                    </a>
                 </div>
             </div>
         `;
 
     } catch (error) {
         console.error("Error:", error);
-        outputElement.innerHTML = `<p>Error al obtener datos: ${error.message}</p>`;
+        if (error.message.includes("No se pudo obtener la membresía")) {
+            showNoMembershipMessage();
+        } else {
+            outputElement.innerHTML = `<p>Error al obtener datos: ${error.message}</p>`;
+        }
     }
 });
+
+// Función para mostrar mensaje cuando no hay membresía
+function showNoMembershipMessage() {
+    const outputElement = document.getElementById("membership-info");
+    outputElement.innerHTML = `
+        <div class="no-membership-message" style="text-align:center; padding: 20px;">
+            <p>Para obtener una membresía diríjase aquí.</p>
+            <button onclick="window.location.href='membresias.html'" style="padding: 10px 20px; background-color:#FF9000; color:white; border:none; border-radius:5px; cursor:pointer;">
+                Ver Membresías
+            </button>
+        </div>
+    `;
+}
 
 // Función para obtener la imagen
 async function fetchSubscriptionImage(imageName) {

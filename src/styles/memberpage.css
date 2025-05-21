@@ -1,3 +1,34 @@
+.crypto-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.crypto-modal-content {
+  background: rgba(255, 255, 255, 0.089);
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 700px;
+  position: relative;
+}
+
+.crypto-close {
+  position: absolute;
+  top: 10px; right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.white-icon {
+  color: white;
+}
+
+
 /* Estilos para el popup */
 .popup {
     position: fixed;
@@ -317,6 +348,27 @@
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(255, 144, 0, 0.3);
+}
+
+.crypto-info-button{
+    margin-top: auto;
+    display: inline-block;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: #9c9c9c2c;
+    border-color: #FF9000;
+    border-width: 2px;
+    color: #e67e22;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 144, 0, 0.3);
+}
+
+.crypto-info-button:hover{
+    background-color: #c4710433;
 }
 
 .subscription-button:hover {

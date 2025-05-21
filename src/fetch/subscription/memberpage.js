@@ -129,9 +129,12 @@ async function displaySubscriptionDetails(subscription) {
                         <button id="transfPayButton" data-id="0efb2065-89e3-4b81-adf5-8877692b32b1" class="subscription-button">
                             <i class="fas fa-university"></i> Transferencia Bancaria
                         </button>
-                        <button id="cryptoPayButton" class="subscription-button" data-period="${subscription.periodMonth}">
-                            <i class="fab fa-bitcoin"></i> Criptomonedas
-                        </button>
+                            <button id="cryptoPayButton" class="subscription-button" data-period="${subscription.periodMonth}">
+                                <i class="fab fa-bitcoin"></i> Criptomonedas
+                            </button>
+                            <button class=" crypto-info-button">
+                                <i class="fas fa-question-circle" style="color: #FF9000;"></i> Cómo pagar con crypto
+                            </button>
                     </div>
                 </div>
     
@@ -153,6 +156,9 @@ async function displaySubscriptionDetails(subscription) {
                         </button>
                         <button id="cryptoPayButtonAnual" class="subscription-button" data-period="${subscription.periodQuarter}">
                             <i class="fab fa-bitcoin"></i> Criptomonedas
+                        </button>
+                        <button class="crypto-info-button">
+                            <i class="fas fa-question-circle" color: #FF9000;"></i> Cómo pagar con crypto
                         </button>
                     </div>
                 </div>
@@ -181,6 +187,9 @@ async function displaySubscriptionDetails(subscription) {
                         <button id="cryptoPayButton" class="subscription-button" data-period="${subscription.periodMonth}">
                             <i class="fab fa-bitcoin"></i> Criptomonedas
                         </button>
+                        <button class="crypto-info-button">
+                            <i class="fas fa-question-circle" color: #FF9000;"></i> Cómo pagar con crypto
+                        </button>
                     </div>
                 </div>
     
@@ -203,12 +212,53 @@ async function displaySubscriptionDetails(subscription) {
                         <button id="cryptoPayButtonAnual" class="subscription-button" data-period="${subscription.periodQuarter}">
                             <i class="fab fa-bitcoin"></i> Criptomonedas
                         </button>
+                        <button class="crypto-info-button">
+                            <i class="fas fa-question-circle" color: #FF9000;"></i> Cómo pagar con crypto
+                        </button>
                     </div>
                 </div>
     
             </div>
         `;
-    }    
+    }   
+    
+    // Esto lo agregás una sola vez, fuera del bucle o lógica condicional, idealmente después de renderizar el contenido:
+    if (!document.getElementById('cryptoModal')) {
+        document.body.insertAdjacentHTML('beforeend', `
+            <div id="cryptoModal" class="crypto-modal">
+            <div class="crypto-modal-content">
+                <span class="crypto-close">&times;</span>
+                <div class="crypto-video-container">
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/TU_VIDEO" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+            </div>
+        `);
+    }
+
+    setTimeout(() => {
+    const modal = document.getElementById('cryptoModal');
+    const closeBtn = document.querySelector('.crypto-close');
+    const infoButtons = document.querySelectorAll('.crypto-info-button');
+
+    infoButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            modal.style.display = 'block';
+        });
+    });
+
+    closeBtn?.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+}, 100); // Asegura que los elementos ya estén en el DOM
+
+
 
     // Mostrar los detalles en el contenedor
     detailsContainer.innerHTML = `
