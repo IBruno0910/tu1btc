@@ -126,7 +126,7 @@ async function displaySubscriptionDetails(subscription) {
                         <i class="fas fa-shopping-cart"></i> Adquirir Membresía
                     </button>
                     <div id="options-1" class="button-group payment-options">
-                        <button id="transfPayButton" data-id="0efb2065-89e3-4b81-adf5-8877692b32b1" class="subscription-button">
+                        <button id="transfPayButton" data-id="3673a86b-9506-4adc-a088-8ce8841d4772" class="subscription-button">
                             <i class="fas fa-university"></i> Transferencia Bancaria
                         </button>
                             <button id="cryptoPayButton" class="subscription-button" data-period="${subscription.periodMonth}">
@@ -151,7 +151,7 @@ async function displaySubscriptionDetails(subscription) {
                         <i class="fas fa-shopping-cart"></i> Adquirir Membresía
                     </button>
                     <div id="options-2" class="button-group payment-options">
-                        <button id="transfPayButtonAnual" data-id="0efb2065-89e3-4b81-adf5-8877692b32b1" data-anual="true" class="subscription-button">
+                        <button id="transfPayButtonAnual" data-id="3673a86b-9506-4adc-a088-8ce8841d4772" data-anual="true" class="subscription-button">
                             <i class="fas fa-university"></i> Transferencia Bancaria
                         </button>
                         <button id="cryptoPayButtonAnual" class="subscription-button" data-period="${subscription.periodQuarter}">
@@ -181,7 +181,7 @@ async function displaySubscriptionDetails(subscription) {
                         <i class="fas fa-shopping-cart"></i> Adquirir Membresía
                     </button>
                     <div id="options-1" class="button-group payment-options">
-                        <button id="transfPayButton" data-id="cbd21fe7-f1d1-470d-9224-0385e662304b" class="subscription-button">
+                        <button id="transfPayButton" data-id="c87328e8-64d5-4ee4-a11d-6edaf002cc42" class="subscription-button">
                             <i class="fas fa-university"></i> Transferencia Bancaria
                         </button>
                         <button id="cryptoPayButton" class="subscription-button" data-period="${subscription.periodMonth}">
@@ -206,7 +206,7 @@ async function displaySubscriptionDetails(subscription) {
                         <i class="fas fa-shopping-cart"></i> Adquirir Membresía
                     </button>
                     <div id="options-2" class="button-group payment-options">
-                        <button id="transfPayButtonAnual" data-id="cbd21fe7-f1d1-470d-9224-0385e662304b" data-anual="true" class="subscription-button">
+                        <button id="transfPayButtonAnual" data-id="c87328e8-64d5-4ee4-a11d-6edaf002cc42" data-anual="true" class="subscription-button">
                             <i class="fas fa-university"></i> Transferencia Bancaria
                         </button>
                         <button id="cryptoPayButtonAnual" class="subscription-button" data-period="${subscription.periodQuarter}">
@@ -222,14 +222,14 @@ async function displaySubscriptionDetails(subscription) {
         `;
     }   
     
-    // Esto lo agregás una sola vez, fuera del bucle o lógica condicional, idealmente después de renderizar el contenido:
+    
     if (!document.getElementById('cryptoModal')) {
         document.body.insertAdjacentHTML('beforeend', `
             <div id="cryptoModal" class="crypto-modal">
             <div class="crypto-modal-content">
                 <span class="crypto-close">&times;</span>
                 <div class="crypto-video-container">
-                <iframe width="100%" height="315" src="https://www.youtube.com/embed/TU_VIDEO" frameborder="0" allowfullscreen></iframe>
+                <iframe width="100%" height="315" src="https://www.youtube.com/embed/TU_VIDEO" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             </div>

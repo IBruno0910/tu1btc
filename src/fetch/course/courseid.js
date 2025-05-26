@@ -448,39 +448,48 @@ window.updateUIWithNewCourses = updateUIWithNewCourses;
         }
     }
   
-    function loadVimeoVideo(videoId) {
-        currentVideoId = videoId;
-        const videoContainer = document.getElementById('video-player-container');
+function loadVimeoVideo(videoId) {
+    currentVideoId = videoId;
+    const videoContainer = document.getElementById('video-player-container');
+    
+    // Estilos para adaptar el tamaño del video
+    videoContainer.style.width = '100%';
+    videoContainer.style.maxWidth = '1000px';
+    videoContainer.style.height = 'auto';
+    videoContainer.style.maxHeight = '3000px';
+
+    if (vimeoPlayer) {
+        vimeoPlayer.loadVideo(videoId).then(function () {
+            console.log(`Reproduciendo video de Vimeo: ${videoId}`);
+        }).catch(function (error) {
+            console.error('Error al cargar el video de Vimeo:', error);
+        });
+
+        vimeoPlayer.on('ended', () => {
+            finishVideo(currentPlayedVideoId, true);
+        });
+
+    } else {
+        vimeoPlayer = new Vimeo.Player(videoContainer, {
+            id: videoId,
+            responsive: true
+        });
+
         
-        // Ajustar el tamaño del contenedor del video para hacerlo más grande
-        videoContainer.style.width = '100%';  // Mantiene la adaptabilidad
-        videoContainer.style.maxWidth = '1000px'; // Establece un ancho máximo
-        videoContainer.style.height = 'auto';
-        videoContainer.style.maxHeight = '3000px';
-    
-        if (vimeoPlayer) {
-            vimeoPlayer.loadVideo(videoId).then(function() {
-                console.log(`Reproduciendo video de Vimeo: ${videoId}`);
-            }).catch(function(error) {
-                console.error('Error al cargar el video de Vimeo:', error);
-            });
-    
-            vimeoPlayer.on('ended', () => {
-                finishVideo(currentPlayedVideoId, true);
-            });
-            
-    
-        } else {
-            vimeoPlayer = new Vimeo.Player(videoContainer, {
-                id: videoId,
-                responsive: true // Habilita la respuesta automática
-            });
-    
-            vimeoPlayer.on('play', function() {
-                console.log(`Video de Vimeo ${videoId} está en reproducción`);
-            });       
-        }
+        vimeoPlayer.on('loaded', function () {
+            const iframe = videoContainer.querySelector('iframe');
+            if (iframe) {
+                iframe.setAttribute('referrerpolicy', 'strict-origin');
+                console.log('Atributo referrerpolicy aplicado al iframe');
+            }
+        });
+
+        vimeoPlayer.on('play', function () {
+            console.log(`Video de Vimeo ${videoId} está en reproducción`);
+        });
     }
+}
+
     
   
     // Recargar los detalles del curso con feedback actualizado
