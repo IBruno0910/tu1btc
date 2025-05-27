@@ -229,7 +229,7 @@ async function displaySubscriptionDetails(subscription) {
             <div class="crypto-modal-content">
                 <span class="crypto-close">&times;</span>
                 <div class="crypto-video-container">
-                <iframe width="100%" height="315" src="https://player.vimeo.com/video/1087901369" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
+                <iframe width="100%" height="350" src="https://player.vimeo.com/video/1087901369" referrerpolicy="strict-origin" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
             </div>
