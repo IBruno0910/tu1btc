@@ -457,51 +457,37 @@ function loadVimeoVideo(videoId) {
     videoContainer.style.height = 'auto';
     videoContainer.style.maxHeight = '3000px';
 
-    // Destruir reproductor anterior si existe
     if (vimeoPlayer) {
-        vimeoPlayer.destroy().catch(console.error);
-        vimeoPlayer = null;
+        vimeoPlayer.loadVideo(videoId).then(function () {
+            console.log(`Reproduciendo video de Vimeo: ${videoId}`);
+        }).catch(function (error) {
+            console.error('Error al cargar el video de Vimeo:', error);
+        });
+
+        vimeoPlayer.on('ended', () => {
+            finishVideo(currentPlayedVideoId, true);
+        });
+
+    } else {
+        vimeoPlayer = new Vimeo.Player(videoContainer, {
+            id: videoId,
+            responsive: true
+        });
+        
+        
+        vimeoPlayer.on('loaded', function () {
+            const iframe = videoContainer.querySelector('iframe');
+            if (iframe) {
+                iframe.setAttribute('referrerpolicy', 'strict-origin');
+                console.log('Atributo referrerpolicy aplicado al iframe');
+            }
+        });
+
+        vimeoPlayer.on('play', function () {
+            console.log(`Video de Vimeo ${videoId} está en reproducción`);
+        });
     }
-    
-    // Limpiar el contenedor
-    videoContainer.innerHTML = '';
-
-    // Crear el iframe manualmente con referrerpolicy
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://player.vimeo.com/video/${videoId}`;
-    iframe.width = '100%';
-    iframe.maxWidth = '1000px';
-    iframe.height = '430px';
-    iframe.maxHeight = '3000px';
-    iframe.frameBorder = '0';
-    iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-    iframe.allowFullscreen = true;
-    iframe.setAttribute('referrerpolicy', 'strict-origin'); // <--- Aquí
-
-    videoContainer.appendChild(iframe);
-
-    // Crear nuevo reproductor Vimeo basado en el iframe recién creado
-    vimeoPlayer = new Vimeo.Player(iframe);
-
-    // Agregar eventos
-    vimeoPlayer.on('loaded', function () {
-        console.log('Video Vimeo cargado');
-    });
-
-    vimeoPlayer.on('play', function () {
-        console.log(`Video de Vimeo ${videoId} está en reproducción`);
-    });
-
-    vimeoPlayer.on('ended', () => {
-        finishVideo(currentPlayedVideoId, true);
-    });
-
-    // Cargar el video para asegurarse que se reproduce el correcto
-    vimeoPlayer.loadVideo(videoId).catch(function (error) {
-        console.error('Error al cargar el video de Vimeo:', error);
-    });
 }
-
 
     
   
