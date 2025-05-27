@@ -147,7 +147,8 @@
     color: #F39000;
 }
 
-/* Contenedor del video */
+
+
 #video-player-container {
     position: relative;
     width: 100%;
@@ -157,7 +158,6 @@
     z-index: 1;
 }
 
-/* Video de Vimeo */
 .vimeo-video {
     position: absolute;
     top: 0;
@@ -165,6 +165,7 @@
     width: 100% !important;
     height: 100% !important;
 }
+
 
 
 

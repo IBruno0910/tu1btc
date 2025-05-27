@@ -102,6 +102,12 @@ main {
     object-fit: cover !important;
 }
 
+.subscription-img,
+.imgcardsub {
+    background-color: transparent !important;
+}
+
+
 /* Títulos de las suscripciones */
 .subscription-card h2 {
     font-size: 1.5rem;

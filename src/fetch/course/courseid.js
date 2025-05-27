@@ -284,21 +284,20 @@ document.addEventListener('DOMContentLoaded', () => {
         
   
   function updateVideoTime(videoDbId, seconds) {
-    const videoId = String(videoDbId);  // Asegúrate de que `videoDbId` sea un UUID válido
-    const timeInSeconds = String(seconds);  // Convierte el valor de `seconds` a string
-  
+    const videoId = String(videoDbId);  
+    const timeInSeconds = String(seconds); 
     const payload = {
         id: videoId,  // El ID debe ser un UUID válido
-        seconds: timeInSeconds  // El tiempo debe ser un número en formato de cadena
+        seconds: timeInSeconds 
     };
   
-    console.log("Payload enviado:", payload);  // Verifica que los valores sean correctos
+    console.log("Payload enviado:", payload);  
   
     fetch('https://tu1btc.com/api/course/updateTime', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,  // Si es necesario, incluye tu token de autenticación
+            'Authorization': `Bearer ${token}`,  
         },
         body: JSON.stringify(payload),
     })
@@ -458,37 +457,51 @@ function loadVimeoVideo(videoId) {
     videoContainer.style.height = 'auto';
     videoContainer.style.maxHeight = '3000px';
 
+    // Destruir reproductor anterior si existe
     if (vimeoPlayer) {
-        vimeoPlayer.loadVideo(videoId).then(function () {
-            console.log(`Reproduciendo video de Vimeo: ${videoId}`);
-        }).catch(function (error) {
-            console.error('Error al cargar el video de Vimeo:', error);
-        });
-
-        vimeoPlayer.on('ended', () => {
-            finishVideo(currentPlayedVideoId, true);
-        });
-
-    } else {
-        vimeoPlayer = new Vimeo.Player(videoContainer, {
-            id: videoId,
-            responsive: true
-        });
-
-        
-        vimeoPlayer.on('loaded', function () {
-            const iframe = videoContainer.querySelector('iframe');
-            if (iframe) {
-                iframe.setAttribute('referrerpolicy', 'strict-origin');
-                console.log('Atributo referrerpolicy aplicado al iframe');
-            }
-        });
-
-        vimeoPlayer.on('play', function () {
-            console.log(`Video de Vimeo ${videoId} está en reproducción`);
-        });
+        vimeoPlayer.destroy().catch(console.error);
+        vimeoPlayer = null;
     }
+    
+    // Limpiar el contenedor
+    videoContainer.innerHTML = '';
+
+    // Crear el iframe manualmente con referrerpolicy
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://player.vimeo.com/video/${videoId}`;
+    iframe.width = '100%';
+    iframe.maxWidth = '1000px';
+    iframe.height = '430px';
+    iframe.maxHeight = '3000px';
+    iframe.frameBorder = '0';
+    iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.setAttribute('referrerpolicy', 'strict-origin'); // <--- Aquí
+
+    videoContainer.appendChild(iframe);
+
+    // Crear nuevo reproductor Vimeo basado en el iframe recién creado
+    vimeoPlayer = new Vimeo.Player(iframe);
+
+    // Agregar eventos
+    vimeoPlayer.on('loaded', function () {
+        console.log('Video Vimeo cargado');
+    });
+
+    vimeoPlayer.on('play', function () {
+        console.log(`Video de Vimeo ${videoId} está en reproducción`);
+    });
+
+    vimeoPlayer.on('ended', () => {
+        finishVideo(currentPlayedVideoId, true);
+    });
+
+    // Cargar el video para asegurarse que se reproduce el correcto
+    vimeoPlayer.loadVideo(videoId).catch(function (error) {
+        console.error('Error al cargar el video de Vimeo:', error);
+    });
 }
+
 
     
   
