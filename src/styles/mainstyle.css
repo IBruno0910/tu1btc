@@ -1,5 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
+
+/* Estilo para el botón de Discord con degradado */
+.discord-button {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 90px; /* Separado del botón de WhatsApp */
+    background: linear-gradient(135deg, #7289da, #5865F2); /* Degradado Discord */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+}
+
+.discord-button:hover {
+    background: linear-gradient(135deg, #5865F2, #7289da); /* Invertir el degradado al hacer hover */
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
 /* Estilo para el botón de WhatsApp con degradado */
 .whatsapp-button {
     position: fixed;
@@ -982,4 +1010,20 @@ header {
     background-color: #c07007; /* Fondo oscuro en hover */
     box-shadow: 0px 5px 40px -10px rgba(255, 255, 255, 0.57); /* Sombra blanca al pasar el ratón */
     transition: background-color 0.8s ease, color 0.8s ease;
+}
+
+/* Responsive: ajustamos la separación en pantallas chicas */
+@media (max-width: 480px) {
+    .discord-button {
+        right: 80px;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
+
+    .whatsapp-button {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+    }
 }

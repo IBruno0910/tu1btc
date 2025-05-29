@@ -136,6 +136,12 @@
         <a href="https://wa.me/541170632504?text=Hola,%20estoy%20interesado%20en%20tu%20servicio" class="whatsapp-button" target="_blank">
         <i class="fab fa-whatsapp"></i> <!-- Ícono de WhatsApp -->
       </a>
+      <a href="https://discord.com/invite/TU_LINK_AQUI" 
+        class="discord-button" 
+        target="_blank" 
+        aria-label="Discord">
+    <i class="fab fa-discord"></i>
+    </a>
     </main>
     <div style="background-color: #FF9000;height: 5px; margin-top: 80px;"></div>
     <footer class="footer">
@@ -158,10 +164,10 @@
                 <div class="footer-col">
                     <h4>Nuestras redes sociales</h4>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                     <a href="#"><i class="fab fa-tiktok"></i></a>
+                     <a href="#"><i class="fab fa-twitter"></i></a>
+                     <a href="https://www.instagram.com/tu.1btc/"><i class="fab fa-instagram"></i></a>
+                     <!--<a href="#"><i class="fab fa-linkedin-in"></i></a>-->
                     </div>
                     <p style="color: white; font-size: 11px;">Dirección: 304 INDIAN TRACE # 661 200GFS WESTON, FL 33326</p>
                 </div>
@@ -171,6 +177,48 @@
             <p>Todos los derechos reservados © 2024 | <a href="/src/terminos.html">Términos y Condiciones</a></p>
         </div>
     </footer>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const discordBtn = document.querySelector('.discord-button');
+  if (!discordBtn) return;
+
+  discordBtn.style.display = 'none';
+
+  const token = localStorage.getItem('authToken');
+  console.log('Token:', token);
+  if (!token) return;
+
+  fetch('https://tu1btc.com/api/membership/info', {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json'
+    }
+  })
+  .then(res => {
+    console.log('Respuesta HTTP:', res.status);
+    if (!res.ok) throw new Error('No autorizado');
+    return res.json();
+  })
+  .then(data => {
+  console.log('Datos membresía recibidos:', data);
+
+  const ahora = Date.now() / 1000;
+
+  // Revisar si alguna membresía está activa y no vencida
+  const tieneMembresiaActiva = Array.isArray(data) && data.some(item => 
+    item.status === 'active' && Number(item.endInSeconds) > ahora
+  );
+
+  console.log('¿Membresía activa?', tieneMembresiaActiva);
+
+  if (tieneMembresiaActiva) {
+    discordBtn.style.display = 'flex';
+  }
+})
+});
+
+</script>
     <script>//script perfil
         document.addEventListener('DOMContentLoaded', () => {
             const token = localStorage.getItem('authToken'); // Obtén el token del localStorage
