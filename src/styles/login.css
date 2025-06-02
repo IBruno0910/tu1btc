@@ -528,71 +528,75 @@ input:-webkit-autofill:focus {
 
 
 @media (max-width: 900px) {
-    .title{
+    html, body {
+        height: auto;
+        min-height: 100%;
+        overflow-y: auto;
+    }
+
+    .title {
         padding-top: 15px;
         font-size: 30px;
     }
-    
-    .container::before{
+
+    .container::before {
         display: none;
     }
 
-    .container{
+    .container {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         width: 90%;
-        height: 95vh;
+        height: 820px;
+        min-height: 100%;
+        padding: 20px 0;
+        box-sizing: border-box;
     }
 
-    .signin-signup{
-        display:grid;
-        position:fixed;
+    .signin-signup {
+        display: grid;
         justify-content: center;
         align-items: center;
-    }
-
-    form{
+        position: relative; /* ✅ NO fixed */
         width: 100%;
     }
 
-    form.sign-in-form{
+    form {
+        width: 100%;
+    }
+
+    form.sign-in-form {
         display: flex;
         opacity: 1;
         transition: none;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
     }
-    
-    form.sign-up-form{
+
+    form.sign-up-form {
         opacity: 1;
         transition: none;
     }
 
-    .panels-container{
+    .panels-container {
         display: none;
     }
 }
 
 @media (max-width: 344px) and (max-height: 882px) {
-    body{
-        height: 100vh;
-    }
-    .container{
-        height: 90vh;
-        width: 95%;
-    }
-
-    .title{
+    .title {
         font-size: 22px;
         margin-bottom: 2px;
     }
 
-    .input-field{
-        height:30px;
+    .input-field {
+        height: 30px;
     }
 
-    .btn{
+    .btn {
         width: 150px;
         height: 35px;
         border: none;
@@ -604,26 +608,19 @@ input:-webkit-autofill:focus {
         text-transform: uppercase;
         cursor: pointer;
     }
-  }
+}
 
 @media (min-width: 350px) {
-    body{
-        height: 100vh;
-    }
-    .container{
-        height: 98vh;
-    }
-
-    .title{
+    .title {
         font-size: 22px;
         margin-bottom: 2px;
     }
 
-    .input-field{
+    .input-field {
         height: 30px;
     }
 
-    .btn{
+    .btn {
         width: 150px;
         height: 35px;
         border: none;
@@ -638,14 +635,7 @@ input:-webkit-autofill:focus {
 }
 
 @media (min-width: 400px) {
-    body{
-        height: 100vh;
-    }
-    .container{
-        height: 98vh;
-    }
-
-    .input-field{
+    .input-field {
         height: 40px;
     }
 }
