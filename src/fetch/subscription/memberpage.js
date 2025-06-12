@@ -200,7 +200,7 @@ async function displaySubscriptionDetails(subscription) {
                             <span class="currency-badge">USD</span>
                         </strong>
                         </span>
-                        <span class="previous-price">$1400</span>
+                        <span class="previous-price">$5000</span>
                     </div>
                     <button class="subscription-button toggle-payment" data-target="options-2">
                         <i class="fas fa-shopping-cart"></i> Adquirir Membresía
